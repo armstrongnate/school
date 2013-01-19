@@ -1,0 +1,16 @@
+// command_line example
+// example code available online
+
+int main(int argc, char *argv[])
+{
+	//code
+}
+
+argc means number or count of parameters coming in
+argv means the actual values as an array.
+
+>>$ ./command_line 5 helloworld <- there are 3 command line parameters here.
+
+count = std:atoi(argv[1]); // converts 2nd parameter to integer
+
+

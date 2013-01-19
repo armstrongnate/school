@@ -1,0 +1,15 @@
+methods to create:
+
+	- roll die:
+		# rolls n dice, store results in vector
+		# sort in descending order
+
+	- compare
+	 	# compares attacker's and defender's vectors, 
+		# return num of defenders that lost
+
+	- repeat
+		# repeats n battles using the above functions
+		# tally results
+
+

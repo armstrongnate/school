@@ -1,0 +1,35 @@
+# Chapter 3
+Bus
+
+	One wire would snake through and every computer would clamp onto the copper wires for connection
+
+Ring
+	Circular connection with cable
+
+Star
+	you can run fewer cables, 
+	everyone connected individually to the mother load. 
+	this was the meat and potatoes
+
+Fiber jumpers:
+	Single Mode (SM)
+		Diameter is smaller
+		Requires a better light source
+		Uses Laser
+		Yellow		
+
+	Multi Mode (MM)
+		Uses LED
+		Orange or Aqua
+
+	Ends for Fiber Jumpers:
+		SC - "small clip"
+		LC = "little clip"
+		ST = "shove and twist"
+
+IEEE Standard
+	IEEE is the big Dawgs that approve things.
+	802.11 - wireless
+		a, b, N g
+	802.3
+		ethernet

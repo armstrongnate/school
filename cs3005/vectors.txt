@@ -1,0 +1,12 @@
+// vectors
+// again, example file available online
+/* 	
+	* vectors are similar to lists
+	* std::vector<int> my_ints; says the vector is expected to hold integers.
+	* push_back() is equivelant to append
+	* size() (ex: v.size) gets size of vector
+*/
+
+run ./vectors to see how to sort largest to smallest!
+
+SEE EXAMPLE "type_cast.cpp" TO SEE HOW TO DIVIDE TO GET FLOAT!

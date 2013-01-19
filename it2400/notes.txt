@@ -1,0 +1,109 @@
+DIFFERENCE BETWEEN BIT AND BYTE => bit is either a 1 or a 0, byte is 8 bits.
+
+kbps vs kb => kbps is bits: measures speed. kb is bytes: measures memory.
+
+## DAY 1 ##
+
+* CHAPTER 1
+
+How to convert between binary and decimal.
+
+	2^0 = 1
+	2^1 = 2
+	2^2 = 4
+	2^3 = 8
+	2^4 = 16
+	2^5 = 32
+	2^6 = 64
+	2^7 = 128
+
+	break binary number into 4 digits at a time
+		1011 0010
+			start at right right most digit, it represents 2^0. Move left from there incrementing exponent.
+			128 32 16 2
+			add those up = 178
+
+Convert binary to decimal
+	138
+		pick biggest number that you can subtract from binary number.
+		in this case, 128
+		do the subtraction. Repeat.
+		
+		138
+		-128
+		= 10
+		 -8
+		= 2
+		- 2
+		= 0
+		so numbers are 2 8 128 which equals 1000 1010
+	235
+		binary = 1110 1011
+
+Hexadecimal
+	Uses #'s 0-9, A-F
+
+* CHAPTER 2
+
+The OSI Model
+	1. Physical
+		This is the foundation. 
+		Deals with the 1's and 0's. 
+		Fiber, copper, radio waves
+	
+	2. Data Link
+		Where the 1's and 0's go. 
+		Network Interface Card (NIC) **
+			Two layers within this layer:
+				- Media Access Control (MAC) **
+					this is mac address: 48 bit address written in hexadecimal.
+					hard coded onto the NIC on the circuit board.
+				- Logical Link Control (LLC) **
+		FRAME - framing takes place at this layer
+
+	3. Network
+		Start to see IP Addresses
+	
+	4. Transport
+		TCP, UDP
+
+	5. Session
+		Sockets
+
+	6. Presentation
+		
+	7. Application
+		Highest level. Applications that we interact with. 
+		Deals with layers 1-4 mostly. 
+	
+	Please Do Not Throw Sausage Pizza Away!
+
+THE DATA LINK LAYER
+	Network Interface Card
+		Where networking starts and ends. 
+		Job: take what the computer is saying and convert it to 1's and 0's.
+		Has a 48 bit MAC address (identified as PHYSICAL ADDRESS):
+			looks something like this: 001A : 197E : 7731 : 9FCA
+			the first 6 digits are the Organizational Unit Identifier (OUI) **
+				represents manufacturer
+			remaining digits are the Device ID.
+		Job: Create frames.
+			organizes 1's and 0's into chunks.
+			puts headers on 1's and 0's to keep track of where it came from, where it's going, etc.
+			One frame shown below
+			-----------------------------------------------------------------------------------------
+			-						-						-					-					-
+			-	Recipient MAC		-		Sender MAC		-		DATA		-		CRC			-
+			-						-						-					-					-
+			-----------------------------------------------------------------------------------------
+			One frame is on average 1500 bytes. If it's bigger the network card will defrag or bust?
+			
+	Hub
+		Bad because it copies all input and sends it to every possible output.
+	
+	Ethernet
+		Expected to have collisions. Use CSMA/CD (..Multiple Access/Collision Detection) to detect those collisions.
+
+	Use broadcast addresses
+		look like FF:FF:FF:FF:FF:FF
+		sending information to everybody
