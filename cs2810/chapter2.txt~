@@ -45,10 +45,12 @@ Floats
 		00110001 = 17/16
 		01100000 = 8 = 16/2
 
-*When dealing with money, stick to whole numbers (one cent).
+When dealing with money, stick to whole numbers (one cent).
 
 
-Read appendix A for help with the HDL language.
+
+
+
 
 
 
