@@ -100,14 +100,6 @@ THE DATA LINK LAYER
 			
 	Hub
 		Bad because it copies all input and sends it to every possible output.
-			
-	Switch
-	
-	Half-Duplex
-		Like walkie talkie. One talks, one listens.
-
-	Full-Duplex
-		Both can talk at the same time.
 	
 	Ethernet
 		Expected to have collisions. Use CSMA/CD (..Multiple Access/Collision Detection) to detect those collisions.
