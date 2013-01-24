@@ -6,7 +6,7 @@ add:
 	popl 	%ebp
 	ret
 
-- esp is the line on top. Bring esp down to free up some memory, store your variables, run your function, then move esp back up.
+- esp (Stack Pointer) is the line on top. Bring esp down to free up some memory, store your variables, run your function, then move esp back up.
 
 - 'e' means 'extended' which means it's part of the 32 bit version (32 bit values).
 
@@ -25,4 +25,11 @@ add:
 - whenever you put a register name in parenthesis, treat it as an address and see where it's pointed to. Add the outside number to it.
 
 - 8 above ebp is first parameter. 12 above ebp is second parameter.
+
+8(%eax, %ebx, 4)
+	- 8 + eax + ebx * 4
+	- might be used to locate a variable inside a struct (in C terms)
+
+
+
 
