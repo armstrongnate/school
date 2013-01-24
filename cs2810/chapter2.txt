@@ -46,12 +46,3 @@ Floats
 		01100000 = 8 = 16/2
 
 When dealing with money, stick to whole numbers (one cent).
-
-
-
-
-
-
-
-
-		
