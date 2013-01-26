@@ -8,4 +8,3 @@ Binary search
 
 Linear search
 	to test, put smallest value at index 0, last index, and somewhere in the middle.
-	
