@@ -19,4 +19,9 @@ CHIP PC {
 
     PARTS:
     // Implementation missing.
+    Inc16(in=tminusone, out=tminusoneplusone);
+    Mux16(a=tminusone, b=tminusoneplusone, sel=inc, out=tminusoneplusoneORtminusone);
+    Mux16(a=tminusoneplusoneORtminusone, b=in, sel=load, out=tminusoneplusoneORtminusoneORin);
+    Mux16(a=tminusoneplusoneORtminusoneORin, b=false, sel=reset, out=tminusoneplusoneORtminusoneORinORzero);
+    Register(in=tminusoneplusoneORtminusoneORinORzero, load=true, out=out, out=tminusone);
 }
