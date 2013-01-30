@@ -1,0 +1,19 @@
+// BIG-O
+
+Categories:
+	1
+	logN
+	N
+	N * logN
+	N^2
+	N^3
+
+---------------------
+
+	2^N
+	N!
+	N^N
+
+Above the line are polynomial (aka Tractible)
+Below the line are exponential (aka Intractible)
+

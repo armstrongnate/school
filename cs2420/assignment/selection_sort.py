@@ -42,10 +42,10 @@ def QuickSortR(A, counts, low, high, modified):
 	A[pivot], A[sp-1] = A[sp-1], A[pivot]
 
 	# recurse on smaller stuff
-	QuickSortR(A, counts, low, sp-1, False)
+	QuickSortR(A, counts, low, sp-1, True)
 
 	# recurse on bigger stuff	
-	QuickSortR(A, counts, sp, high, False)
+	QuickSortR(A, counts, sp, high, True)
 
 def main():
 	counts = [0,0]
