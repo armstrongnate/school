@@ -13,7 +13,7 @@ def QuickSort(A, counts):
 	QuickSortR(A, counts, 0, len(A-1))
 
 def QuickSortR(A, counts, low, high, modified=false):
-	if low >= high:
+	if high == 1:
 		return
 
 	pivot = low
@@ -24,10 +24,10 @@ def QuickSortR(A, counts, low, high, modified=false):
 	A[pivot], A[sp-1] = A[sp-1], A[pivot]
 
 	# recurse on smaller stuff
-	QuickSortR(A, low, pivot-1)
+	QuickSortR(A, low, sp-1)
 
 	# recurse on bigger stuff	
-	QuickSortR(A, pivot+1, high)
+	QuickSortR(A, sp, high)
 
 # Modified quick sort
 	# pick number in the middle, swap it with the first number, pivot from there.

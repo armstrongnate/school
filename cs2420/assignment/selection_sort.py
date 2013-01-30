@@ -23,14 +23,40 @@ def Compare(list1, list2):
 			return
 	print "Success!"
 
+# ------------- QUICK SORT -------------- #
+def QuickSort(A, counts, modified=False):
+	QuickSortR(A, counts, 0, len(A)-1, modified)
+
+def QuickSortR(A, counts, low, high, modified):
+	if low >= high:
+		return
+	if modified:
+		A[len(A)/2], A[0], = A[0], A[len(A)/2]
+	counts[0] += 1
+	pivot = low
+	sp = pivot + 1 #swap position
+	for i in range(pivot+1, high+1):
+		if A[i] < A[pivot]:
+			A[i], A[sp] = A[sp], A[i]
+			sp += 1
+	A[pivot], A[sp-1] = A[sp-1], A[pivot]
+
+	# recurse on smaller stuff
+	QuickSortR(A, counts, low, sp-1, False)
+
+	# recurse on bigger stuff	
+	QuickSortR(A, counts, sp, high, False)
+
 def main():
-	A = CreateRandomList(1000)
-	#print A # make sure A is a list with numbers in it. Can contain duplicates. Numbers 0-listAmount
-	Acopy = A[:]
-	SelectionSort(A)
-	Acopy.sort()
+	counts = [0,0]
+	A = CreateRandomList(100)
+	print A
+	Acopy_quick = A[:]
+	QuickSort(A, counts, True)
+	Acopy_quick.sort()
 	print A # hopefully sorted
-	print Acopy # will be sorted
-	Compare(A, Acopy) # compare the two lists. Print "All the same" if successfull. Failure otherwise.
+	print Acopy_quick # will be sorted
+	print "Recursions: %i" % counts[0]
+	Compare(A, Acopy_quick) # compare the two lists. Print "All the same" if successfull. Failure otherwise.
 
 main()
