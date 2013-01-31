@@ -15,23 +15,27 @@ ALU
 
 Floats
 	01011101
-		first bit (from left) is a sign bit - positive or negative?
+		first bit (from left) is a sign bit - positive or negative? 
+			if sign is one, it's negative. If it's 0, it's positive.
 		last 3 bits would be the fraction bits
 		next 3 bits exponent bits
 			k = number of exponent bits; in this case, 3 (with an 8 bit)
 			bias = 2^k-1 - 1; in this case, it's 3
+
 			 what kind of number is this?
 				normalized
 					exponent bits are not all 1's AND not all 0's
 					exponent value = value of bits - bias; in this case, 2
 					fraction value
 						implicit '1.' in front of fraction value; (1.1101 in this case) <<- equates to 1^13/16 because 13 is the value of 1101, out of 16 because 16 is 2^4.
-					now take fraction value (1^13/16) and multiply it by 2^exponent value (29/4 in this case)
+
+				now take fraction value (1^13/16) and multiply it by 2^exponent value (29/4 in this case) 
+				(-1)^sign + frac * 2^exponent
 							
 
 				denormalized
 					exponents are all 0's
-					exponent value = 1-bias
+					exponent value = 1 minus the bias
 					implicit 0 in front of fraction value
 
 
@@ -39,6 +43,16 @@ Floats
 					exponents are all 1's
 					fraction all 0's => infinity
 					otherwise => NAN
+
+	examples:
+		0 00000 1010 = 5/8 * 2^-14 = 5/128K
+		1.75 = 0 01111 1100
+			get decimal to a fraction whose denominator is a power of 2 => 1 3/4
+			convert that into a binary with decimal => 1.11 
+			shift decimal so it's one from the left (we didn't have to do that in this case so move it 0 times) => 1.11
+			now multiply it by 2 raised to the amount of times you moved the decimal => 1.11 * 2^0
+			convert that number into bits, get value of exponent.
+			
 
 	WHY??
 		00000001 = 1/64
@@ -48,3 +62,6 @@ Floats
 When dealing with money, stick to whole numbers (one cent).
 
 Read appendix A for help with the HDL language.
+
+Misc:
+	Values don't have types built-in with assembly language like they do with high-level languages.
