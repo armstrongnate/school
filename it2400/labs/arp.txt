@@ -1,0 +1,42 @@
+Linux command for arp -d is "arp -d -a"
+
+SWITCHES
+1. How many mac addresses does the switch know about? (you may have to count them)
+
+Answer: 19
+
+2. What port should the switch forward frames out of if it is tagged with the following mac address: 000d.ed8e.a780? Hypothesize why you think that mac address listed more than once in the table?
+
+Answer: FastEthernet0/6; Because it is a switch to switch connection.
+
+3. Why are so many different mac addresses listed out port FastEthernet0/1? What do you suppose is plugged in at the other end of that port? 
+
+Answer: Probably because FastEthernet0/1 plugs into a switch.
+
+4. What is the maximum number of MAC addresses that the switch can store?(it is given in that file) What do you think the switch does if it learns about mac addresses after it has maxed out? (Hypothesize and then go to google and see if you can find an answer)
+
+Answer: 2048; 
+
+WIRESHARK
+
+1. What is the 48 bit address of your computer? (in hexadecimal)
+
+Answer: 18:03:73:b1:9c:5d
+
+2. What is the 48 bit address of the destination? (hex)
+
+Answer: d0:d0:fd_49:02:51
+
+3. Capture again and visit a different website, does the answer to the above question ever change? Why?
+
+Answer: No because mac addresses are hard-coded.
+
+4. Find the response from the above frame and identify the source mac and destination mac. (screenshot) 
+
+Before you close wireshark, start a capture again and type ‘arp’ in the filter box. Now wireshark will only show you arp traffic. If you on your windows VM you should readily see some arp traffic. If you do not, issue the arp -d * command again, to delete all your arp entries and then visit a website again to generate some network traffic.
+
+What is in the ‘Info’ section of any arp frame?
+
+Answer: Who has 144.38.195.193? Tell 144.38.195.214
+
+Record (screenshot) any arp request along with its’ corresponding reply.
