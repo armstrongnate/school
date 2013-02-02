@@ -10,7 +10,7 @@ def main():
 	useRandom = True
 	useCompares = False
 	startingSize = 8
-	endingSize = 4024*4
+	endingSize = 4096
 	sys.setrecursionlimit(endingSize+10)
 
 	size = startingSize
