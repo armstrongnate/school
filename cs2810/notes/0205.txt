@@ -1,0 +1,102 @@
+CS 2810
+Professor Ross
+02/05/2013
+Chapter 5 - Computer Architecture
+
+Ada Lovelace 
+	First computer programmer
+
+John Von Neumann
+	setup the architecture for modern computers.
+	all computers are based on the Von Neumann design.
+
+The ALU is the heart of the CPU
+	handles all computing
+	always computing something
+	strictly combinational
+	gets its input from D and either A or M
+	output can be stored as:
+		input for D
+		memory
+		input for A
+
+PC - part of the CPU
+	handles jumping
+	outputs to PC
+
+CPU
+	tells the ALU what to do
+	bulk of the work when building a computer from scratch
+	bits tell how to orchestrate computation and how to use the ALU
+	
+	Cycle:
+		fetch
+		execute
+	Execute Logic:
+		Decode
+		Execute
+	Fetch logic:
+		If jump then set PC to A
+		else set PC to PC+1
+		** it knows where to jump based on what is stored in A
+	Reset Logic:
+		Set reset to 1, then to 0
+
+PARTS OF THE CPU
+	instruction:
+		16 bit bus coming in
+	D control logic:
+		is a register
+		is one of the inputs for the ALU
+		loads when the C instruction is an AND gate and D is set (D = x)
+	A control logic
+		is a register
+		loads when C instruction and value for A is set (A = x)
+		mux is used to make sure correct value is inputed
+			mux asks, A instruction or C instruction? 
+	ALU Control logic
+		has 6 bits of control logic
+		D input is x, A or M is y
+		results are being ignored?
+		output bits:
+			negative
+			equal to 0
+	MUX before ALU
+		value of M is input
+		A is also input
+		decides between A and M based on 4th bit
+		is A or M the better choice?
+	PC
+		inputs: should it reset, load, increment
+		reset is inputed from beginning
+		it should always increment
+		really only has to decide whether to load or not
+		when should a jump be taken?
+			never jump on an A instruction
+			must be a C instruction AND..
+			ALU output must be negative and j1 was set OR..
+			ALU was 0 AND j2 was set OR..
+			ALU was positive AND j3 was set.
+
+Testing CPU
+	case by case. Take one example and test it. Use the hardware simulator GUI.
+
+Things to implement:
+	Keyboard
+		has a 16 bit output
+	Screen memory
+		part given
+		16 bit input value
+		13 bit address
+		16 bit output
+	Data Memory (RAM)
+	CPU
+	Computer
+		plug everything together (CPU, RAM, ROM, keyboard, screen)
+Given:
+	Instruction memory (ROM 32k)
+
+
+
+
+
