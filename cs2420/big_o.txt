@@ -17,3 +17,13 @@ Categories:
 Above the line are polynomial (aka Tractible)
 Below the line are exponential (aka Intractible)
 
+1		array lookup	
+logN	Binary Search
+N		Linear Search
+N*logN	Quick Sort, Merge Sort
+N^2 	Bubble sort, shaker sort, selection sort
+N^3 	Bad card shuffling
+
+Multiply Problem => N^2
+Factoring => 10^(N/2)
+

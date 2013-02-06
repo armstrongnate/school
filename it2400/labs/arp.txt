@@ -1,4 +1,9 @@
-Linux command for arp -d is "arp -d -a"
+ARP CACHE
+3. Does the address ever change?
+
+Answer: No it does not.
+
+Screenshot:
 
 SWITCHES
 1. How many mac addresses does the switch know about? (you may have to count them)

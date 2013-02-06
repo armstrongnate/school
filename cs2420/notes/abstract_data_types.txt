@@ -1,0 +1,17 @@
+# Abstract Data Types
+
+STACK
+	push
+	pop
+	top
+	isEmpty()
+	init
+
+QUEUE
+	enqueue (put on in)
+	dequeue (take one out)
+	front (look at the one in front)
+	isEmpty
+	init
+
+	python list doesn't work good with a queue. use a link list?
