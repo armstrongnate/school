@@ -1,0 +1,37 @@
+CS 2810
+Professor Ross
+02/05/2013
+Chapter 6 - Assembler
+
+Flags
+	sf - sign
+		set if most significant bit is 1
+	zf - zero
+		set if all bits are 0
+	cf - carry
+		set if there was a carry with the most significant bit
+		cross boundary at top of circle?
+	of - overflow
+		related to 2's complement
+		cross boundary at bottom of circle?
+
+	How to use these flags to help us know when to jump?
+		op		flags
+		// 2's complement
+		je		zf
+		jne		!zf
+		jg		!(sf ^ of) & !zf	
+		jge		!(sf ^ of)
+		jl		sf ^ of // if overflow, flip the sign.
+		jle		(sf ^ of) | zf
+		// unsigned	
+		ja		!cf & !zf
+		jae		!cf
+		jb		cf
+		jbe		cf | zf
+
+		* ja => jump if above
+		* jb => jump if below
+		* ^ => exclusive or
+
+
