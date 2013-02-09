@@ -1,0 +1,55 @@
+import time
+
+class Student:
+  def __init__(self, words):
+    self.mLast = words[0]
+    self.mFirst = words[1]
+    self.mSSN = int(words[2][:3]+words[2][4:6]+words[2][7:])
+    self.mEmail = words[3]
+    self.mAge = int(words[4])
+
+  def __str__(self):
+    return "First: %s, Last: %s, SSN: %i, Email: %s, Age: %i" %(self.mLast, self.mFirst, self.mSSN, self.mEmail, self.mAge)
+
+  def __eq__(self, rhs): 
+    #rhs = right hand side. 
+    # use this to compare two Student objects with the s1 == s2 notation.
+    return self.mSSN == rhs.mSSN
+
+  # TODO: write ne, lt, gt, le, ge
+
+
+def main():
+  before = time.time()
+  allStudents = []
+  # ===== Insert ===== #
+  fin = open("insert_names.txt", "r")
+  for line in fin:
+    words = line.split() # gets the 5 items in a list, each item at its own index.
+    s = Student(words)
+    unique = True
+    for s2 in allStudents:
+      if s == s2:
+        print s
+        unique = False
+    if unique:
+      allStudents.append(s)
+
+  after = time.time()
+  print "Time taken: " + str(after - before)
+
+main()
+
+  # ===== Traverse ===== #
+  ##totalAge = 0.0
+  # should end up being 42.something
+  ##for s in allStudnets:
+    ##totalAge += s.getAge()
+  ##print "The average age of all the students is %f" % (totalAge/len(allStudents))
+
+  # ===== Delete ====== #
+  # ssn = line.strip()
+
+  # ===== Retrieve ===== #
+  # totalAge should end up being 49.something
+  # use count to keep track of how many were totally retrieved so you can divide by that number to find average.
