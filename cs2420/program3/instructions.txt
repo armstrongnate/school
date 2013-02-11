@@ -43,16 +43,22 @@ def main():
 		# TODO: do something about duplicates.
 		allStudents.append(s)
 
+// program 4 due Monday
 	# ===== Traverse ===== #
 	totalAge = 0.0
-	# should end up being 42.something
+	# should end up being 42.9299ish
 	for s in allStudnets:
 		totalAge += s.getAge()
 	print "The average age of all the students is %f" % (totalAge/len(allStudents))
+	# 0.01 seconds
 
 	# ===== Delete ====== #
 	# ssn = line.strip()
+	# one ssn should be bad
+	# 65 seconds
 
 	# ===== Retrieve ===== #
-	# totalAge should end up being 49.something
+	# totalAge should end up being 49.5376ish
 	# use count to keep track of how many were totally retrieved so you can divide by that number to find average.
+	# two ssns should be bad
+	# 55 second
