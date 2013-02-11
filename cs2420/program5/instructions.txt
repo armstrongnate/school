@@ -1,0 +1,9 @@
+convert infix to postfix
+
+infix = "9-5+x"
+
+postfix = " "
+	loop 
+		if digit, append to postfix
+		if it's an operator, push to stack
+			however, if operator is greater or equal, append what is on the stack to postfix, then push to stack.
