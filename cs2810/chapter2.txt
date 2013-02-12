@@ -18,7 +18,7 @@ Floats
 		first bit (from left) is a sign bit - positive or negative? 
 			if sign is one, it's negative. If it's 0, it's positive.
 		last 3 bits would be the fraction bits
-		next 3 bits exponent bits
+		exponent bits = bits between fraction bits and sign bit
 			k = number of exponent bits; in this case, 3 (with an 8 bit)
 			bias = 2^k-1 - 1; in this case, it's 3
 
