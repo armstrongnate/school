@@ -1,0 +1,49 @@
+Tables (or dictionaries) to write
+	Make python dictionaries for each of the following:
+		Destinations
+			null = ''
+		compuations	
+			ALU (A's, D's, M's)
+			First column, 1 in front.
+			third column, 0 in front.
+				ex:
+					A+1 => 1110010
+					M+1 => 0110010
+			accounts for a through c6
+		jumps
+			jmp => 111
+			..
+
+		some of the tables will be found in previous chapters. 
+		'The C-instruction revisited' slide.
+
+Helper functions
+	isSymbol: table in book with appropriate symbols
+		return false if:
+			empty string
+			starts with a digit
+
+	isConstant: 
+		isdigit() # all digits
+		len() is between 1 and 5
+		convert to int() and make sure it's less than 32767
+
+	fail
+		print >>sys.stderr, "message"
+		sys.exit(1)
+		
+Parsing a single line
+	parseLine
+		
+File Handling
+	use sys.exit(1) to kill program and exit. Remember to print error.
+
+By Thursday night:
+	run from command line
+	point at assembly language file
+	write parsed code to hack file
+
+
+		
+
+	
