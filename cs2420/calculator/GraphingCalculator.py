@@ -18,12 +18,12 @@ def InfixToPostfix(infix):
     for c in infix:
         if c.isdigit() or c.isalpha():
           postfix += c
-        elif stack.isEmpty() or c == '(' or stack.top() == '(':
-            stack.push(c)
         elif c == ')':
           while stack.top() != '(':
             postfix += stack.pop()
           stack.pop()
+        elif stack.isEmpty() or c == '(' or stack.top() == '(':
+            stack.push(c)
         elif c in MATH_OPERATORS:
           if MATH_OPERATORS[c] <= MATH_OPERATORS[stack.top()]:
             postfix += stack.pop()
