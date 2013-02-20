@@ -36,7 +36,6 @@ def InfixToPostfix(infix):
     return postfix
 
 def EvaluatePostfix(x, postfix):
-    y = x*x
     stack = Stack()
     for c in postfix:
       if c.isdigit():
