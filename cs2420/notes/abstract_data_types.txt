@@ -24,20 +24,42 @@ CONTAINERS
 	Auto ordered
 		program maintains order
 
-	Class UnorderedUniqueContainer:
-		init(self)
-			self.mFirst = None
-		Insert(self, object)
-			n = Node(object, self.mFirst)
-			self.mFirst = n
-		Exists?(fakeObject)
-		Delete(fakeObject)
-		Retrieve(fakeObject)
-		Traverse # get data based on all elements
-			use a callBack function so everyone can get their hands on data.
+	Linked Lists
+		class Node:
+			def __init__(self, object, next):
+				self.mObject = object
+				self.mNext = next
+		
+		class UnorderedUniqueContainer:
+			def __init__(self):
+				self.mFirst = None
+			def Insert(self, object):
+				if not self.Exists(object):
+					n = Node(object, self.mFirst)
+					self.mFirst = n
+					return True
+				return False
+			def Exists?(self, fakeObject):
+				current = self.mFirst
+				while current is not None:
+					if current.mObject == fakeObject:
+						return True
+					current = current.mNext
+				return False
+			Delete(self, fakeObject):
+				if not self.Exists(fakeObject):
+					return False
+				// check if it's the first one.
+				if self.mFirst.mObject = fakeObject:
+					self.mFirst = self.mFirst.mNext
+					return True
+				// use a look-ahead to see if the next one is == to the fakeObject we are looking for
+				current = self.mFirst
+				while current.mNext.mObject != fakeObject:
+					current = current.mNext
+				current.mNext = current.mNext.mNext
+				return True
 
-Linked Lists
-	class Node:
-		def __init__(self, object, next):
-			self.mObject = object
-			self.mNext = next
+			Retrieve(self, fakeObject)
+			Traverse # get data based on all elements
+				use a callBack function so everyone can get their hands on data.
