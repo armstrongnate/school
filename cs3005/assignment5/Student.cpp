@@ -4,10 +4,10 @@
 Student::Student(int age, const char *last_name, const char *first_name, const char *email, const char *ssn)
 {
 	this->mAge = age;
-  this->mLastName = last_name;
-  this->mFirstName = first_name;
-  this->mEmail = email;
-  this->mSSN = ssn;
+  std::strcpy(this->mLastName, last_name);
+  std::strcpy(this->mFirstName, first_name);
+  std::strcpy(this->mEmail, email);
+  std::strcpy(this->mSSN, ssn);
 }
 
 // set methods
@@ -17,52 +17,52 @@ bool Student::SetAge(int age)
   return true;
 }
 
-bool Student::SetLastName(char *last_name)
+bool Student::SetLastName(const char* last_name)
 {
-  this->mLastName = last_name;
+  std::strcpy(this->mLastName, last_name);
   return true;
 }
 
-bool Student::SetFirstName(char *first_name)
+bool Student::SetFirstName(const char* first_name)
 {
-  this->mFirstName = first_name;
+  std::strcpy(this->mFirstName, first_name);
   return true;
 }
 
-bool Student::SetEmail(char *email)
+bool Student::SetEmail(const char* email)
 {
-  this->mEmail = email;
+  std::strcpy(this->mEmail, email);
   return true;
 }
 
-bool Student::SetSsn(char *ssn)
+bool Student::SetSsn(const char* ssn)
 {
-  this->mSSN = ssn;
+  std::strcpy(this->mSSN, ssn);
   return true;
 }
 
 // get methods
 int Student::GetAge()
 {
-  return mAge;
+  return this->mAge;
 }
 
-char * Student::GetLastName()
+char*  Student::GetLastName()
 {
-  return mLastName;
+  return this->mLastName;
 }
 
-char * Student::GetFirstName()
+char*  Student::GetFirstName()
 {
-  return mFirstName;
+  return this->mFirstName;
 }
 
-char * Student::GetEmail()
+char*  Student::GetEmail()
 {
-  return mEmail;
+  return this->mEmail;
 }
 
-char * Student::GetSsn()
+char*  Student::GetSsn()
 {
-  return mSSN;
+  return this->mSSN;
 }

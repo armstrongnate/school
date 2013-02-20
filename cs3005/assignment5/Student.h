@@ -5,7 +5,7 @@ class Student
 {
 public:
   /* constructor */
-  Student(int age, char *last_name, char *first_name, char *email, char *ssn);
+  Student(int age, const char *last_name, const char *first_name, const char *email, const char *ssn);
 
   /* accessor methods */
   bool SetAge(int age);
@@ -27,10 +27,13 @@ public:
   char * GetSsn();
 
   
-// private:
-//   /* data members */
-//   double mLength;
-//   char mTitle[128];
+private:
+  /* data member */
+  int mAge;
+  char mLastName[128];
+  char mFirstName[128];
+  char mEmail[128];
+  char mSSN[128];
 };
 
 #endif /* _STUDENT_H_ */
