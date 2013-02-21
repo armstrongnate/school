@@ -48,8 +48,6 @@ def parseLine(s, line_num):
   # handle equals sign
   if '=' in s:
     destination = s[s:s.find('=')]
-	rest = s[s.find('=')+1:]
-	# TODO: see if rest contains jump
     if destination not in DESTINATIONS:
       fail("Invalid Destination", line_num, s)
   else:

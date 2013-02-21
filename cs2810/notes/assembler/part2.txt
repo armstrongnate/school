@@ -1,0 +1,19 @@
+# CS2810
+# Russ Ross
+# 2.21.13
+# Assembler - Part 2: Code generation
+
+## A INSTRUCTION ##
+>> n = 876
+>> bin(n) # convert to binary
+>> s = bin(n)[2:]
+>> s.zfill(16) # convert to 16-bit binary number => binary output for A instruction
+
+## C INSTRUCTION ##
+# look up computation part in dictionary that was made in part 1. Repeat for Dest and Jump.
+# Glue those three parts together. Voila.
+
+# Pass code on the RectL.asm, MaxL.asm, etc files.
+
+>> /Assembler.sh $PWD/Pong.asm
+>> diff Pong.hack Pong.hack.correct # compare the two files
