@@ -94,7 +94,6 @@ def main():
   Traverse(allStudents)
   Retrieve(allStudents)
   Delete(allStudents)
-  # ===== Retrieve ===== #
-  # totalAge should end up being 49.something
-  # use count to keep track of how many were totally retrieved so you can divide by that number to find average.
-main()
+
+if __name__ == "__main__":
+  main()
