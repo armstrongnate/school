@@ -17,12 +17,16 @@ QUEUE
 	python list doesn't work good with a queue. use a link list?
 
 CONTAINERS
+	Unique
+	Allows duplicates
 	Unordered
 		order does not matter
 	User Ordered
 		where everything is is very important. User says "put this is in position 7."
 	Auto ordered
 		program maintains order
+
+#! Linked Lists is not an abstract data type. It is an *implementation* of one.
 
 	Linked Lists
 		class Node:
@@ -36,8 +40,8 @@ CONTAINERS
 			def Insert(self, object):
 				if not self.Exists(object):
 					n = Node(object, self.mFirst)
-					self.mFirst = n
 					return True
+					self.mFirst = n
 				return False
 			def Exists?(self, fakeObject):
 				current = self.mFirst

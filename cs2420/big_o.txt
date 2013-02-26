@@ -27,3 +27,5 @@ N^3 	Bad card shuffling
 Multiply Problem => N^2
 Factoring => 10^(N/2)
 
+NP problems are the ones with an Oracle. 'NP Complete' problems are the worst of NP problems; those that map to all others (ie Traveling Salesman, SAT). Factoring is in its own category of difficult.
+

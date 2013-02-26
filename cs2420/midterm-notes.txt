@@ -1,0 +1,43 @@
+Hash sort: Time N
+Modified Quick Sort is the main sort used.
+
+Converting logs and exponents
+  log of 65B
+  8 bytes gives you 64 bits. 2^64 = 16,000,000,000,000,000,000
+  # finish exponenets assignment in 3005.
+
+Big-O
+  Description: Measuring how work increases as amount of work increases.
+  When is it not important? When N is small and it will stay small.
+  If it's nested, you multiply. If it's in sequence, you just take the worst of them.
+  What's the big-o of linear search? N
+  Merge Sort: N*LogN
+  # MEMORIZE THE BIG-O OF ALL SORTS (ie quick sort on random, quick sort on mostly sorted, etc.)
+  SAT
+    10 variables, each of which can be True or False, how many combinations to make the whole thing True?
+    2^N work.
+  Binary Search = LogN
+  Bubble Sort on random = N^2
+  What is the Big-O of inserting N items into a Linked List..
+    Traversing..
+    Adding.. 
+    Retrieving.. 
+    etc..
+  Where is the bottleneck of a slow algorithm? Where the Big-O is the worst.
+  Fixing anything other than bottleneck is almost pointless.
+
+What does this look like after 1 pass of quick sort?
+  #! REVIEW ALL FUNCTIONALITY OF SORTS
+
+Abstract data types
+  difference between stack and queue
+  Linked List is an implementation.
+
+Linked Lists
+  Understand circular linked lists. Maybe play around with one.
+  What would the picture look like after inserting Node N
+  Understand correct order
+  Write python code for implementation.
+
+Infix to Postfix
+  Evaluate Postfix
