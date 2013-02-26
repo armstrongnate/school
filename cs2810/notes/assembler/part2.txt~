@@ -17,21 +17,3 @@
 
 >> /Assembler.sh $PWD/Pong.asm
 >> diff Pong.hack Pong.hack.correct # compare the two files
-
-## ONE PASS ##
-Build symbol table.
-Look for built-in symbols. 
-	THIS
-	THAT
-	R1, R2, etc..
-	
-Encounter L-instruction, look at lable. Look at symbol. If symbol already exists in table, it's an error. Else, add it to the symbol table with value of number of command. 
-
-## SECOND PASS ##
-Ignore L-Instructions. Look for A-instructions.
-	If symbol is in symbol table, great, you've got your value. Otherwise, add it to your symbol-table with the value of command.
-	Don't have to worry about duplicates.
-
-
-
-
