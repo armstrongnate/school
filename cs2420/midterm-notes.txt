@@ -4,6 +4,9 @@ Modified Quick Sort is the main sort used.
 Converting logs and exponents
   log of 65B
   8 bytes gives you 64 bits. 2^64 = 16,000,000,000,000,000,000
+  cit password
+    62 characters, 8 characters long
+    62^8
   # finish exponenets assignment in 3005.
 
 Big-O
@@ -40,4 +43,9 @@ Linked Lists
   Write python code for implementation.
 
 Infix to Postfix
-  Evaluate Postfix
+Evaluate Postfix
+
+Write Code
+  ex: Any methods of Linked List
+  ex: Create a mostly sorted list given a size
+  ex: reproduce Bubble Sort
