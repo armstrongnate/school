@@ -1,17 +1,18 @@
 class Node:
-  def __init__(self, object, next):
-    self.mObject = object
+  def __init__(self, mObject, next):
+    self.mObject = mObject
     self.mNext = next
 
 class UnorderedUniqueContainer:
   def __init__(self):
     self.mFirst = None
-  def Insert(self, object):
-    if not self.Exists(object):
-      n = Node(object, self.mFirst)
+  def Insert(self, mObject):
+    if not self.Exists(mObject):
+      n = Node(mObject, self.mFirst)
       self.mFirst = n
       return True
     return False
+    
   def Exists(self, fakeObject):
     current = self.mFirst
     while current is not None:
@@ -21,10 +22,11 @@ class UnorderedUniqueContainer:
     return False
 
   def Delete(self, fakeObject):
+    print fakeObject.mSSN
     if not self.Exists(fakeObject):
       return False
     # check if it's the first one.
-    if self.mFirst.mObject = fakeObject:
+    if self.mFirst.mObject == fakeObject:
       self.mFirst = self.mFirst.mNext
       return True
     # use a look-ahead to see if the next one is == to the fakeObject we are looking for
@@ -48,7 +50,7 @@ class UnorderedUniqueContainer:
       current = current.mNext
     return count
 
-  def Retrieve(self, object):
+  def Retrieve(self, fakeObject):
     current = self.mFirst
     while current is not None:
       if current.mObject == fakeObject:

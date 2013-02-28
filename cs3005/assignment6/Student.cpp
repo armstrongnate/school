@@ -28,10 +28,11 @@ Student::Student(int age, const char *last_name, const char *first_name, const c
 
 // Comparison Operators //
 
-Student::Student(const Student &src)
-  : mLastName(0), mFirstName(0), mEmail(0), mSSN(0)
+// Default Constructor for Student
+Student::Student()
+  : Last(0), First(0), Email(0), Age(0)
 {
-  *this = src;
+  strcpy(ssn, "000-00-0000");
 }
 
 Student::~Student()

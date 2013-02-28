@@ -3,14 +3,17 @@
 # CS2420 Assignment - Linked Lists
 # Nate Armstrong
 
+import sys
+sys.path.append('/home/nate/school/cs2420/program3/')
+from student import *
 import time
-from student import * 
 from LinkedList import *
 
 TOTAL_AGE = 0.0
 
-def getAge(student):
-  TOTAL_AGE += student.mAge
+def storeAge(student):
+  global TOTAL_AGE
+  TOTAL_AGE += student.getAge()
 
 def insert(allStudents):
   before = time.time()
@@ -18,25 +21,67 @@ def insert(allStudents):
   for line in fin:
     words = line.split()
     s = Student(words)
-    allStudents.Insert(s)
+    if not allStudents.Insert(s):
+      print "Error inserting %s." % s
   after = time.time()
   print "# of students: %i" % allStudents.Size()
-  print "Time taken to insert: %.2f minutes." % ((after - before)/60)
+  print "Time taken to insert: %.2f minutes.\n\n" % ((after - before)/60)
 
 def traverse(allStudents):
   before = time.time()
-  allStudents.Traverse(getAge)
+  allStudents.Traverse(storeAge)
   after = time.time()
   print "The average age of all the students is %f" % (TOTAL_AGE/allStudents.Size())
-  print "Time taken to traverse: %.2f seconds.\n" % (after - before)
+  print "Time taken to traverse: %.2f seconds.\n\n" % (after - before)
 
 def retrieve(allStudents):
   before = time.time()
+  totalAge = 0.0 
   count = 0
+  fin = open("../program3/retrieve_names.txt", "r")
+  for line in fin:
+    ssn = line.strip()
+    blank_student = Student(["", "", ssn, "", "25"])
+    found = False
+    s = allStudents.Retrieve(blank_student)
+    if s:
+      found = True
+      totalAge += s.getAge()
+      count += 1
+  if not found:
+    print "No student found with SSN %s." % ssn
+  after = time.time()
+  if count < 1:
+    print "No students retrieved."
+  else:
+    print "Average age of retrieved students: %f" % (totalAge/count)
+  print "Time taken to retrieve: %.2f seconds.\n\n" % (after - before)
+
+def delete(allStudents):
+  before = time.time()
+  fin = open("../program3/delete_names.txt", "r")
+  for line in fin:
+    ssn = line.strip()
+    blank_student = Student(["", "", ssn, "", "25"])
+    found = False
+    print "SSN before deletion."
+    print ssn
+    if allStudents.Delete(blank_student):
+      print "Deleted %s" % s
+      found = True
+      break
+  if not found:
+    print "No student found with SSN %s" % ssn
+  after = time.time()
+  print "Number of Students, now: %s" % allStudents.Size()
+  print "Time taken to delete: %.2f seconds.\n\n" % (after - before)
 
 def main():
   allStudents = UnorderedUniqueContainer()
   insert(allStudents)
+  allStudents_copy = allStudents
   traverse(allStudents)
   retrieve(allStudents)
-  delete(allStudents)
+  delete(allStudents_copy)
+
+main()

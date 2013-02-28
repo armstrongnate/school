@@ -4,10 +4,14 @@ class Student:
   def __init__(self, words):
     self.mLast = words[0]
     self.mFirst = words[1]
-    self.mSSN = int(words[2][:3]+words[2][4:6]+words[2][7:])
+    self.mSSN = words[2][:3]+words[2][4:6]+words[2][7:]
+    self.SSN_is_valid()
     self.mEmail = words[3]
     self.mAge = int(words[4])
 
+  def SSN_is_valid(self):
+    if len(self.mSSN) != 9:
+      print "Invalid SSN: %s" % self.mSSN
   def getAge(self):
     return self.mAge
 
