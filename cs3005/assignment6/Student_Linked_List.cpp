@@ -47,7 +47,7 @@ Student LinkedList::Retrieve(const Student & key) const
     if (curr->data == key)
       return curr->data;
   }
-  return -1;
+  return Student(const Student&);
 }
 
 // Default Constructor for Student
