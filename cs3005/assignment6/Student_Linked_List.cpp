@@ -37,10 +37,10 @@ Linked::List()
 int LinkedList::Insert(const Student & key) const
 {
   Node *curr;
-  for (curr=mHead; curr!=0; curr=curr->next)
-  {
-    Node n = Node()
-  }
+	curr = new Node;
+  // new Node points to what mHead points to
+	// head points to new Node
+	// store Student in new Node
 }
 
 int LinkedList::Length() const
