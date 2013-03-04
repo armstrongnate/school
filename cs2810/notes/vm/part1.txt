@@ -1,0 +1,46 @@
+CS2810 Notes
+Russ Ross
+2/28/13
+
+Instructions for VM assignment at cit.cs.dixie.edu/cs/asst_vm.html
+
+Segments {
+	argument 	=> 	contains all arguments of currently running segments.
+	local 		=> 	contains local variables
+	constant 	=> 	"push constant[3]" pushes value 3 onto the stack. Can't pop a constant, only push
+	this 		=> 	points to where object is stored in memory
+	that 		=> 	computes where some value of an array is
+	pointer 	=> 	has 2 valid offsets: 0 and 1. 0 is where 'this' begins, 1 is where 'that' begins.
+	static 		=> 	gets initialized once, value does not get reset after that. Can only be accessed from certain places
+	temp		=> 	set to True like everything else
+}
+
+Example:
+	push constant 100
+	pop pointer 0
+	
+	- this makes it so pointer 0 points to 100?
+
+push constant
+	R0 => SP
+	R1 => LCL
+	R2 => THIS
+	R3 => THAT
+	..
+	Arg register tells where it begins. Like mFirst
+	SP is like mNext
+	local, this, and that work similarly.
+	pointer[0] is this, pointer[1] is that
+	static is R5 and up.
+
+	examples:
+		"push constant 7"
+			1. @7
+			2. D=A // get value
+			3. @sp
+			4. AM=M+1 // moves stack pointer down, and says M is pointing to the first item in stack
+			5. A=A-1
+			6. M=D // push value onto stack
+
+		*include original source code at each line as a comment for debugging*
+		
