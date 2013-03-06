@@ -1,0 +1,119 @@
+The Hack Computer
+	details here: cit.cs.dixie.edu/cs/2810/hack.php
+	16 bit computer - everything is 16 bits. No bytes. 
+	Data memory (RAM) - just a bunch of 16 bit words
+	Instruction memory (ROM) - read only. Separate from RAM to simplify.
+	Registers: Data (D), Address (A). You can reference M.
+		put the address where you want to store a value in A, put the value in M.
+	
+	A-instruction
+		always loada a fixed, literal value
+		must be non-negative
+		@17 	// A = 17
+		D = A 	// D= 17
+		
+	C-instruction
+		more complicated than A instructions.
+		dest = comp; jump; // computation is not optional
+		jump = jumps to current location in A.
+
+	Result of computation can be stored in A, D, or M. 
+
+	examples:
+		set A to 17 => @17
+
+		set D to A-1 => D = A-1
+
+		set both A and D to A+1 => AD = A+1
+
+		set D to 19 => 	@19
+						D = A
+
+		set both A and D to A+D => AD = D+A
+
+		set RAM[5034] to D-1 => @5034
+								M = D-1
+
+		set RAM[53] to 171 => 	@171
+								D = A
+								@53
+								M = D
+
+		Add 1 to RAM[7], and store the result in D => 	@7
+														MD = M+1
+
+	Jump
+		example: JGT = Jumper if greater than
+
+	more examples:
+		GOTO 50 =>
+			@50
+			0; JMP
+
+		IF D = 0 GOTO 112 =>
+			@112
+			D; JEQ
+
+		IF D < 9 GOTO 507 =>
+			@9
+			D = D-A
+			@507
+			D;JLT
+
+		IF RAM[12] > 0 GOTO 50 =>
+			@12
+			D=M
+			@50
+			D;JGT
+
+Assignments:
+	Write a Multiply program:
+		job of multiplying 2 numbers together and find product.
+		add original number in, double it every time.
+		use a loop, don't worry about overflow.
+
+	Write a Fill program:
+		
+		understand how screen works:
+			512x256 pixels
+			each word is 16 pixels. So you need 256 rows of 32 words. = 8K words
+			Memory Screen
+				First 16 registers (0-15) are reserved
+					Examples:
+						R0 = SP
+						R1 = LCL
+						R2 = ARG
+						R3 = THIS
+						R4 = THAT
+						... SCREEN
+						... KBD
+				Value at 24K is keyboard. ** That's important!
+			Least significant bit is the right most pixel
+
+		has 2 loops:
+			outside loop updates entire screen
+			inner loop updates one bit of screen at a time
+
+		written in python:
+			def fill()
+				value = 0
+				while True:
+					# looks at keyboard
+					if RAM[KBD] != 0:
+						value = -1
+					else:
+						value = 0
+					# looks at screen not including keyboard
+					for i in range(SCREEN, KBD):
+						RAM[i] = value
+			
+
+		Sample program:
+			@SCREEN
+			M = -1
+		@SCREEN is reserved for 16K
+		
+			
+	
+
+								
