@@ -1,0 +1,51 @@
+Code shown to class is available online on the Downloads tab.
+
+multi-line comment (aka C comment):
+
+/* this is a 
+multi line 
+comment.
+*/
+
+Comparison operators.
+
+	* anything other than 0 is true
+
+Conditionals
+
+Counted Loops
+
+	For Loops
+		* similar to javascript
+		* don't forget to int i;
+
+Sentinel Loops (aka While loops)
+	
+User Input
+	* input operator: >>
+
+
+## RISK ##
+
+Attack with either 3,2, or 1 armies
+Defend with either 2 or 1.
+
+Order both rolls from highest to lowest.
+Use the two higest rolls on both rolls.
+Tie goes to defender, attacker loses an army.
+
+What are the odds of the attacker winning?
+
+The Monte Carlo Method
+	get a bunch of random numbers and simulate what would happen.
+	
+Randomly roll some number of dice for attacker
+Randomly roll some number of dice for defender
+Sort rolls
+Compare rolls (get winner/loser)
+record winner
+
+number of defenders lost/total lost
+
+
+	

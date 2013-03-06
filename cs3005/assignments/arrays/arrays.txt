@@ -1,0 +1,25 @@
+// Arrays
+
+- Not resizable. You declare the size when you declare the array. 
+
+int distance[10]; /* this is how you declare an array. The '10' can be a const 	variable. */
+
+- limited in the length you can make an array.
+
+- indexing of arrays is the same as python.
+
+- no way to find length. Assign the length to a variable after declaration.
+
+- initialize items of an array at declaration:
+
+	int distance[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }
+
+Array as a parameter:
+	int largest_distance(int distance[], int size)
+	{
+		// code
+	}
+
+	- if you hard code 'distance[10]' in the params, you're limiting yourself to only ever passing an array of length ten into that function.
+
+Due Friday?	
