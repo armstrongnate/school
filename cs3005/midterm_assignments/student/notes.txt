@@ -1,0 +1,37 @@
+// ** DYNAMIC MEMORY ** //
+
+Track::Track(double length, const char * title)
+{
+	this->mLength = length;
+	this->mTitle = new char[strlen(title)+1];
+	strcpy(this->mTitle, title);
+}
+
+Track t1(13, "Hello");
+Track t2(t1); // need a copy constructor to do something like this
+t2 = t1 // Assignment operator
+t2.setTitle("World"); // setTitle method
+
+// copy constructor
+Track::Track(const Track & rhs) // & means don't make a copy of t1 (see above) but send in the object itself. aka "Pass by reference"
+	:mTitle(0) // assigns mTitle to zero so our setTitle method will work.
+{
+	*this = rhs; // invoking assignment operator which is defined below.
+}
+
+// Assignment Operator (t2 = t1)
+const Track::Track & operator=(const Track & rhs)
+{
+	this->mLength = rhs.mLength;
+	this-->setTitle(rhs.mTitle
+	return *this;
+}
+
+// setTitle method (t2.setTitle)
+bool Track::setTitle(const char * title) // use const because not planning on changing contents
+{
+	if (this->mTitle != 0)
+		delete [] this->mTitle;
+	this->mTitle = new char [strleng(rhs.mTitle)+1]; // 'new' allocates new memory from the heap.
+	strcpy(this->mTitle, title);
+	return true;

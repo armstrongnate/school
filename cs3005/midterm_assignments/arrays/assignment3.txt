@@ -1,0 +1,10 @@
+Binary search
+	keep track of l and r (left and right)
+	find middle of whole search,
+		if it is not your number, is it less than or greater than?
+		ditch one half and start over with other half
+	testing,
+		same as linear search but also try to find a number that doesn't exist.
+
+Linear search
+	to test, put smallest value at index 0, last index, and somewhere in the middle.
