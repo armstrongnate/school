@@ -1,2 +1,0 @@
-// label %%LABEL%%
-(%%LABEL%%)

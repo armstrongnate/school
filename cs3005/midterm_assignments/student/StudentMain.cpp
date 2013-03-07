@@ -9,26 +9,26 @@ void other_test()
   v = t;
 
   std::cout << "Josh" << std::endl;
-  std::cout << "Age: %f" << t.GetAge() << std::endl;
-  std::cout << "SSN: %s" << t.GetSsn() << std::endl;
+  std::cout << "Age: " << t.GetAge() << std::endl;
+  std::cout << "SSN: " << t.GetSsn() << std::endl;
   std::cout << "Josh_Copy\n" << std::endl;
-  std::cout << "Age: %f" << u.GetAge() << std::endl;
-  std::cout << "SSN: %s" << u.GetSsn() << std::endl;
+  std::cout << "Age: " << u.GetAge() << std::endl;
+  std::cout << "SSN: " << u.GetSsn() << std::endl;
   std::cout << "Christee\n" << std::endl;
-  std::cout << "Age: %f" << v.GetAge() << std::endl;
-  std::cout << "SSN: %s" << v.GetSsn() << std::endl;
+  std::cout << "Age: " << v.GetAge() << std::endl;
+  std::cout << "SSN: " << v.GetSsn() << std::endl;
 
   u.SetSsn("Josh_copy's new SSN");
   v.SetSsn("Other title");
   std::cout << "t" << std::endl;
-  std::cout << "Age: %f" << t.GetAge() << std::endl;
-  std::cout << "SSN: %s" << t.GetSsn() << std::endl;
+  std::cout << "Age: " << t.GetAge() << std::endl;
+  std::cout << "SSN: " << t.GetSsn() << std::endl;
   std::cout << "Josh_copy\n" << std::endl;
-  std::cout << "Age: %f" << u.GetAge() << std::endl;
-  std::cout << "SSN: %s" << u.GetSsn() << std::endl;
+  std::cout << "Age: " << u.GetAge() << std::endl;
+  std::cout << "SSN: " << u.GetSsn() << std::endl;
   std::cout << "Christee\n" << std::endl;
-  std::cout << "Age: %f" << v.GetAge() << std::endl;
-  std::cout << "SSN: %s" << v.GetSsn() << std::endl;
+  std::cout << "Age: " << v.GetAge() << std::endl;
+  std::cout << "SSN: " << v.GetSsn() << std::endl;
 
 }
 
