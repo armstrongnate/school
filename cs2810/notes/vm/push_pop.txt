@@ -1,0 +1,62 @@
+3 groupings of segment types
+	1. constant
+	2. static, pointer, temp
+	3. arg, local, this, that
+
+	i. view push constant commands in part1.txt
+	ii. 
+		static: 
+			push static 3 =
+				@Person.3
+				D=M	
+				.. repeat starting at @sp from push constant	
+		pointer:
+			push pointer 0 =
+				@THIS // push pointer 1 will use @THAT
+				D=M
+				.. repeat starting at @sp from push constant
+		temp:
+			push temp 2 =
+				@R7 // 7 comes from 5 + offset (offset is 2 here)
+				D=M
+				.. repeat starting at @sp from push constant
+			
+	iii.
+		arg:
+			push arg 3 =
+				@ARG
+				D=M
+				@3
+				A=D+A
+				D=M
+				.. repeat starting at @sp from push constant
+
+	pop only applies to i and ii
+	ii. Pop
+		temp:
+			pop temp 2 =
+				@sp
+				AM=M-1
+				D=M
+				@R7 // pointer and static will only be different on this line
+				M=D
+	iii. Pop
+		local
+			pop local 5
+				// compute address
+				@LCL // just change to THIS, THAT, and ARG for the others.
+				D=M
+				@5
+				D=D+A // read this as "local plus 5"
+				@R15 // temporary location
+				M=D
+				// now pop value off stack
+				@sp
+				AM=M-1
+				D=M
+				// get address
+				@R15
+				A=M
+				// bring it all together
+				M=D
+
