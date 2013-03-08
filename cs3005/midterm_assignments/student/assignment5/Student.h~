@@ -38,7 +38,7 @@ private:
   char mFirstName[128];
   char mEmail[128];
   char mSSN[128];
-  char mGrade[3]; 
+  char mGrade[2]; 
 };
 
 #endif /* _STUDENT_H_ */

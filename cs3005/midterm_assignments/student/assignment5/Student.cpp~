@@ -44,7 +44,7 @@ bool Student::SetSsn(const char* ssn)
 
 bool Student::SetGrade(const char* grade)
 {
-  std::strcpy(this->mGrade, grade);
+  std::strcpy(this->Grade, grade);
   return true;
 }
 

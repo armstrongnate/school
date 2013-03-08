@@ -8,7 +8,7 @@ class Student
 public:
   /* constructor */
   Student(int age, const char *last_name, const char *first_name, const char *email, const char *ssn, const char *nickname);
-  Student(const Student&);
+  //Student(const Student&);
   ~Student();
   Student &operator=(const Student &rhs);
   bool operator==(const Student &rhs) const;

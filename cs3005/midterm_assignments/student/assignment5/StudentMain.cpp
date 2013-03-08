@@ -3,9 +3,14 @@
 
 int main(int argc, char** argv)
 {
-  Student s(21, "Armstrong", "Nate", "nate@example.com", "555-32-1234");
+  Student s(21, "Armstrong", "Nate", "nate@example.com", "555-32-1234", "A+");
 
   std::cout << "Last Name: " << s.GetLastName() << std::endl;
+  std::cout << "First Name: " << s.GetFirstName() << std::endl;
+  std::cout << "Age: " << s.GetAge() << std::endl;
+  std::cout << "Email: " << s.GetEmail() << std::endl;
+  std::cout << "SSN: " << s.GetSsn() << std::endl;
+  std::cout << "Grade: " << s.GetGrade() << std::endl;
   
   return 0;
 }
