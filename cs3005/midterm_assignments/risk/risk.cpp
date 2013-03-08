@@ -83,7 +83,6 @@ int main(int argc, char *argv[])
 		}
 
 		simulation++;
-	}
 	double d_losses_new = (double)d_losses/(NUMBER_OF_SIMULATIONS*2) * 100;
 	std::cout << ATTACKERS << " vs " << DEFENDERS << " with " << sides << " sided die" << " = " << d_losses_new << "%" << std::endl; 
 	return 0;

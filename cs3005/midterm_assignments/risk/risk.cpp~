@@ -29,12 +29,12 @@ void display_vector(std::vector<int> v)
   std::cout << std::endl;
 }
 
-std::vector<int> roll(int num_of_rolls)
+std::vector<int> roll(int num_of_rolls, int sides)
 {
 	std::vector<int> v;
 	for(int i=0; i<num_of_rolls; i++)
 	{
-		int roll = std::rand() % 6 + 1;
+		int roll = std::rand() % sides + 1;
 		v.push_back(roll);
 	}
 	return v;
@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
 	// Catch command line params
 	int ATTACKERS = std::atoi(argv[1]); // converts 2nd parameter to integer
 	int DEFENDERS = std::atoi(argv[2]);
+	int sides = std::atoi(argv[3]);
 	int NUMBER_OF_SIMULATIONS = std::atoi(argv[3]);
 	int simulation = 0;
 	int d_losses = 0;
@@ -58,8 +59,8 @@ int main(int argc, char *argv[])
 		std::vector<int> defender_rolls;
 
 		// rolls
-		attacker_rolls = roll(ATTACKERS); // attacker vector
-		defender_rolls = roll(DEFENDERS); // defender vector
+		attacker_rolls = roll(ATTACKERS, sides); // attacker vector
+		defender_rolls = roll(DEFENDERS, sides); // defender vector
 
 		// who rolled the least amount?
 		int smallest = DEFENDERS;

@@ -24,9 +24,8 @@ Example:
 push constant
 	R0 => SP
 	R1 => LCL
-	R2 => ARG
-	R3 => THIS
-	R4 => THAT
+	R2 => THIS
+	R3 => THAT
 	..
 	Arg register tells where it begins. Like mFirst
 	SP is like mNext

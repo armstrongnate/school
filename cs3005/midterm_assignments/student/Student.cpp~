@@ -1,7 +1,7 @@
 #include <cstring>
 #include "Student.h"
 
-Student::Student(int age, const char *last_name, const char *first_name, const char *email, const char *ssn, const char *nickname)
+Student::Student(int age, const char *last_name, const char *first_name, const char *email, const char *ssn)
 {
 	this->mAge = age;
   this->mLastName = new char[std::strlen(last_name)+1];
@@ -24,18 +24,13 @@ Student::Student(int age, const char *last_name, const char *first_name, const c
     {
       std::strcpy(this->mSSN, ssn);
     }
-  this->mNickname = new char[std::strlen(nickname)+1];
-  if(this->mNickname)
-    {
-      std::strcpy(this->mNickname, nickname);
-    }
 }
 
 // Comparison Operators //
 
 // Default Constructor for Student
 Student::Student(const Student&)
-  : mLastName(0), mFirstName(0), mEmail(0), mAge(0), mNickname(0)
+  : mLastName(0), mFirstName(0), mEmail(0), mAge(0)
 {
   std::strcpy(mSSN, "000-00-0000");
 }
@@ -62,11 +57,6 @@ Student::~Student()
       delete [] this->mSSN;
       this->mSSN = 0;
     }
-  if(this->mNickname)
-    {
-      delete [] this->mNickname;
-      this->mNickname = 0;
-    }
 }
 
 Student &Student::operator=(const Student &rhs)
@@ -76,7 +66,6 @@ Student &Student::operator=(const Student &rhs)
   this->SetFirstName(rhs.mFirstName);
   this->SetEmail(rhs.mEmail);
   this->SetSsn(rhs.mSSN);
-  this->SetNickname(rhs.mNickname);
   return *this;
 }
 
@@ -197,24 +186,6 @@ bool Student::SetSsn(const char* ssn_in)
     }
 }
 
-bool Student::SetNickname(const char* nickname_in)
-{
-  if( this->mNickname )
-    {
-      delete [] this->mNickname;
-    }
-  this->mNickname = new char [std::strlen(nickname_in)+1];
-  if(this->mNickname)
-    {
-      std::strcpy(this->mNickname, nickname_in);
-      return true;
-    }
-  else
-    {
-      return false;
-    }
-}
-
 // get methods
 int Student::GetAge() const
 {
@@ -239,11 +210,6 @@ const char*  Student::GetEmail() const
 const char*  Student::GetSsn() const
 {
   return this->mSSN;
-}
-
-const char* Student::GetNickname() const
-{
-  return this->mNickname;
 }
 
 std::ostream & operator<<(std::ostream &os, const Student &rhs)
