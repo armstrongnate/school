@@ -1,0 +1,7 @@
+Binary Search Tree Notes
+
+* Does not allow duplicates
+* Each node has an object, a left, and a right
+* Each object needs to have a key field that can be compared ('>') to other objects
+* Best on unsorted random data. 
+
