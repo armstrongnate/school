@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 	int ATTACKERS = std::atoi(argv[1]); // converts 2nd parameter to integer
 	int DEFENDERS = std::atoi(argv[2]);
 	int sides = std::atoi(argv[3]);
-	int NUMBER_OF_SIMULATIONS = std::atoi(argv[3]);
+	int NUMBER_OF_SIMULATIONS = std::atoi(argv[4]);
 	int simulation = 0;
 	int d_losses = 0;
 	
@@ -84,8 +84,7 @@ int main(int argc, char *argv[])
 
 		simulation++;
 	}
-	std::cout << "Number of Losses before division: " << d_losses << std::endl; 
 	double d_losses_new = (double)d_losses/(NUMBER_OF_SIMULATIONS*2) * 100;
-	std::cout << ATTACKERS << " vs " << DEFENDERS << " = " << d_losses_new << "%" << std::endl; 
+	std::cout << ATTACKERS << " vs " << DEFENDERS << " with " << sides << " sided die" << " = " << d_losses_new << "%" << std::endl; 
 	return 0;
 }
