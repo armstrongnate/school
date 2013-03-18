@@ -1,0 +1,24 @@
+OpenGL starter code:
+  Change title
+  glutDisplayFunc(display) is telling OpenGL what function to call when display changes.
+  glutMainLoop() tells it to go to work.
+
+  glColor3d() is our way of picking up a pen with a particular color. We use that pen until we pick up another one.
+  
+  DrawRectangle() draws a rectangle based on (1) bottom-left corner and (2) top-right corner.
+
+  Window coordinates: (0,0) is bottom left corner.
+  
+  Mouse coordinates start from top-left.
+    Include this code in mouse()
+      int xdisplay = x;
+      int ydisplay = screen_y -y;
+
+    - get which mode you're in
+    - store points as user clicks
+    - once enough points are collected based on mode, draw shape
+    
+  InitializeMyState()
+    setup empty lists (mouse_clicks, etc.)
+
+  ** Get starter code downloaded and running before Wednesday. Start on defining new classes. **
