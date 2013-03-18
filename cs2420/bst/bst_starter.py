@@ -8,6 +8,18 @@ class BinarySearchTree:
   def __init__(self):
     self.mRoot = None
 
+  def exists(self, item):
+    return self.exists_r(item, self.mRoot)
+
+  def exists_r(self, item, current):
+    if not current:
+      return False
+    if item == current.mObject:
+      return True
+    if item < current.mObject:
+      return self.exists_r(item, current.mLeft)
+    return self.exists_r(item current.mRight)
+
   def insert(self, object):
     if self.exists(object):
       return False
@@ -23,3 +35,17 @@ class BinarySearchTree:
     else:
       current.mRight = self.insert_r(current.mRight, n)
     return current
+
+  def size(self):
+    return self.size_r(self.mRoot)
+
+  def size_r(self, current):
+    if current is None:
+      return 0
+    return 1 + self.size_r(current.mLeft) + self.size_r(current.mRight)
+
+  def traverse(self, callback):
+    self.traverse_r(self.mRoot, callback)
+
+  def traverse_r(self, current, callback):
+    # go over each one and call callback function.
