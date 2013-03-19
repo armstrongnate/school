@@ -1,0 +1,27 @@
+notes for 8a
+Due Thursday 3.21
+
+label
+goto
+if-goto
+
+label instruction:
+  look up function name
+  build a string with $ inbetween
+  make it a label instruction by wrapping it in parenthesis
+  ex: 
+    label start => (functionName$start)
+
+goto
+  ex: 
+    goto start => 
+      @functionName$start
+      0; JMP
+
+if-goto
+  ex:
+    if-goto start => 
+      @sp
+      AM=M-1
+      @functionName$start
+      D; JNE
