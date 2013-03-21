@@ -1,0 +1,24 @@
+** VIEW SLIDESHOW ONLINE
+
+3 VM Keywords to implement:
+  - function g nVars
+  - call g nArgs
+  - return
+
+function: 
+  sets up nvars of words. (sets up space.)
+
+call
+  push arguments onto stack, issue call instruction, when finished, arguments are removed, return value put in their place.
+
+return
+  ends a function and returns to most recent call.
+
+VM Emulator
+
+call-and-return-protocal
+  * view slides
+
+get code ross uploaded
+
+
