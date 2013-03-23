@@ -22,3 +22,21 @@ OpenGL starter code:
     setup empty lists (mouse_clicks, etc.)
 
   ** Get starter code downloaded and running before Wednesday. Start on defining new classes. **
+
+** Second step:
+make a global that is a vector of shapes
+  std::vector<shape*> shapes;
+  
+display()
+  for loop over shapes
+    for each shape
+      call draw
+  
+initialize my stuff
+  shapes.push_back a new rectangle()
+  same for triangle and circle
+
+virtual void draw() = 0;
+
+include cmath
+  sqrt and pow functions
