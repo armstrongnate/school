@@ -5,3 +5,27 @@ Binary Search Tree Notes
 * Each object needs to have a key field that can be compared ('>') to other objects
 * Best on unsorted random data. 
 
+** VOCABULARY **
+* leaf node = nodes that have no children
+* in-order successor = down to the right one, then left as far as you can go.
+* in order = everything to my left, then me, then my right
+* pre order = me, left, then right
+* post order = left, right, then me
+* balanced = 
+    * for a tree to be balanced, all nodes must be balanced. 
+    * A node is balanced if its left and right sub-trees have depths that are within 1 of each other.
+* complete = tree must fill out like a christmas tree until last layer. last layer must be filled from left to right.
+* full = no gaps. If it is 3 deep, it has got to be filled to 3 deep.
+* 2-node = the basic node. One item, two pointers (one on each side)
+* 3-node = each node has two items, then a pointer on the ends and one in the middle.
+
+** DELETING **
+* Deleting node with 2 children:
+  swap in-order successor with the one you are deleting.
+  then delete in-order successor
+
+** BALANCING TREES **
+* 2-3 Trees:
+    * inserting one next to one makes a 3-node. But 1 next to two is a crowd.
+    * shoot the middle one up and separate the two that are left.
+    * ALWAYS FULL!
