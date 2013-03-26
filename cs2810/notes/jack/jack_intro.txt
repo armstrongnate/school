@@ -1,0 +1,43 @@
+* No Inheritance
+* Main.main() is the first function invoked
+* subroutines = functions, methods constructors
+    * functions: class methods. ex: "function int sum(int n)"
+* var = defining a variable
+* let = making an assignment
+* do = call a function, don't do anything with its return
+
+* all comparison operators are single digit. No double ='s
+* eq, lt, gt, and not are the only comparison operators.
+
+* all fields and statics must be defined before subroutines are defined.
+* static variables are class variables (available to all instances)
+
+* constructor can be called anything. It just makes sense to all it 'new'
+* "x = Name_of_Class.name_of_constructor(params)"
+
+* all fields are private. You must write a method to access it. All methods are public.
+
+* use dots ('.') not right arrows ('->')
+
+* int = 16 bit signed value
+* char = unicode character
+* bool = 16 bit value
+* all 0's is false, 1's is true
+
+* "var Fraction a, b, c;" does not create 3 instances of Fraction class. It create 3 pointers.
+
+* methods and functions must end with a 'return' statement
+
+* 'this' refers to current object. Can only be accessed within method.
+
+* accessing items in an array is tricky
+
+  function int foo() {
+    var Array people;
+    var p Person;
+    let people = Array.new(6);
+    let people[3] = Person.new("Nate");
+    let p = people[3];
+    do p.printName();
+  }
+
