@@ -11,8 +11,14 @@
 // glut32.dll, and glut32.lib in the directory of your project.
 // OR, see GlutDirectories.txt for a better place to put them.
 
+#include <vector>
+#include <string>
 #include <cmath>
 #include <cstring>
+#include <iostream>
+#include "shape.h"
+#include "rectangle.h"
+#include "button.h"
 #ifdef _WIN32
 #include "glut.h"
 #else
@@ -23,7 +29,10 @@
 // Global Variables (Only what you need!)
 double screen_x = 700;
 double screen_y = 500;
-
+std::vector<Shape*> shapes;
+std::vector<Button*> buttons (3);
+std::string mode = "Rectangle";
+unsigned int i;
 
 // 
 // Functions that draw basic primitives
@@ -79,6 +88,37 @@ void DrawText(double x, double y, const char *string)
   glDisable(GL_BLEND);
 }
 
+void drawButtons()
+{ 
+  int left = 25;
+  int length = 100;
+  int height= 30;
+  int bottom = 24;
+  int text_padding_left = 5;
+  int text_padding_bottom = 10;
+  int rectangle_x = 25;
+  int circle_x = 75;
+  int triangle_x = 125;
+  unsigned int i;
+
+  buttons[0] = new Button(left, rectangle_x, rectangle_x+length, rectangle_x+height, "Rectangle");
+  buttons[1] = new Button(left, circle_x, left+length, circle_x+height, "Circle");
+  buttons[2] = new Button(left, triangle_x, left+length, triangle_x+height, "Triangle");
+  std::cout << "Hello" << std::endl;
+  for(i=0; i<buttons.size(); i++)
+  {
+    glColor3d(2,0,0);
+    buttons[i]->draw();
+    if (buttons[i]->active)
+    {
+      std::cout << "Button is active yo!" << std::endl;
+      glColor3d(0,1,0);
+    }
+    else
+      glColor3d(0,0,0);
+    DrawText(left+text_padding_left, buttons[i]->points[1]+text_padding_bottom, buttons[i]->title);
+  }
+}
 
 //
 // GLUT callback functions
@@ -89,20 +129,10 @@ void DrawText(double x, double y, const char *string)
 void display(void)
 {
   glClear(GL_COLOR_BUFFER_BIT);
-
-  // Test lines that draw all three shapes and some text.
-  // Delete these when you get your code working.
   glColor3d(0,0,1);
-  DrawRectangle(200, 200, 250, 250);
-  DrawTriangle(300, 300, 350, 300, 350, 350);
-  DrawCircle(50, 50, 30);
-
-  glColor3d(0,0,0);
-  DrawText(10,100,"Can you see this black text and 3 blue shapes?");
-
+  drawButtons();
   glutSwapBuffers();
 }
-
 
 // This callback function gets called by the Glut
 // system whenever a key is pressed.
@@ -158,6 +188,11 @@ void mouse(int mouse_button, int state, int x, int y)
   int ydisplay = screen_y - y;
   if (mouse_button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) 
     {
+      for(i=0; i<buttons.size(); i++)
+      {
+        if(buttons[i]->contains(xdisplay, ydisplay))
+          buttons[i]->active = true;
+      }
     }
   if (mouse_button == GLUT_LEFT_BUTTON && state == GLUT_UP) 
     {
@@ -168,12 +203,15 @@ void mouse(int mouse_button, int state, int x, int y)
   if (mouse_button == GLUT_MIDDLE_BUTTON && state == GLUT_UP) 
     {
     }
+  DrawRectangle(100, 100, 200, 200);
   glutPostRedisplay();
 }
 
 // Your initialization code goes here.
 void InitializeMyStuff()
 {
+  //glClear(GL_COLOR_BUFFER_BIT);
+  //drawButtons();
 }
 
 

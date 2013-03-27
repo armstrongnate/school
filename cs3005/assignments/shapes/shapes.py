@@ -16,7 +16,7 @@ class Rectangle(Shape):
     self.points = []
 
   def draw(self):
-    pass
+    DrawRectangle(points[0], points[1], points[2], points[3]);
 
 class Triangle(Shape):
   def __init(self):
