@@ -26,6 +26,7 @@ OpenGL starter code:
 ** Second step:
 make a global that is a vector of shapes
   std::vector<shape*> shapes;
+  push_back
   
 display()
   for loop over shapes

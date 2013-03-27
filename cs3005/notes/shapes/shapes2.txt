@@ -1,0 +1,3 @@
+to get color: (x-x1)/(x2-x1);
+
+see palindrome programs for notes on vectors, stacks, and queues.
