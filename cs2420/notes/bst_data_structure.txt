@@ -25,7 +25,21 @@ Binary Search Tree Notes
   then delete in-order successor
 
 ** BALANCING TREES **
-* 2-3 Trees:
+* 2-3 Trees: MUST BE ABLE TO DO ON PAPER! 
+    ** INSERTING **
     * inserting one next to one makes a 3-node. But 1 next to two is a crowd.
     * shoot the middle one up and separate the two that are left.
     * ALWAYS FULL!
+
+    ** DELETING **
+    * 1. If not a leaf node:
+        swap data with in-order successor
+    * 2. If two there are 2 items, delete the one you're looking for and be done
+    * 3. or try to borrow from a sibling.
+        pivot sibling up and bring parent down. be done.
+    * 4. collapse parent into brother
+    * 5. if parent has hole:
+        recurse from 3 down
+
+** SPEED COMPARISONS **
+* Speed is the same for 2-3 trees, 2-3-4 trees, and even 100 trees. The only difference is depth
