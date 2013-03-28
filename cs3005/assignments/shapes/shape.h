@@ -11,8 +11,6 @@ class Shape
 public:
   virtual void draw() = 0;
   std::vector<double> points;
-  // std::string Shape::mode = "Rectangle";
-
 };
 
 #endif

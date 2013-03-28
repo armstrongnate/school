@@ -8,10 +8,11 @@ class Button : public Rectangle
 
 public:
 
-  Button(double x1_in, double y1_in, double x2_in, double y2_in, char *title_in);
+  Button(double x1_in, double y1_in, double x2_in, double y2_in, char *title_in, int id);
   char * title;
   bool contains(double x, double y);
   bool active;
+  int id;
 };
 
 #endif

@@ -11,14 +11,15 @@
 // glut32.dll, and glut32.lib in the directory of your project.
 // OR, see GlutDirectories.txt for a better place to put them.
 
+#include <iostream>
 #include <vector>
 #include <string>
 #include <cmath>
 #include <cstring>
-#include <iostream>
-#include "shape.h"
+#include "shapes.h"
 #include "rectangle.h"
-#include "button.h"
+#include "circle.h"
+#include "triangle.h"
 #ifdef _WIN32
 #include "glut.h"
 #else
@@ -29,9 +30,10 @@
 // Global Variables (Only what you need!)
 double screen_x = 700;
 double screen_y = 500;
-std::vector<Shape*> shapes;
-std::vector<Button*> buttons (3);
-std::string mode = "Rectangle";
+// std::vector<Button*> Shapes::buttons (3);
+// int Shapes::mode;
+std::vector<Shape*> shapes_vector;
+std::vector<int> clicks;
 unsigned int i;
 
 // 
@@ -88,35 +90,49 @@ void DrawText(double x, double y, const char *string)
   glDisable(GL_BLEND);
 }
 
-void drawButtons()
+void createButtons()
 { 
   int left = 25;
   int length = 100;
   int height= 30;
-  int bottom = 24;
-  int text_padding_left = 5;
-  int text_padding_bottom = 10;
   int rectangle_x = 25;
   int circle_x = 75;
   int triangle_x = 125;
-  unsigned int i;
 
-  buttons[0] = new Button(left, rectangle_x, rectangle_x+length, rectangle_x+height, "Rectangle");
-  buttons[1] = new Button(left, circle_x, left+length, circle_x+height, "Circle");
-  buttons[2] = new Button(left, triangle_x, left+length, triangle_x+height, "Triangle");
-  std::cout << "Hello" << std::endl;
-  for(i=0; i<buttons.size(); i++)
+  Shapes::buttons[0] = new Button(left, rectangle_x, rectangle_x+length, rectangle_x+height, "Rectangle", 0);
+  Shapes::buttons[1] = new Button(left, circle_x, left+length, circle_x+height, "Circle", 1);
+  Shapes::buttons[2] = new Button(left, triangle_x, left+length, triangle_x+height, "Triangle", 2);
+}
+
+void drawButtons()
+{
+  int left = 25;
+  int text_padding_left = 5;
+  int text_padding_bottom = 10;
+
+  for(i=0; i<Shapes::buttons.size(); i++)
   {
     glColor3d(2,0,0);
-    buttons[i]->draw();
-    if (buttons[i]->active)
+    Shapes::buttons[i]->draw();
+    if (Shapes::buttons[i]->active)
     {
-      std::cout << "Button is active yo!" << std::endl;
       glColor3d(0,1,0);
     }
     else
+    {
       glColor3d(0,0,0);
-    DrawText(left+text_padding_left, buttons[i]->points[1]+text_padding_bottom, buttons[i]->title);
+    }
+    DrawText(left+text_padding_left, Shapes::buttons[i]->points[1]+text_padding_bottom, Shapes::buttons[i]->title);
+  }
+}
+
+void drawShapes()
+{
+  std::cout << "Size of shapes vector: " << shapes_vector.size() << std::endl;
+  for(i=0; i<shapes_vector.size(); i++)
+  {
+    glColor3d(2,0,0);
+    shapes_vector[i]->draw();
   }
 }
 
@@ -131,6 +147,7 @@ void display(void)
   glClear(GL_COLOR_BUFFER_BIT);
   glColor3d(0,0,1);
   drawButtons();
+  drawShapes();
   glutSwapBuffers();
 }
 
@@ -188,10 +205,41 @@ void mouse(int mouse_button, int state, int x, int y)
   int ydisplay = screen_y - y;
   if (mouse_button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) 
     {
-      for(i=0; i<buttons.size(); i++)
+      // check if it was a button click
+      for(i=0; i<Shapes::buttons.size(); i++)
       {
-        if(buttons[i]->contains(xdisplay, ydisplay))
-          buttons[i]->active = true;
+        if(Shapes::buttons[i]->contains(xdisplay, ydisplay))
+          return;
+      }
+      clicks.push_back(x);
+      clicks.push_back(ydisplay);
+
+      // otherwise, gather points for mode
+      std::cout << Shapes::mode << std::endl;
+      if(Shapes::mode == 0)
+      {
+        if(clicks.size() == 4)
+        {
+          shapes_vector.push_back(new Rectangle(clicks[0], clicks[1], clicks[2], clicks[3]));
+          clicks.clear();
+        }
+      }
+      else if (Shapes::mode == 1)
+      {
+        if(clicks.size() == 4)
+        {
+          std::cout << "inside circle case" << std::endl;
+          shapes_vector.push_back(new Circle(clicks[0], clicks[1], clicks[2], clicks[3]));
+          clicks.clear();
+        }
+      }
+      else if (Shapes::mode == 2)
+      {
+        if(clicks.size() == 6)
+        {
+          shapes_vector.push_back(new Triangle(clicks[0], clicks[1], clicks[2], clicks[3], clicks[4], clicks[5]));
+          clicks.clear();
+        }
       }
     }
   if (mouse_button == GLUT_LEFT_BUTTON && state == GLUT_UP) 
@@ -203,15 +251,13 @@ void mouse(int mouse_button, int state, int x, int y)
   if (mouse_button == GLUT_MIDDLE_BUTTON && state == GLUT_UP) 
     {
     }
-  DrawRectangle(100, 100, 200, 200);
   glutPostRedisplay();
 }
 
 // Your initialization code goes here.
 void InitializeMyStuff()
 {
-  //glClear(GL_COLOR_BUFFER_BIT);
-  //drawButtons();
+  createButtons();
 }
 
 
