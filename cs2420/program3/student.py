@@ -25,6 +25,12 @@ class Student:
 
   # TODO: write ne, lt, gt, le, ge
 
+  def __lt__(self, rhs):
+    return self.mSSN < rhs.mSSN
+
+  def __gt__(self, rhs):
+    return self.mSSN < rhs.mSSN
+
 def Insert(allStudents):
   before = time.time()
   fin = open("insert_names.txt", "r")

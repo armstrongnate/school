@@ -9,7 +9,7 @@ class BinarySearchTree:
     self.mRoot = None
     self.mSize = 0
 
-  def exists(self, item):
+  def Exists(self, item):
     return self.exists_r(item, self.mRoot)
 
   def exists_r(self, item, current):
@@ -19,9 +19,9 @@ class BinarySearchTree:
       return True
     if item < current.mObject:
       return self.exists_r(item, current.mLeft)
-    return self.exists_r(item current.mRight)
+    return self.exists_r(item, current.mRight)
 
-  def retrieve(self, item):
+  def Retrieve(self, item):
     return self.retrieve_r(item, self.mRoot)
 
   def retrieve_r(self, item, current):
@@ -33,8 +33,8 @@ class BinarySearchTree:
       return self.retrieve_r(item, current.mLeft)
     return self.retrieve_r(item, current.mRight)
 
-  def insert(self, object):
-    if self.exists(object):
+  def Insert(self, object):
+    if self.Exists(object):
       return False
     n = Node(object)
     self.mRoot = self.insert_r(self.mRoot, n)
@@ -50,10 +50,10 @@ class BinarySearchTree:
       current.mRight = self.insert_r(current.mRight, n)
     return current
 
-  def size(self):
+  def Size(self):
     return self.mSize
 
-  def traverse(self, callback):
+  def Traverse(self, callback):
     self.traverse_r(self.mRoot, callback)
 
   def traverse_r(self, current, callback):
@@ -62,8 +62,8 @@ class BinarySearchTree:
       callback(current.mObject)
       self.traverse_r(current.mRight, callback)
 
-  def delete(self, item):
-    if not self.exists(item):
+  def Delete(self, item):
+    if not self.Exists(item):
       return False
     self.mRoot = self.delete_r(item, self.mRoot)
     self.mSize -= 1
