@@ -1,3 +1,0 @@
-* List of jack functions can be found in chapter 12 of the textbook. 
-* Write Painter class first and its functions. Test each method after it's written.
-
