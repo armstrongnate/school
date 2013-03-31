@@ -30,9 +30,9 @@
 // Global Variables (Only what you need!)
 double screen_x = 700;
 double screen_y = 500;
-// std::vector<Button*> Shapes::buttons (3);
-// int Shapes::mode;
+
 std::vector<Shape*> shapes_vector;
+std::vector<Button*> sliders_vector;
 std::vector<int> clicks;
 unsigned int i;
 
@@ -102,6 +102,29 @@ void createButtons()
   Shapes::buttons[0] = new Button(left, rectangle_x, rectangle_x+length, rectangle_x+height, "Rectangle", 0);
   Shapes::buttons[1] = new Button(left, circle_x, left+length, circle_x+height, "Circle", 1);
   Shapes::buttons[2] = new Button(left, triangle_x, left+length, triangle_x+height, "Triangle", 2);
+  Shapes::buttons[3] = new Button(screen_x-25-100, 25, screen_x-25, 55, "Quit", 3);
+}
+
+void createSliders()
+{
+  // draw slider posts
+  sliders_vector.push_back(new Button(30, 205, 40, 275, "", 5));
+  sliders_vector.push_back(new Button(65, 205, 75, 275, "", 5));
+  sliders_vector.push_back(new Button(100, 205, 110, 275, "", 5));
+  glColor3d(1,1,1);
+  // draw slider dials
+  sliders_vector.push_back(new Button(15, 205, 55, 215, "", 4));
+  sliders_vector.push_back(new Button(50, 205, 90, 215, "", 4));
+  sliders_vector.push_back(new Button(85, 205, 125, 215, "", 4));
+
+}
+
+void drawSliders()
+{
+  for(i=0; i<sliders_vector.size(); i++)
+  {
+    sliders_vector[i]->draw();
+  }
 }
 
 void drawButtons()
@@ -122,7 +145,7 @@ void drawButtons()
     {
       glColor3d(0,0,0);
     }
-    DrawText(left+text_padding_left, Shapes::buttons[i]->points[1]+text_padding_bottom, Shapes::buttons[i]->title);
+    DrawText(Shapes::buttons[i]->points[0]+text_padding_left, Shapes::buttons[i]->points[1]+text_padding_bottom, Shapes::buttons[i]->title);
   }
 }
 
@@ -147,6 +170,7 @@ void display(void)
   glClear(GL_COLOR_BUFFER_BIT);
   glColor3d(0,0,1);
   drawButtons();
+  drawSliders();
   drawShapes();
   glutSwapBuffers();
 }
@@ -203,14 +227,31 @@ void mouse(int mouse_button, int state, int x, int y)
   // translate pixel coordinates to display coordinates
   int xdisplay = x;
   int ydisplay = screen_y - y;
+  if(state == GLUT_UP)
+    Shapes::on_slider = false;
+ 
   if (mouse_button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) 
     {
+      std::cout << ydisplay << state << std::endl;
       // check if it was a button click
       for(i=0; i<Shapes::buttons.size(); i++)
       {
         if(Shapes::buttons[i]->contains(xdisplay, ydisplay))
           return;
       }
+
+      // check if clicking slider
+      for(i=0; i<sliders_vector.size(); i++)
+      {
+        if(sliders_vector[i]->id == 5 && sliders_vector[i]->contains(xdisplay, ydisplay))
+        {
+          Shapes::on_slider = true;
+          sliders_vector[i+3]->points[1] = ydisplay-5;
+          sliders_vector[i+3]->points[3] = ydisplay+5;
+          return;
+        }
+      }
+
       clicks.push_back(x);
       clicks.push_back(ydisplay);
 
@@ -257,6 +298,8 @@ void mouse(int mouse_button, int state, int x, int y)
 // Your initialization code goes here.
 void InitializeMyStuff()
 {
+  Shapes::mode = -1;
+  createSliders();
   createButtons();
 }
 

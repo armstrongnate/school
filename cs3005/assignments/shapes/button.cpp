@@ -17,6 +17,10 @@ bool Button::contains(double x, double y)
   bool clicked = false;
   if(x > points[0] && x < points[2] && y > points[1] && y < points[3])
   {
+    if(id == 3)
+    {
+      exit(0);
+    }
     std::cout << "clicked inside button" << std::endl;
     clicked = true;
     Shapes::setMode(this->id);

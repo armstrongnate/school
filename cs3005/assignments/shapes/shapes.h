@@ -13,7 +13,7 @@ public:
   static void setMode(int id_in);
   static int mode;
   static std::vector<Button*> buttons;
-
+  static int color[3];
 };
 
 #endif
