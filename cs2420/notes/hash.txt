@@ -1,0 +1,9 @@
+* Hashes used a key field as an index. Insert a Student at List[SSN]
+* Problem with this is you have to allocate a large list eventhough
+
+* Key % Tablesize
+* Allocate a list 2:1 waste ratio with a tablesize that is a prime number. 
+*   * in our case, a tablesize of 59,999 will do for 30,000 students.
+
+** TO DO **
+* Write isPrime() function.
