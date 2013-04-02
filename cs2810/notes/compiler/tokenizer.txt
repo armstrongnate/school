@@ -1,0 +1,36 @@
+** TOKENIZER (p. 111 of textbook) **
+* MAKE SURE INPUT ENDS IN NEW LINE. IF IT DOESN'T ADD IT.
+* WHEN CHOPPING, DONT CHOP NEW LINE
+* Write a fail function
+* Job: convert a string of characters into a string of tokens.
+* Lexical elements are all the tokens. Found on p. 108 of textbook.
+
+* Goal in part 1: produce a stream of tokens.
+* Start by creating a list of tokens like on page 106-107
+* Then do the xml stuff like on page 110.
+* Project material gives files of the xml output to 'diff' against.
+
+* Don't process it a line at a time. Just load it all in and deal with it all at once. 
+* That's what the line 'self.f' = fp.read().replace('\r')..... is for. 
+
+* Everytime you parse a chunk, slice it out. 
+* Tokenizer is mainly based around a function that scans a string, if it finds a token, slices off the token, slices the string from there and repeats.
+
+* skip whitespace: 
+*   * while I'm looking at whitespace, chunk it off.
+*   * count the newlines
+
+* skip commentts
+*   * block style comments can contain '\n'
+*   * use .find()
+*   * '/**/' is the shortest block style comment possible. 
+
+* identify symbols
+*   * put all symbols found on p. 108 in a string. so you can do if 'x' in symbols.
+
+* skip 'hasMoreTokens/advance' thing
+
+** TESTING **
+* Compare output with projects/10/ArrayTest/Main.xml
+
+** print >> xml, ' some string '
