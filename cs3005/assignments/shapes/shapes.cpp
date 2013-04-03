@@ -7,13 +7,16 @@
 #include "glut.h"
 #include <cmath>
 
-std::vector<Button*> Shapes::buttons (4);
+std::vector<Button*> Shapes::buttons (5);
 int Shapes::mode;
-static int color[3];
+std::vector<double> Shapes::colors (3);
 
 Shapes::Shapes()
 {
   mode = -1;
+  colors.push_back(1);
+  colors.push_back(0);
+  colors.push_back(0);
 }
 
 void Shapes::setMode(int id_in)
@@ -26,4 +29,10 @@ void Shapes::setMode(int id_in)
     else
       buttons[i]->active = false;
   }
+}
+
+bool Shapes::setColors(double index, double color)
+{
+  colors[index] = color;
+  return true;
 }

@@ -11,9 +11,10 @@ class Shapes
 public:
   Shapes();
   static void setMode(int id_in);
+  static bool setColors(double index, double color);
   static int mode;
   static std::vector<Button*> buttons;
-  static int color[3];
+  static std::vector<double> colors;
 };
 
 #endif

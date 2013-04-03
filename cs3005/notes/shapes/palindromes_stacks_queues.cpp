@@ -16,7 +16,7 @@ int main()
   // stick each letter of word into stack
   for(unsigned int i=0; i< word.size()); i++)
     {
-      letter.push_back(word[i]);
+      letters.push_back(word[i]);
       reversed_letters.push(word[i]);
     }
 
@@ -27,7 +27,7 @@ int main()
       char s;
       q = letters.front();
       s = reversed_letters.top();
-      letter.pop();
+      letters.pop();
       reversed_letters.pop();
 
       if(q != s)

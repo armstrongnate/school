@@ -34,6 +34,11 @@ double screen_y = 500;
 std::vector<Shape*> shapes_vector;
 std::vector<Button*> sliders_vector;
 std::vector<int> clicks;
+std::vector<Shape*> feedback;
+double red = 1;
+double green = 0;
+double blue = 0;
+std::vector<double> button_colors;
 unsigned int i;
 
 // 
@@ -99,23 +104,23 @@ void createButtons()
   int circle_x = 75;
   int triangle_x = 125;
 
-  Shapes::buttons[0] = new Button(left, rectangle_x, rectangle_x+length, rectangle_x+height, "Rectangle", 0);
-  Shapes::buttons[1] = new Button(left, circle_x, left+length, circle_x+height, "Circle", 1);
-  Shapes::buttons[2] = new Button(left, triangle_x, left+length, triangle_x+height, "Triangle", 2);
-  Shapes::buttons[3] = new Button(screen_x-25-100, 25, screen_x-25, 55, "Quit", 3);
+  Shapes::buttons[0] = new Button(left, rectangle_x, rectangle_x+length, rectangle_x+height, "Rectangle", 0, button_colors);
+  Shapes::buttons[1] = new Button(left, circle_x, left+length, circle_x+height, "Circle", 1, button_colors);
+  Shapes::buttons[2] = new Button(left, triangle_x, left+length, triangle_x+height, "Triangle", 2, button_colors);
+  Shapes::buttons[3] = new Button(screen_x-25-100, 25, screen_x-25, 55, "Quit", 3, button_colors);
+  Shapes::buttons[4] = new Button(screen_x-25-100, 65, screen_x-25, 95, "Clear", 4, button_colors);
 }
 
 void createSliders()
 {
   // draw slider posts
-  sliders_vector.push_back(new Button(30, 205, 40, 275, "", 5));
-  sliders_vector.push_back(new Button(65, 205, 75, 275, "", 5));
-  sliders_vector.push_back(new Button(100, 205, 110, 275, "", 5));
-  glColor3d(1,1,1);
+  sliders_vector.push_back(new Button(30, 205, 50, 305, "", 5, button_colors));
+  sliders_vector.push_back(new Button(85, 205, 105, 305, "", 6, button_colors));
+  sliders_vector.push_back(new Button(140, 205, 160, 305, "", 7, button_colors));
   // draw slider dials
-  sliders_vector.push_back(new Button(15, 205, 55, 215, "", 4));
-  sliders_vector.push_back(new Button(50, 205, 90, 215, "", 4));
-  sliders_vector.push_back(new Button(85, 205, 125, 215, "", 4));
+  sliders_vector.push_back(new Button(15, 205, 65, 215, "", 4, button_colors));
+  sliders_vector.push_back(new Button(70, 205, 120, 215, "", 4, button_colors));
+  sliders_vector.push_back(new Button(125, 205, 175, 215, "", 4, button_colors));
 
 }
 
@@ -123,7 +128,7 @@ void drawSliders()
 {
   for(i=0; i<sliders_vector.size(); i++)
   {
-    sliders_vector[i]->draw();
+    sliders_vector[i]->drawSlider(red, green, blue);
   }
 }
 
@@ -149,14 +154,31 @@ void drawButtons()
   }
 }
 
+void drawFeedback()
+{
+  glColor3d(0,0,0);
+  for(i=0; i<feedback.size(); i++)
+  {
+    feedback[i]->draw();
+  }
+}
+
 void drawShapes()
 {
-  std::cout << "Size of shapes vector: " << shapes_vector.size() << std::endl;
+  glColor3d(red, green, blue);
   for(i=0; i<shapes_vector.size(); i++)
   {
-    glColor3d(2,0,0);
-    shapes_vector[i]->draw();
+    if(shapes_vector[i]->active)
+    {
+      shapes_vector[i]->draw();
+    }
   }
+}
+
+void clearShapes()
+{
+  for(i=0; i<shapes_vector.size(); i++)
+    shapes_vector[i]->active = false;
 }
 
 //
@@ -168,10 +190,10 @@ void drawShapes()
 void display(void)
 {
   glClear(GL_COLOR_BUFFER_BIT);
-  glColor3d(0,0,1);
+  drawFeedback();
+  drawShapes();
   drawButtons();
   drawSliders();
-  drawShapes();
   glutSwapBuffers();
 }
 
@@ -225,17 +247,19 @@ void reshape(int w, int h)
 void mouse(int mouse_button, int state, int x, int y)
 {
   // translate pixel coordinates to display coordinates
-  int xdisplay = x;
-  int ydisplay = screen_y - y;
-  if(state == GLUT_UP)
-    Shapes::on_slider = false;
- 
+  double xdisplay = x;
+  double ydisplay = screen_y - y;
   if (mouse_button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) 
     {
-      std::cout << ydisplay << state << std::endl;
       // check if it was a button click
       for(i=0; i<Shapes::buttons.size(); i++)
       {
+        // if it was the clear button, clear shapes from screen
+        if(Shapes::buttons[i]->contains(xdisplay, ydisplay) && Shapes::buttons[i]->id == 4)
+        {
+          clearShapes();
+          return;
+        }
         if(Shapes::buttons[i]->contains(xdisplay, ydisplay))
           return;
       }
@@ -243,25 +267,42 @@ void mouse(int mouse_button, int state, int x, int y)
       // check if clicking slider
       for(i=0; i<sliders_vector.size(); i++)
       {
-        if(sliders_vector[i]->id == 5 && sliders_vector[i]->contains(xdisplay, ydisplay))
+        if(sliders_vector[i]->id > 4 && sliders_vector[i]->id < 8 && sliders_vector[i]->contains(xdisplay, ydisplay))
         {
-          Shapes::on_slider = true;
           sliders_vector[i+3]->points[1] = ydisplay-5;
           sliders_vector[i+3]->points[3] = ydisplay+5;
-          return;
+
+          switch (sliders_vector[i]->id)
+          {
+            case 5:
+              red = (ydisplay-205)/100;
+              Shapes::colors[0] = red;
+              return;
+            case 6:
+              green = (ydisplay-205)/100;
+              Shapes::colors[1] = green;
+              return;
+            case 7:
+              blue = (ydisplay-205)/100;
+              Shapes::colors[2] = blue;
+              return;
+          }
         }
       }
 
-      clicks.push_back(x);
-      clicks.push_back(ydisplay);
-
+      if(Shapes::mode >= 0)
+      {  
+        feedback.push_back(new Circle(xdisplay, ydisplay, xdisplay+5, ydisplay+5, button_colors));
+        clicks.push_back(x);
+        clicks.push_back(ydisplay);
+      }
       // otherwise, gather points for mode
-      std::cout << Shapes::mode << std::endl;
       if(Shapes::mode == 0)
       {
         if(clicks.size() == 4)
         {
-          shapes_vector.push_back(new Rectangle(clicks[0], clicks[1], clicks[2], clicks[3]));
+          feedback.clear();
+          shapes_vector.push_back(new Rectangle(clicks[0], clicks[1], clicks[2], clicks[3], Shapes::colors));
           clicks.clear();
         }
       }
@@ -269,8 +310,8 @@ void mouse(int mouse_button, int state, int x, int y)
       {
         if(clicks.size() == 4)
         {
-          std::cout << "inside circle case" << std::endl;
-          shapes_vector.push_back(new Circle(clicks[0], clicks[1], clicks[2], clicks[3]));
+          feedback.clear();
+          shapes_vector.push_back(new Circle(clicks[0], clicks[1], clicks[2], clicks[3], Shapes::colors));
           clicks.clear();
         }
       }
@@ -278,7 +319,8 @@ void mouse(int mouse_button, int state, int x, int y)
       {
         if(clicks.size() == 6)
         {
-          shapes_vector.push_back(new Triangle(clicks[0], clicks[1], clicks[2], clicks[3], clicks[4], clicks[5]));
+          feedback.clear();
+          shapes_vector.push_back(new Triangle(clicks[0], clicks[1], clicks[2], clicks[3], clicks[4], clicks[5], Shapes::colors));
           clicks.clear();
         }
       }
@@ -299,6 +341,9 @@ void mouse(int mouse_button, int state, int x, int y)
 void InitializeMyStuff()
 {
   Shapes::mode = -1;
+  button_colors.push_back(1);
+  button_colors.push_back(0);
+  button_colors.push_back(0);
   createSliders();
   createButtons();
 }

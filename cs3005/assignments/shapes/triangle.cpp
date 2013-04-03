@@ -3,9 +3,9 @@
 #include <iostream>
 #include <cmath>
 
-Triangle::Triangle(double x1_in, double y1_in, double x2_in, double y2_in, double x3_in, double y3_in)
+Triangle::Triangle(double x1_in, double y1_in, double x2_in, double y2_in, double x3_in, double y3_in, std::vector<double> colors)
+  : Shape(colors)
 {
-  std::cout << "x1_in is: " << x1_in << std::endl;
   points.push_back(x1_in);
   points.push_back(y1_in);
   points.push_back(x2_in);
@@ -16,6 +16,7 @@ Triangle::Triangle(double x1_in, double y1_in, double x2_in, double y2_in, doubl
 
 void Triangle::draw()
 {
+  glColor3d(colors[0], colors[1], colors[2]);
   double x1 = points[0];
   double y1 = points[1];
   double x2 = points[2];
