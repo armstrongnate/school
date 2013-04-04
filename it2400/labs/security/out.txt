@@ -1,0 +1,3 @@
+IF you are reading this file, HOORAY! You have successfully decrypted it using openssl.  I know you are excited to do more with encryption, but this is as far as we are going.  By the way, we could have encrypted any type of file, this is just a plain old text file!
+
+~Cheers!
