@@ -2,7 +2,8 @@
 #include "glut.h"
 #include <iostream>
 
-Rectangle::Rectangle(double x1_in, double y1_in, double x2_in, double y2_in)
+Rectangle::Rectangle(double x1_in, double y1_in, double x2_in, double y2_in, std::vector<double> colors)
+  : Shape(colors)
 {
   points.push_back(x1_in);
   points.push_back(y1_in);
@@ -17,6 +18,7 @@ void Rectangle::draw()
   y1 = points[1];
   x2 = points[2];
   y2 = points[3];
+  glColor3d(colors[0], colors[1], colors[2]);
   glBegin(GL_QUADS);
   glVertex2d(x1,y1);
   glVertex2d(x2,y1);

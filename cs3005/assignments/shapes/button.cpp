@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 
-Button::Button(double x1_in, double y1_in, double x2_in, double y2_in, char *title_in, int id_in)
-  : Rectangle(x1_in, y1_in, x2_in, y2_in)
+Button::Button(double x1_in, double y1_in, double x2_in, double y2_in, char *title_in, int id_in, std::vector<double> colors)
+  : Rectangle(x1_in, y1_in, x2_in, y2_in, colors)
 {
   title = title_in;
   active = false;
@@ -21,10 +21,29 @@ bool Button::contains(double x, double y)
     {
       exit(0);
     }
-    std::cout << "clicked inside button" << std::endl;
     clicked = true;
-    Shapes::setMode(this->id);
+    if(id < 3)
+      Shapes::setMode(this->id);
   }
 
   return clicked;
+}
+
+void Button::drawSlider(double red, double green, double blue)
+{
+  double x1, x2, y1, y2;
+  x1 = points[0];
+  y1 = points[1];
+  x2 = points[2];
+  y2 = points[3];
+  if(id > 4)
+    glColor3d(red, green, blue);
+  else
+    glColor3d(0, 0, 0);
+  glBegin(GL_QUADS);
+  glVertex2d(x1,y1);
+  glVertex2d(x2,y1);
+  glVertex2d(x2,y2);
+  glVertex2d(x1,y2);
+  glEnd();
 }
