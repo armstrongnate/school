@@ -31,6 +31,9 @@ class Student:
   def __gt__(self, rhs):
     return self.mSSN < rhs.mSSN
 
+  def __int__(self):
+    return self.mSSN
+
 def Insert(allStudents):
   before = time.time()
   fin = open("insert_names.txt", "r")
