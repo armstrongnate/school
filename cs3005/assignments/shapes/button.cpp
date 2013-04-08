@@ -17,11 +17,11 @@ bool Button::contains(double x, double y)
   bool clicked = false;
   if(x > points[0] && x < points[2] && y > points[1] && y < points[3])
   {
+    clicked = true;
     if(id == 3)
     {
       exit(0);
     }
-    clicked = true;
     if(id < 3)
       Shapes::setMode(this->id);
   }
@@ -36,10 +36,11 @@ void Button::drawSlider(double red, double green, double blue)
   y1 = points[1];
   x2 = points[2];
   y2 = points[3];
-  if(id > 4)
     glColor3d(red, green, blue);
-  else
-    glColor3d(0, 0, 0);
+  if(id == 4)
+  {
+    glColor3d(1, 0, 0);
+  }
   glBegin(GL_QUADS);
   glVertex2d(x1,y1);
   glVertex2d(x2,y1);

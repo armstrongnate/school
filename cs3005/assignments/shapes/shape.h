@@ -14,6 +14,7 @@ public:
   std::vector<double> points;
   bool active;
   std::vector<double> colors;
+  int shape_id;
 };
 
 #endif

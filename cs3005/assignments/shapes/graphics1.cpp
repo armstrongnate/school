@@ -16,6 +16,7 @@
 #include <string>
 #include <cmath>
 #include <cstring>
+#include <fstream>
 #include "shapes.h"
 #include "rectangle.h"
 #include "circle.h"
@@ -40,8 +41,9 @@ double green = 0;
 double blue = 0;
 std::vector<double> button_colors;
 unsigned int i;
+std::string filename = "out.txt";
 
-// 
+//
 // Functions that draw basic primitives
 //
 void DrawCircle(double x1, double y1, double radius)
@@ -83,11 +85,11 @@ void DrawText(double x, double y, const char *string)
 
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glEnable(GL_BLEND);
-	
+
   int len, i;
   glRasterPos2d(x, y);
   len = (int) strlen(string);
-  for (i = 0; i < len; i++) 
+  for (i = 0; i < len; i++)
     {
       glutBitmapCharacter(font, string[i]);
     }
@@ -96,7 +98,7 @@ void DrawText(double x, double y, const char *string)
 }
 
 void createButtons()
-{ 
+{
   int left = 25;
   int length = 100;
   int height= 30;
@@ -109,6 +111,9 @@ void createButtons()
   Shapes::buttons[2] = new Button(left, triangle_x, left+length, triangle_x+height, "Triangle", 2, button_colors);
   Shapes::buttons[3] = new Button(screen_x-25-100, 25, screen_x-25, 55, "Quit", 3, button_colors);
   Shapes::buttons[4] = new Button(screen_x-25-100, 65, screen_x-25, 95, "Clear", 4, button_colors);
+  Shapes::buttons[5] = new Button(screen_x-25-100, 105, screen_x-25, 145, "Undo", 9, button_colors);
+  Shapes::buttons[6] = new Button(screen_x-25-100, 155, screen_x-25, 185, "Load", 13, button_colors);
+  Shapes::buttons[7] = new Button(screen_x-25-100, 195, screen_x-25, 225, "Save", 25, button_colors);
 }
 
 void createSliders()
@@ -128,7 +133,7 @@ void drawSliders()
 {
   for(i=0; i<sliders_vector.size(); i++)
   {
-    sliders_vector[i]->drawSlider(red, green, blue);
+    sliders_vector[i]->drawSlider(Shapes::colors[0], Shapes::colors[1], Shapes::colors[2]);
   }
 }
 
@@ -168,7 +173,8 @@ void drawShapes()
   glColor3d(red, green, blue);
   for(i=0; i<shapes_vector.size(); i++)
   {
-    if(shapes_vector[i]->active)
+    if(shapes_vector[i]->active)std::string filename = "out.txt";
+
     {
       shapes_vector[i]->draw();
     }
@@ -178,7 +184,114 @@ void drawShapes()
 void clearShapes()
 {
   for(i=0; i<shapes_vector.size(); i++)
-    shapes_vector[i]->active = false;
+    shapes_vector.pop_back();
+}
+
+void write_to_file(std::string &filename)
+{
+  unsigned int j;
+  std::ofstream fout(filename.c_str());
+  if(!fout)
+    {
+      std::cerr << "unable to open " << "out.txt" << std::endl;
+      return;
+    }
+  for(i=0; i<shapes_vector.size(); i++)
+  {
+    if(shapes_vector[i]->shape_id == 30)
+    {
+      fout << "Triangle";
+      fout << "\n";
+      for(j=0; j<shapes_vector[i]->points.size(); j++)
+      {
+        fout << shapes_vector[i]->points[j] << " ";
+      }
+      fout << "\n";
+      for(j=0; j<shapes_vector[i]->colors.size(); j++)
+      {
+        fout << shapes_vector[i]->colors[j] << " ";
+      }
+      fout << "\n";
+    }
+    if(shapes_vector[i]->shape_id == 60)
+    {
+      fout << "Circle";
+      fout << "\n";
+      for(j=0; j<shapes_vector[i]->points.size(); j++)
+      {
+        fout << shapes_vector[i]->points[j] << " ";
+      }
+      fout << "\n";
+      for(j=0; j<shapes_vector[i]->colors.size(); j++)
+      {
+        fout << shapes_vector[i]->colors[j] << " ";
+      }
+      fout << "\n";
+    }
+    if(shapes_vector[i]->shape_id == 40)
+    {
+      fout << "Rectangle";
+      fout << "\n";
+      for(j=0; j<shapes_vector[i]->points.size(); j++)
+      {
+        fout << shapes_vector[i]->points[j] << " ";
+      }
+      fout << "\n";
+      for(j=0; j<shapes_vector[i]->colors.size(); j++)
+      {
+        fout << shapes_vector[i]->colors[j] << " ";
+      }
+      fout << "\n";
+    }
+  }
+}
+
+void load_file(std::string &filename)
+{
+	std::string shape_type;
+	double x1, y1, x2, y2, x3, y3;
+	double r, g, b;
+  std::vector<double> colors_in (3);
+
+  std::ifstream fin(filename.c_str());
+  if(!fin)
+    {
+      std::cerr << "unable to open " << "out.txt" << std::endl;
+      return;
+    }
+	while(! fin.eof())
+	{
+		 fin >> shape_type >> std::ws;
+			if (shape_type == "Triangle")	{
+				fin>>x1>>y1>>x2>>y2>>x3>>y3>>std::ws;
+				fin >> r >> g >> b >> std::ws;
+
+        colors_in[0] = r;
+        colors_in[1] = g;
+        colors_in[2] = b;
+        shapes_vector.push_back(new Triangle(x1, y1, x2, y2, x3, y3, colors_in));
+			}
+			else if (shape_type == "Rectangle")	{
+				fin>>x1>>y1>>x2>>y2>>std::ws;
+				fin >> r >> g >> b >> std::ws;
+
+        colors_in[0] = r;
+        colors_in[1] = g;
+        colors_in[2] = b;
+        shapes_vector.push_back(new Rectangle(x1, y1, x2, y2, colors_in));
+			}
+
+			else if (shape_type == "Circle")	{
+				fin>>x1>>y1>>x2>>y2>>std::ws;
+				fin >> r >> g >> b >> std::ws;
+
+        colors_in[0] = r;
+        colors_in[1] = g;
+        colors_in[2] = b;
+        shapes_vector.push_back(new Circle(x1, y1, x2, y2, colors_in));
+			}
+	}
+
 }
 
 //
@@ -201,7 +314,7 @@ void display(void)
 // system whenever a key is pressed.
 void keyboard(unsigned char c, int x, int y)
 {
-  switch (c) 
+  switch (c)
     {
     case 'q':
     case 27: // escape character means to quit the program
@@ -249,7 +362,7 @@ void mouse(int mouse_button, int state, int x, int y)
   // translate pixel coordinates to display coordinates
   double xdisplay = x;
   double ydisplay = screen_y - y;
-  if (mouse_button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) 
+  if (mouse_button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
     {
       // check if it was a button click
       for(i=0; i<Shapes::buttons.size(); i++)
@@ -257,9 +370,29 @@ void mouse(int mouse_button, int state, int x, int y)
         // if it was the clear button, clear shapes from screen
         if(Shapes::buttons[i]->contains(xdisplay, ydisplay) && Shapes::buttons[i]->id == 4)
         {
-          clearShapes();
+          shapes_vector.clear();
           return;
         }
+        // if it was the undo button, de-activate last shape in shapes_vector
+        if(Shapes::buttons[i]->contains(xdisplay, ydisplay) && Shapes::buttons[i]->id == 9)
+        {
+          shapes_vector.pop_back();
+          return;
+        }
+
+
+        if(Shapes::buttons[i]->contains(xdisplay, ydisplay) && Shapes::buttons[i]->id == 25)
+        {
+          write_to_file(filename);
+          return;
+        }
+
+        if(Shapes::buttons[i]->contains(xdisplay, ydisplay) && Shapes::buttons[i]->id == 13)
+        {
+          load_file(filename);
+          return;
+        }
+
         if(Shapes::buttons[i]->contains(xdisplay, ydisplay))
           return;
       }
@@ -291,7 +424,7 @@ void mouse(int mouse_button, int state, int x, int y)
       }
 
       if(Shapes::mode >= 0)
-      {  
+      {
         feedback.push_back(new Circle(xdisplay, ydisplay, xdisplay+5, ydisplay+5, button_colors));
         clicks.push_back(x);
         clicks.push_back(ydisplay);
@@ -325,13 +458,13 @@ void mouse(int mouse_button, int state, int x, int y)
         }
       }
     }
-  if (mouse_button == GLUT_LEFT_BUTTON && state == GLUT_UP) 
+  if (mouse_button == GLUT_LEFT_BUTTON && state == GLUT_UP)
     {
     }
-  if (mouse_button == GLUT_MIDDLE_BUTTON && state == GLUT_DOWN) 
+  if (mouse_button == GLUT_MIDDLE_BUTTON && state == GLUT_DOWN)
     {
     }
-  if (mouse_button == GLUT_MIDDLE_BUTTON && state == GLUT_UP) 
+  if (mouse_button == GLUT_MIDDLE_BUTTON && state == GLUT_UP)
     {
     }
   glutPostRedisplay();
@@ -358,12 +491,12 @@ int main(int argc, char **argv)
   glutInitWindowPosition(50, 50);
 
   int fullscreen = 0;
-  if (fullscreen) 
+  if (fullscreen)
     {
       glutGameModeString("800x600:32");
       glutEnterGameMode();
-    } 
-  else 
+    }
+  else
     {
       glutCreateWindow("This appears in the title bar");
     }

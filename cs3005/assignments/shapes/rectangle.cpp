@@ -5,6 +5,7 @@
 Rectangle::Rectangle(double x1_in, double y1_in, double x2_in, double y2_in, std::vector<double> colors)
   : Shape(colors)
 {
+  shape_id = 40;
   points.push_back(x1_in);
   points.push_back(y1_in);
   points.push_back(x2_in);

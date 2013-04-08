@@ -3,7 +3,7 @@
 
 #include "rectangle.h"
 
-class Button : public Rectangle 
+class Button : public Rectangle
 {
 
 public:

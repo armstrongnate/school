@@ -7,7 +7,7 @@
 #include "glut.h"
 #include <cmath>
 
-std::vector<Button*> Shapes::buttons (5);
+std::vector<Button*> Shapes::buttons (8);
 int Shapes::mode;
 std::vector<double> Shapes::colors (3);
 
