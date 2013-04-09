@@ -1,0 +1,24 @@
+* Write SolveR() and Solve() in MazeSolverCrippled.py
+* p = win.getMouse()
+  win.close()
+
+** Solve(self):
+* self.mMoves stores moves by index number. Index starts from bottom left cell at 0.
+* self.mMoves will be filled out by the end of SolveR()
+
+** SolveR(self, i, j)
+* given cell (i, j)
+* if (i, j) is a winning cell, add it to self.mMoves
+* get index number:
+  index = j*m + i
+  j = index/m
+  i = index%m
+* end_cell_index = m*n-1
+* move left if there is no wall, and it hasn't been visited
+  if not cells[i][j].l and not cells[i-1][j].visited:
+    winner = self.SolveR(i-1, j)
+    if winner:
+      return True
+
+* Given this maze and the order, left, right, down, up, mark the cells in the order they got visited including the loser cells.
+* This is an N algorithm
