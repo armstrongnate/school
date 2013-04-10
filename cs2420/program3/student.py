@@ -18,10 +18,17 @@ class Student:
   def __str__(self):
     return "%s, %s" % (self.mLast.capitalize(), self.mFirst.capitalize())
 
-  def __eq__(self, rhs): 
-    #rhs = right hand side. 
+  def __eq__(self, rhs):
+    #rhs = right hand side.
     # use this to compare two Student objects with the s1 == s2 notation.
+    if rhs == None or rhs == False:
+      return False
     return self.mSSN == rhs.mSSN
+
+  def __ne__(self, rhs):
+    if rhs == None or rhs == False:
+      return False
+    return self.mSSN != rhs.mSSN
 
   # TODO: write ne, lt, gt, le, ge
 
@@ -32,7 +39,7 @@ class Student:
     return self.mSSN < rhs.mSSN
 
   def __int__(self):
-    return self.mSSN
+    return int(self.mSSN)
 
 def Insert(allStudents):
   before = time.time()
@@ -75,7 +82,7 @@ def Delete(allStudents):
         allStudents.pop(i)
         break
     if not found:
-      print "No student found with SSN %s." % ssn 
+      print "No student found with SSN %s." % ssn
   after = time.time()
   print "Number of Students, now: %s" % len(allStudents)
   print "Time taken to delete: %.2f seconds.\n" % (after - before)
@@ -96,7 +103,7 @@ def Retrieve(allStudents):
         count += 1
         break
     if not found:
-      print "No student found with SSN %s." % ssn 
+      print "No student found with SSN %s." % ssn
   after = time.time()
   print "Average age of retrieved students: %f" % (totalAge/count)
   print "Time taken to retrieve: %.2f seconds.\n" % (after - before)
