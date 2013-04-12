@@ -10,20 +10,20 @@
 * Then do the xml stuff like on page 110.
 * Project material gives files of the xml output to 'diff' against.
 
-* Don't process it a line at a time. Just load it all in and deal with it all at once. 
-* That's what the line 'self.f' = fp.read().replace('\r')..... is for. 
+* Don't process it a line at a time. Just load it all in and deal with it all at once.
+* That's what the line 'self.f' = fp.read().replace('\r')..... is for.
 
-* Everytime you parse a chunk, slice it out. 
+* Everytime you parse a chunk, slice it out.
 * Tokenizer is mainly based around a function that scans a string, if it finds a token, slices off the token, slices the string from there and repeats.
 
-* skip whitespace: 
+* skip whitespace:
 *   * while I'm looking at whitespace, chunk it off.
 *   * count the newlines
 
 * skip commentts
 *   * block style comments can contain '\n'
 *   * use .find()
-*   * '/**/' is the shortest block style comment possible. 
+*   * '/**/' is the shortest block style comment possible.
 
 * identify symbols
 *   * put all symbols found on p. 108 in a string. so you can do if 'x' in symbols.
@@ -34,3 +34,43 @@
 * Compare output with projects/10/ArrayTest/Main.xml
 
 ** print >> xml, ' some string '
+
+** Part 3
+label WHILE_TEXT_0
+<expression>
+not
+if-goto WHILE_EXIT_0
+<stack something?>
+goto WHILE_TEST_0
+label WHILE_EXIT_0
+
+* no else:
+<expression>
+not
+if-goto IF_ELSE_0
+<statement>
+label IF_ELSE_0
+
+
+* with else:
+<expression>
+not
+ifgoto IF_ELSE_0
+<statement>
+goto IF_EXIT_0
+label IF_ELSE_0
+<statements>
+label IF_EXIT_0
+
+* let
+<expression>
+pop static|this|arg|local 5 # 5 being the offset
+
+<expression>
+push static|this|arg|local 5
+add
+<expression>
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
