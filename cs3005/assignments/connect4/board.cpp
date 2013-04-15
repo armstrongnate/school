@@ -120,7 +120,7 @@ bool CheckForWin_R(int row, int col, int dir)
           CheckForWin_R(row+1, col+1, dir);
           break;
         case 4:
-          CheckForWin_R(row+1, col, dir);
+          CheckForWin_R(row-1, col, dir);
           break;
         case 5:
           CheckForWin_R(row-1, col-1, dir);
