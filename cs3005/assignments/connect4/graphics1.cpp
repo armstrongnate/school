@@ -174,6 +174,7 @@ void display(void)
 {
   glClear(GL_COLOR_BUFFER_BIT);
   board->Draw();
+  board->DrawCircles();
   drawFeedback();
   drawShapes();
   drawButtons();
@@ -225,6 +226,20 @@ void reshape(int w, int h)
 
 }
 
+void changeTurn()
+{
+  if(Board::turn == 1)
+  {
+    Board::turn = 2;
+  }
+  else if(Board::turn == 2)
+  {
+    Board::turn = 1;
+  } else {
+    std::cout << "Wrong turn number: " << Board::turn << std::endl;
+  }
+}
+
 // This callback function gets called by the Glut
 // system whenever any mouse button goes up or down.
 void mouse(int mouse_button, int state, int x, int y)
@@ -254,40 +269,12 @@ void mouse(int mouse_button, int state, int x, int y)
           return;
       }
 
-      if(Shapes::mode >= 0)
+      if(xdisplay > 200 && xdisplay < 690 && ydisplay > 50 && ydisplay < 470)
       {
-        feedback.push_back(new Circle(xdisplay, ydisplay, xdisplay+5, ydisplay+5));
-        clicks.push_back(x);
-        clicks.push_back(ydisplay);
+        board->DrawCircle(xdisplay, ydisplay);
+        changeTurn();
       }
-      // otherwise, gather points for mode
-      if(Shapes::mode == 0)
-      {
-        if(clicks.size() == 4)
-        {
-          feedback.clear();
-          shapes_vector.push_back(new Rectangle(clicks[0], clicks[1], clicks[2], clicks[3]));
-          clicks.clear();
-        }
-      }
-      else if (Shapes::mode == 1)
-      {
-        if(clicks.size() == 4)
-        {
-          feedback.clear();
-          shapes_vector.push_back(new Circle(clicks[0], clicks[1], clicks[2], clicks[3]));
-          clicks.clear();
-        }
-      }
-      else if (Shapes::mode == 2)
-      {
-        if(clicks.size() == 6)
-        {
-          feedback.clear();
-          shapes_vector.push_back(new Triangle(clicks[0], clicks[1], clicks[2], clicks[3], clicks[4], clicks[5]));
-          clicks.clear();
-        }
-      }
+
     }
   if (mouse_button == GLUT_LEFT_BUTTON && state == GLUT_UP)
     {

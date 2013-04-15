@@ -2,6 +2,7 @@
 #include "glut.h"
 #include <iostream>
 #include <cmath>
+#include "board.h"
 
 Circle::Circle(double x1_in, double y1_in, double x2_in, double y2_in)
 {
@@ -10,6 +11,7 @@ Circle::Circle(double x1_in, double y1_in, double x2_in, double y2_in)
   points.push_back(y1_in);
   points.push_back(x2_in);
   points.push_back(y2_in);
+  color = Board::turn;
 }
 
 void Circle::draw()
@@ -20,6 +22,12 @@ void Circle::draw()
   double y2 = points[3];
   double radius = sqrt(pow((x2-x1),2)+pow((y2-y1),2));
 
+  if(color == 1)
+  {
+    glColor3d(1,0,0);
+  } else{
+    glColor3d(0,0,0);
+  }
   glBegin(GL_POLYGON);
   for(int i=0; i<32; i++)
     {
