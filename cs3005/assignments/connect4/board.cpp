@@ -117,7 +117,7 @@ bool CheckForWin_R(int row, int col, int dir)
           CheckForWin_R(row, col+1, dir);
           break;
         case 3:
-          CheckForWin_R(row+1, col+1, dir);
+          CheckForWin_R(row-1, col+1, dir);
           break;
         case 4:
           CheckForWin_R(row-1, col, dir);
@@ -156,7 +156,7 @@ void Board::CheckForWin(int row, int col)
     points_count = 1;
     win = CheckForWin_R(row, col+1, 2);
   }
-  if(pieces[row+1][col+1] == Board::turn)
+  if(pieces[row-1][col+1] == Board::turn)
   {
     points_count = 1;
     win = CheckForWin_R(row-1, col+1, 3);
