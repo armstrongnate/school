@@ -1,0 +1,84 @@
+fields = {}
+locals = {}
+len(fields)
+fields['Age'] = ('int', len(fields))
+fields['Weight'] = ('boolean', len(fields))
+
+class SymbolTable
+  def __init__(self):
+    # initialize dictionaries
+    self._arg = {}
+    self._var = {}
+    self._field = {}
+  def startSubroutine(self):
+    self._arg = {}
+    self._var = {}
+
+  def define(self, name, vartype, kind):
+    if kind == 'static':
+      if name in self._static:
+        fail('variable already defined: %s')
+      self.static[name] = (vartype, kind) # ??? Not totally sure what he had here.
+
+  def kind(self):
+    # pass
+
+  def varCount(self):
+
+  def kindOf(self, name):
+    if name in self._var:
+      return 'var'
+    if name in self._arg:
+      return 'arg'
+    # repeat for field and static in that order
+
+  def typeOf(self):
+
+  def indexOf(self):
+
+## COMPILE LET
+* Side effect of every expression call is ONE value on the stack
+* Easy version: Consult symbol table, pop value that is there
+* Hard version:
+  pop temp 0
+  pop pointer 1
+  push temp 0
+  pop that 0
+def compileLet(self):
+  # take with grain of salt
+  #is an array
+    array = true
+    self.push something
+  if array:
+    self.writer.writePop('temp', 0)
+    self.writer.writePop('pointer', 1)
+    self.write.writePop('this', 0)
+    self.write.writePop('temp', 0)
+
+  # not array reference
+  else:
+    kind = self.symbols.kindOf(name)
+    if kind is None
+      fail
+    elif kind == 'var':
+      self.writer.writePop('local', self.symbols.indexOf(name))
+    elif kind == 'arg':
+      self.writer.writePop('argument', self.symbols.indexOf(name))
+    rinse and repeat
+
+def compileWhile(self):
+  label = 'WHILE_%d' % self.whilecount
+  self.whilecount += 1
+  self.writer.writeLabel(label + '_TEST')
+  self.compileExpression()
+  self.writer.writeArithmetic('not')
+  self.writer.writeIf(label + '_Exit')
+  symbol
+  symbol
+  self.compileStatements()
+  self.writer.writeGoto(label + '_TEST')
+  self.writer.writeLabel(label + '_EXIT')
+
+def compileReturn(self):
+  compile expression
+  if there isn't an expression, push constant 0
