@@ -49,3 +49,16 @@
 ** Adjacency graph vs Matrix graph
 * Which is bigger? It depends.
 * Sparsity, Matrix is bigger. Density, Adjacency is bigger.
+
+def BreadthFirstSearch(x, y):
+  q = Queue()
+  q.enque(x)
+  F[x] = x
+  while not q.isEmpty():
+    c = q.deque()
+    if c == y:
+      # build path and return
+    for all unvisited neighbors of c:
+      q.enque(n)
+      F[n] = c
+  return None
