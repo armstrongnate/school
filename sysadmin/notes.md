@@ -93,3 +93,59 @@ chown joe:cs foo.txt
 * `who` who is logged in at the moment
 * `finger` give info about user _if finger is installed_
 * `chmod 666 bar.txt` change permissions of bar.txt to 666
+
+## Wed Aug 29
+
+### Announcements:
+* Homework due dates should get pushed back because of technical
+  difficulties.
+* Don't worry if you don't have anything done yet.
+
+### Review
+4 = r = read      => you can `ls`
+2 = w = write     => you can `touch`
+1 = x = execute   => you can `cd` (in the case of a directory)
+therefore,
+5 = read and execute
+
+If you can _write_ to a directory then that means you can modify its
+contents which includes deleting, renaming, and adding
+files/directories.
+
+Process of executing a command:
+1. Check UID. if that fails,
+2. Check GID. if that fails,
+3. Check world permissions
+
+### Specialty bits (3)
+
+3 special bits are:
+* 4 = setuid bit = s
+* 2 = setgid bit = s
+* 1 = sticky bit = t
+
+specialty/user/group/other
+2750 = rwx r-s ---
+6755 = rws r-s r-x
+1777 = rwx rwx rwt
+0644 = rw- r-- r--
+
+rws r-S r-- = 6744 => remember `S` means that it is empty.
+
+### Default Permissions
+Files: `0666`
+Directories: `0777`
+
+Problems with this?
+* Way too lax
+
+#### uMASK
+Each process has a mask that defines permission bits that should be
+removed from newly created files and directories.
+
+Typical settings include:
+0002 = 644 => removes world permissions
+0027 = ? => TODO!
+
+The uMASK is inherited from parent process unless overridden.
+
