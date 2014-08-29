@@ -46,3 +46,80 @@ Attributes of what an environment might be.
 
 ### Homework
 * Study and learn these environments.
+
+## Wed Aug 29
+
+Announcements:
+* Homework assignments are being pushed back a week
+* Need Ubuntu 14.04
+
+_Slides from this lecture are available [here](http://cit.dixie.edu/cs/4300/examples.examples/Lecture-y14m08d29-uninformed-search.pdf)_
+
+### Searching for Solutions
+_Atomic state_: The state of the world. Think of a ball holding the
+state. The state might be x, y, z coordintates. If its atomic you don't
+break it apart. It's a bit.
+
+_Uninformed_: No idea where the goal is
+_Informed_: Has an idea
+
+_Solution_: fixed sequences
+
+### Goal Forumlation
+* There could be a large number of goal states
+  * Example: rubick's cube blue side is up vs down
+
+### Problem Formulation
+* What actions are possible?
+* What does the state look like?
+* Reduce state to as simple as possible
+* Don't omit details that solution relies on
+
+### Search Algorithm
+1. Know where we start from (current state)
+2. If I haven't found a goal, keep looking
+3. Consider all actions given the state
+4. Repeat for newlly found state
+
+### Tree Search
+Tree Root: initial state
+b: branching factor
+d: depth of shallowest goal
+m: maximum depth of tree
+total nodes: b^m
+
+#### Search Options
+
+##### BFS
+* breadth first search
+* _one level at a time_
+* only has to search `b^d`
+* **memory intensive** because you have to remember stuff
+
+##### DFS
+* depth first search
+* finds first leaf then goes all the way down then works its way up
+* must search `b^m` in worst case, therefore
+* if `m` is infinity then this is a poor choice. example: rubicks cube.
+* if m is limited:
+  * must remember current branch and its siblings `b*m`
+  * worst case runtime is `b^m`
+
+##### Uniform Cost Search
+* much like BFS but only takes the path with the least cost
+
+##### DLS
+* depth limited search
+* much like dfs but sets a cutoff level
+* only finds goal if it is within limit
+* doesn't always find goal
+* only use if you know the goal is within a limit
+
+##### IDS
+* interitive deepening search
+* much like DLS except that it tries it with a limit and then increases
+  the limit if it is unsuccessful and tries again
+
+### Problem Definition
+This is important since it models the structure of the methods we will
+write for our programs. _See link to notes above_.
