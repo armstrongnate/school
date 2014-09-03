@@ -123,3 +123,46 @@ total nodes: b^m
 ### Problem Definition
 This is important since it models the structure of the methods we will
 write for our programs. _See link to notes above_.
+
+## Wed Sep 3
+
+### Announcements
+* We will not be doing the code demo today
+
+### Tree vs Graph
+* There can be duplicate states in a tree that are explored
+* Graphs illiminate duplicates by remembering every state and pruning
+  nodes if it is a duplicate
+
+#### Pros and Cons
+* Graphs have to remember all states or an identifier for all states
+  thus they could potentially use more memory
+* Trees have less memory requirements
+* You might have to explore the same states multiple times in a tree.
+  Think about a destination in a city. You can go down and turn or you
+could turn and go down. Both ways you end up at the same state.
+
+_Closed List_ is the list containing all the states when using a Graph.
+
+### Evaluation Criteria
+* _Completeness:_ Will it accomplish the goal?
+* _Optimality:_ Will it find the shallowest goal?
+* _Time complexity:_
+  * BFS: b^d
+  * DFS: b^m
+  * DLS: b^l
+  * IDS: b^d
+  * UCS: probably b^d* where d* is some depth dependent on the cost
+* _Space complexity:_
+  * BFS: b^(d+1)
+  * DFS: b * m
+  * DLS: b^l
+  * IDS: b * d
+  * UCS: b^(d * + 1)
+
+_Nice table summarizing the above is found in the notes._
+
+### Bi-Directional Search
+One step from initial step, then search backwards from goal state.
+With BFS your big O might be b^d where with bi-directional you'd be at
+b^(d/2) which is a big difference.
