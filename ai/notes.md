@@ -166,3 +166,147 @@ _Nice table summarizing the above is found in the notes._
 One step from initial step, then search backwards from goal state.
 With BFS your big O might be b^d where with bi-directional you'd be at
 b^(d/2) which is a big difference.
+
+## Fri Sep 5
+
+### Program Setup
+
+mkdir AI
+wget url-to-tgz-file
+tar -zxf ai-release-y-.tgz
+cd ai-release-y14m09d04
+
+Editing happens in ai-agents directory
+
+cd ai-agents/
+
+build: where the stuff for compiling exists
+prog: source code
+
+cd build/linux/
+
+**Need to do:**
+
+`make configure` in ai-agents/build/linux
+and then `make` again.
+
+Hundreds of lines of text should scroll by.
+
+`cd ../../../` back to top level.
+
+Now run distributed software as it stands:
+
+`cd ai/bin/00bin-o`
+
+This is software that we get for free. Most of this we are not
+worried about. The few we do care about:
+* ScavengerServer
+* ScavengerDisplay
+* ScavengerAgent
+
+How to run software for the first time ie launch the environment:
+
+`./RunProg ./ScavengerServer -f
+../../../ai-agents/prog/ScavengerWorld/y12m09p02_world.txt -O 1 -s 10000
+-t 0 -S 30`
+
+`-f` sets the file for the world
+`-O` the world is _observable_
+`-s 10000` give the agent up to 10,000 steps to finish. Illiminates
+infinite loops. Default limit is 1,000 but scavenger worlds take a lot
+of steps
+`-t` turns on and off tracing. we turn it off for observable worlds.
+`-S` view display at end of simulation?
+
+`--help` will list the options.
+
+In a new tab, launch the display.
+`./RunProg ./ScavengerDisplay -d 0`
+
+Another tab:
+`./RunProg ./ScavengerAgent --help`
+then,
+`./RunProg ./ScavengerAgent -a ?` lists the available agents and their
+keys.
+So,
+`./RunProg ./ScavengerAgent -a s` to run Snorlax.
+
+When it finishes the server gives you some stats.
+
+Agent lives in a grid world. Each cell is 1000x1000
+One cell has the base. Use the base to drop off items, etc.
+Terrain sits between cells:
+* Plain: flat, normal
+* Mud: requires more power
+* Rock: charge cost is same as plain but takes damage
+* Cliffs/wall: you will fall and you will die
+
+First assignment objective:
+Agent start at base and find a path to identified goal location, go
+there, then find a path back to base and walk back.
+
+The world file contains where the base and goal are.
+Avoid rocks and cliffs.
+
+
+#### Start writing code:
+cd into ScavengerList inside of prog directory.
+
+##### New agent
+`cp Snorlax.h cglPinkiePie.h`
+`cp Snorlax.cpp cglPinkiePie.cpp`
+
+Note the namespace. Do it. For all of your files. All of them.
+
+Edit header file first.
+Change up the #define stuff to match.
+Change the namespace.
+Change `Snorlax` to new name.
+
+Edit cpp file
+Change include
+Replace Snorlax with new name
+
+Agent constructors can optionally take arguments from the command line.
+
+The `Program` method receives the percepts and decides what to do with
+them. Keep things modular by writing more methods.
+
+An `ai::Scavenger::Action` has enough information for the agent to know
+about what it can do. We return this action and never delete this
+action. We instantiate it from the heap but we are not responsible for
+deleting it.
+
+You will notice that Snorlax randomly sets the direction on the action.
+
+We don't care about the look actions for the first assignment.
+
+Some percepts:
+* `X_LOC`
+* `Y_LOC`
+* `X_LOC`
+
+You can see how we acquire these percepts.
+`x = atof(percept->GetAtom("X_LOC").GetValue().c_str());`
+
+The base is the origin of our world (0000, 0000, 0000).
+
+x and y will be nice increments but z will not.
+
+#### How to observe the whole world:
+There is a for loop in the cpp file that loops through every percept.
+This for loop parses the cells. Create a cell class and load this data
+into it.
+
+### Objective:
+1. Create a model that represents the world.
+2. Search for goal and go and reverse.
+3. Solve the problem, cache up actions and run them.
+
+First week: duplicate Snorlax.
+
+#### TODO:
+Duplicate Snorlax.
+Add him to AgentPrograms.pm
+`make`
+You should be able to run program with new agent.
