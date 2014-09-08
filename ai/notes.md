@@ -310,3 +310,108 @@ Duplicate Snorlax.
 Add him to AgentPrograms.pm
 `make`
 You should be able to run program with new agent.
+
+## Fri Sep 5
+
+He's playing with legos.
+
+### Puzzle
+
+*Goal:* Assemble the 12 pieces so that you have a rectangle with assembled pieces with no innies and no outies or spaces.
+
+*Possible goal states:*
+* 6x10
+* 5x12
+* 4x15
+* 3x20
+
+There are multiple solutions for each state.
+
+#### Search Tree
+
+*root:* initial state. Assuming we are working on the 6x10 problem, an initial state might be an empty 6x10 rectangle.
+*branch:* some action. Placement of a piece.
+* there are 32 branches for placing the cross (4x8)
+* let's just say there are a crap ton of branches, ie: possible actions per piece.
+* b <= 12 * 250 = 3000
+* m = 12
+* d = 12
+* size of the tree = b ^ d which is 3000 ^ 12
+
+##### Optimize!
+
+If we assume we know the order ahead of time size of the tree becomes 250 ^ 12.
+Because of this, there would be no benefit to using a graph instead of a tree.
+
+#### Action
+We need to know some things before we can take an action:
+* piece
+* flip
+* rotation
+* x, y
+
+#### State
+How to do we determine our state?
+* pieces placed
+* empty squares
+
+#### Problem
+Must be able to describe:
+* initial state (all empty squares)
+* legal actions
+* results
+* cost
+* goal test (have all pieces been placed?)
+
+Actions and results are normally rolled into a single method.
+
+Determine which search you will use. *DFS would probabyl be the best search for this problem.*
+
+### Rectangle Sample Code
+
+There is code available to demonstrate this process. Look for the Rectangle directory.
+
+#### Action
+*We need to implement an Action class.* Refer to the RectAction class.
+
+#### State
+*Implement a State class*. Refer to RectState.
+Required methods:
+* Display
+* IsEqual
+* both constructors and destructor
+
+##### IsEqual
+_Looking at the cpp file._
+* paramater must be a pointer to the base class but in practive will be actual class, hence the dynamic cast
+
+#### Problem
+Refer to RectProblem
+Required methods:
+* constructor: requires pointer to base class as param that has been allocated from the heap.
+  * ie: new MyStateClass()
+* deconstructor
+* GoalTest
+* FindSucessors -> actions and results rolled into one
+  * record results in in-out vector passed in
+  * an ActionStatePair contains a pointer to the state and the action that got us to that state
+  * DO NOT destruct the action or the state from the ActionStatePair
+  * this method is the meat and potatoes of this class
+* StepCost
+  * returns numerical value for how much it costs to go from state1 to state2 using given action
+* Heuristic
+  * return 0 for now
+
+Problem class should delete the state that is passed in.
+
+##### CPP File
+FindSuccessors: note where he creates a new state and action, tests them then creates an ActionStatePair if it is legal.
+Goal Test: find_all is not what you think it is.
+
+#### RectangleSolver
+
+This class wraps it all together.
+
+_frontier:_ nodes that have not been explored yet.
+
+We will look at this class more next time.
