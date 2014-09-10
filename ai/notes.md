@@ -452,7 +452,7 @@ else
 This does a bit comparison in `c++`. So if you are comparing doubles or floats, do:
 <pre>fabs(x2 - x1) < .500</pre>
 
-#### .depend errors
+#### depend errors
 1. fix AgentPrograms.pm
 2. ai-agents/build/linux/prog/ScavengerWorld/
 3. `rm .depend* Makefile.agents`
