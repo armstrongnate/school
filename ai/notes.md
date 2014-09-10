@@ -450,7 +450,7 @@ else
 <pre>x1 == x2</pre>
 
 This does a bit comparison in `c++`. So if you are comparing doubles or floats, do:
-<pre>fabs(x2 - x1) < .500</pre>
+```fabs(x2 - x1) < .500```
 
 #### depend errors
 1. fix AgentPrograms.pm
