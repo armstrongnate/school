@@ -415,3 +415,59 @@ This class wraps it all together.
 _frontier:_ nodes that have not been explored yet.
 
 We will look at this class more next time.
+
+## Wed Sep 10
+
+### Announcements
+*Submit Search Part 1 ASAP.* What to submit:
+* AgentPrograms.pm
+* new .h and .cpp files
+
+`CELL_124: 7000,-5000,242.6400,cliff,plain,rocks,mud`
+percept name: x,y,z,north,south,east,west
+
+### Search Part 1
+
+For this part we don't have to worry about all the percepts. We only have to worry about our current state and whether it's safe to go north.
+
+1. Move the `#if 0` block to the top to get our current location.
+2. Next would be the for loop already written for us to get all the cells. Edit this loop to set a flag for north being a wall
+3. Use the data from the above for loop to determine if we can move north
+4. If we can move north, move north. Otherwise, quit
+
+#### Sudo code:
+```
+get my loc
+find current cell
+flag if north is safe
+if safe
+  go north
+else
+  quit
+```
+
+#### Note on compares
+<pre>x1 == x2</pre>
+
+This does a bit comparison in `c++`. So if you are comparing doubles or floats, do:
+<pre>fabs(x2 - x1) < .500</pre>
+
+#### .depend errors
+1. fix AgentPrograms.pm
+2. ai-agents/build/linux/prog/ScavengerWorld/
+3. `rm .depend* Makefile.agents`
+
+### Search Part 2
+For this assignment refer to the previous day's notes. We will be creating Problem, Action
+and State classes. Refer to the Rect examples.
+
+### Informed Search
+_Total path cost so far:_ `g(n)`
+_Heuristic (Guess of what the cost is to some state):_ `h(n)`
+_Greedy Search:_ runs right at the goal given a `h(n)` or `g(n)`
+  * Strengths:
+    * doesn't waste time expanding nodes on opposite side of the world
+    * relies on some kind of indicator of where the goal is
+  * Weaknesses:
+    * totally dependent up your _guess_, ie
+    * if your heuristic is bad, your Greedy Search is bad
