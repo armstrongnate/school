@@ -471,3 +471,58 @@ _Greedy Search:_ runs right at the goal given a `h(n)` or `g(n)`
   * Weaknesses:
     * totally dependent up your _guess_, ie
     * if your heuristic is bad, your Greedy Search is bad
+
+## Wed Sep 12
+
+### Announcements
+Michael made _PerceptsandActions.pdf_ which has some helpful info for the
+ScavengerWorld assignments. It is on the downloads page.
+
+### Search Part 2
+Objectives:
+* Create a model
+* State
+* Action
+* Problem
+* Find steps to goal
+
+#### Creating our model
+**Purpose:** contain information about our search tree.
+
+The search tree is made up of nodes that each represent a _state_.
+
+A state would consist of:
+* x, y, z
+* charge
+* ~~hit points~~
+
+Don't keep a separate copy of your map in your state.
+
+Inital state would be represented by something like: `0, 0, 0, 100` (x, y, z, charge).
+
+Legal actions from the given state are _GO NORTH_, _GO SOUTH_, etc.
+
+Each action has:
+* action code
+
+If, from the initial state, I go north, what will the state be? `0, 1000, ?, 99.5`.
+The model will tell us what our `charge`, `z`, etc will be if we perform an action.
+Basically it will give us a state given an action.
+
+Therefore, a model would consist of:
+* (x, y, z, N, S, E, W) * full map
+
+#### Problem class
+##### FindSuccessors
+What it does:
+1. enumerating all possible actions
+2. determine which are legal (_prunes_, if you will)
+3. generate resulting state
+
+How it does it:
+* must have model data available while finding successors (pass by pointer)
+* instantiates new `actions` and `states` off the heap
+* generates a list of `ActionStatePairs` which is an in-out variable
+
+#### Code demo
+See [curtis's model header](cgla2Model.h)
