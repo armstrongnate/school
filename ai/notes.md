@@ -463,7 +463,7 @@ and State classes. Refer to the Rect examples.
 
 ### Informed Search
 _Total path cost so far:_ `g(n)`
-_Heuristic (Guess of what the cost is to some state):_ `h(n)`
+_Heuristic (estimated cost from state in `n` to a goal):_ `h(n)`
 _Greedy Search:_ runs right at the goal given a `h(n)` or `g(n)`
   * Strengths:
     * doesn't waste time expanding nodes on opposite side of the world
@@ -526,3 +526,52 @@ How it does it:
 
 #### Code demo
 See [curtis's model header](cgla2Model.h)
+
+## Mon Sep 15
+
+### Announcements
+* Keep pushing forward on search stuff
+* Should be searching for goal
+* `ai_search.h` must be imported to get at search libraries
+* added InterfaceStringToInt method to model header
+* implement model cpp file
+
+### AddCell
+```
+std::pair<int, int> key(DoubleToInt(x1), DoubeToInt(y1));
+Cell c(id1, x1, y1, z1, n, s, e, w);
+cells[key] = c;
+return true;
+```
+
+### ParsePercepts
+Inside of `for` loop, use the `Model::InterfaceStringToInt` method to convert the
+strings to integers before passing them to `AddCell` (ie "wall").
+
+### Lecture
+
+**Informed vs Uninformed Search:** informed has a guess of where the goal is.
+
+**Uniform vs Greedy:** greedy uses `h(n)` and ignored `g(n)`.
+
+#### A * Search
+* Uses `f(n)` which is `g(n) + h(n)`
+* result is we get fatter than a greedy search
+* but, we could find a path that is of lower cost because we care about that `g(n)`
+
+#### Heuristics
+Why and when they _can be_ useful for `A * Search`
+* Admissible (does not over estimate the cost)
+* Consistent ( `h(n) <= c(n,a,n1) + (h(n1)` )
+  * estimate goal from current state (`h(n)`) and from state after action (`h(n1)`),
+  then the difference of those two heuristics should be less than the cost in order
+  to take the action
+* Larger values better (if admissable)
+  * becuase large values mean we are well informed, which allows us to avoid
+  uninformed searching which means we will expand less nodes
+  * delay the non-fruitful nodes as long as possible
+* Fast to calculate
+  * if it is not fast you defeat the purpose of speeding things up
+
+### Homework
+* Finish part 2

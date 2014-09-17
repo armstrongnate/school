@@ -25,6 +25,7 @@ namespace cgl {
         ~Model();
         bool AddCell(int id, double x, double y, double z, int n, int s, int e, int w);
         Cell FindCell(double x, double y);
+        static int InterfaceStringToInt(const char *s);
       protected:
       private:
         int DoubleToInt(const double d) const;
