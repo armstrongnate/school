@@ -575,3 +575,78 @@ Why and when they _can be_ useful for `A * Search`
 
 ### Homework
 * Finish part 2
+
+## Wed Sep 17
+
+### Announcements
+* We are going to look at the search library code _again_
+* Maze solver is an example that uses the search library code
+
+### Maze Solver
+  * `ai-agents/prog/Maze`
+  * `maze1.txt` has the map where `s` is _start_ and `g` is _goal_
+
+#### Action
+Purpose is to store the `int` that represents a single action type as defined
+by the `enum`.
+
+* Overloads `=` and `==` to make life easier. The `State` class must implement
+an `isEqual method.
+
+#### State
+* Tracks an `x` and `y` position
+* must implement an `IsEqual` method
+  * we must convert the passed in pointer to a real object. we do that by
+  doing a dynamic cast
+  * use the `==` operator to de-reference and compare the two objects
+
+#### Problem
+Purpose: expand `state` into possible other states.
+
+* define FindSucessors
+* is a state the goal state?
+* give the cost between two states
+* you only need to override Heuristic if you're using greedy or a * search
+* StepCost will just return 1 if we're not worried about cost
+* constructor should take an initial state
+* destructor should delete the initial state
+
+The maze problem class does use a model that stores the grid.
+
+##### StepCost
+* Demos the dynamic casting (useful!)
+
+##### FindSuccessors
+* `dx` and `dy` represent up, down, left, right
+  * that way we get the `x` and `y` if we traveled in any of those directions
+  * create a new state and action based on the state and the action to get to that state
+* returns true if there were any legal actions added to `results_out`
+
+The maze includes two versions of _bringing it all together_. See below:
+
+#### MazeDriver
+This code would be inside our Agent.
+
+In order to call the search method in the algorithm:
+1. create an algorithm (either a tree or a graph)
+  * you must pass it a `problem` and `frontier` pointer
+  * see where `the_algorithm` is initialized
+  * there are several different fringe options (BFFringe, etc)
+  * `the_frontier` must be allocated off the heap and DO NOT FREE IT
+  * `the_problem` must also be allocated off the heap and DO NOT FREE IT
+  * `the_problem` requires an initial state
+2. `Search` method returns a `boolean` representing the goal test
+3. call `GetSolution()`
+4. iterate over the solution asking for action and state along the way
+  * _i have a solution, what are the steps?_
+5. delete the_algorithm
+
+See MazeSolver for more flexible options.
+
+#### MazeSolver
+More complicated `main` because it supports command line options.
+
+* BuildSearchAux selects the fringe
+
+### Examples
+`cgla2Demo.tgz` demonstrates using the search.
