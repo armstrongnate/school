@@ -650,3 +650,58 @@ More complicated `main` because it supports command line options.
 
 ### Examples
 `cgla2Demo.tgz` demonstrates using the search.
+
+## Mon Sep 19
+
+### Announcements
+None
+
+### Calculating charge cost
+```
+h = (1000 * 0.001) + interfacePenalty
+v = dz * 0.001
+```
+* `h` is horizontal cost
+* `interfacePenalty` is 1 if terrain is mud, otherwise it is 0
+* `v` is vertical (or elevation) cost
+* you gain change by going down hill though it's never actually profitable
+
+### Search Part 3
+* not just find path but execute path to goal
+* then find and execute path from goal to base
+* agent must know that it completed the task
+
+#### CGLA3DEMO
+Look for this code on the downloads.
+
+##### State machine
+He has an `enum` for _modes_ to keep track of what the agent is doing.
+
+The Agent starts out in the `FIND_GOAL` state or mode. This is his _state machine_.
+
+* if in FIND_BASE mode and doesn't have any actions in its queue, then do a search
+for the base
+* then executes the actions and goes into the 'QUIT' mode
+* executes 'QUIT' action
+
+Agent can jump from state to state in any order. For example, if he is in 'FIND_GOAL'
+mode and can't find a goal it can jump straigh to 'QUIT' mode.
+
+See the `Problem` method in his cgla3Demo.cpp for examples of changing his mode.
+
+##### FindPathToGoal
+Sends the SearchProblem the mode so it knows to look for the goal vs the base.
+
+Loops over the solution list looking for a pointer to a search action. Pushes the
+de-referenced search action.
+
+##### FindPathToBase
+Major difference is that the search problem is trying to find the base.
+The meat is identical to `FindPathToGoal` because of how we store the goal in
+the `model`.
+
+### Heuristics
+Remember larger heuristics are better.
+
+### Homeworkd
+* Ponder the slider problem
