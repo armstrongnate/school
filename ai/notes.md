@@ -705,3 +705,180 @@ Remember larger heuristics are better.
 
 ### Homeworkd
 * Ponder the slider problem
+
+## Mon Sep 22
+
+### Heuristics (again)
+Heuristic must be:
+* Admissible _(never over estimates)_ `h(n) <= c(n, g)`
+  * `c(n, g)` = the `cost` of going from `n` to the `goal`
+* Consistent `h(n) <= c(n,n') + h(n')`
+* Dominate `h1(n) >= h2(n)`
+
+## Wed Sep 24
+
+* We are starting on the next assignment
+
+### Assignment 2
+
+* we will be using the `LOOK` command
+  * agent needs to remember which direction it looked when it looks
+* we add cells as we discover them
+  * at first we only know the `x` and `y` of the cell until we go there
+* do all of this assignment in a separate branch, preserving the first assignment
+
+1. Look north, south, east and west to discover interfaces for base and
+record them in the model
+  * if we look north and see plain, we know that the cell to the north has `plain`
+  to its south. fill everything else in later
+
+#### Online search purpose
+Physically moving when it knows it can move somewhere and learn more information.
+Once it gets there it decides should I go up, down, etc.
+
+**Goal:** get to somewhere it hasn't been before. Discover!
+  * if the cell i'm standing in has an unknown interface to the north, `LOOK` north.
+
+1. Do a search from current cell to nearest unexplored cell (use uniform cost)
+2. do a separate search from unexplored cell to home (use A * )
+3. make sure we have enough charge to go from current cell to unexplored cell
+then to home.
+4. go home either now or from unexplored cell depending on charge
+
+**Explore the map and find as many cells as possible.** Oh, and pick up interesting
+objects. And make it fast so you can get bonus points.
+
+## Fri Sep 26
+
+## MiniMax
+* See the tic tac toe code example
+* `ply_data` is a struct for housing our multiple return values
+
+## Mon Sep 29
+
+### Announcements
+* We are sticking with tic tac toe to learn MiniMax and to get excited about
+the algortithm
+
+### Searching with opponents
+First let's talk about the scenario where you can't search for an end game.
+
+#### Cutoff layer
+_When you can't search to the end of the game so you set a limit_
+* Use an `Evaluation(state, player)` function to pick from the cutoff layer
+
+##### Evaluation function
+Takes a state and a player
+* An `Oracle` could, given a state, tell you exactly how far away you are from
+the goal which would result in a perfect `heuristic`
+* The point of a cutoff layer is to not use an oracle
+* An evaluation function that tries to be an oracle defeats the purpose of a
+cutoff layer
+* So, the purpose of an Evaluation function is to estimate and not try to be perfect
+* the player that is passed is always the player whose turn it is regardless of
+min or max
+
+Ask: _how many turns am I away from a win and how many turns is my opponent away
+from a win?_ Take the difference and return it.
+
+### Homework
+* it costs .25 to charge. So to get back to the base you have to have at least
+.25 when you get there.
+* worlds 1 and 2 can't be solved for part 2
+
+## Wed Oct 01
+
+### Alpha-Beta pruning
+In `b^d` we cut down on `d` with a cutoff. To cut down on `b` we need to prune
+some branches, ie _limit the amount of legal actions_ or ignore moves that are
+obviously bad.
+
+Example: if we are looking for a max node and we've found a 1 and come across a
+-1 we can ignore it because 1 is greater than -1 so it is obviously not a winner.
+
+Remember: MiniMax is just a breadth-first search.
+
+For a max node:
+<pre>alpha = MAX(alpha_in, child_in)</pre>
+<pre>beta = beta_in</pre>
+
+At a min node:
+1. keep if greater than or equal to `alpha_in`
+  * this will not prune as many branches but it makes a better agent (the equal
+  to part)
+
+## Fri Oct 03
+
+### Mancala
+* demonstrates benefits of an evaluation function
+* contains example code for AlphaBeta
+
+## Mon Oct 06
+
+### Announcements
+* Written exam will be in the testing center right after fall break
+* Quizes: go to downloads page and review the quizzes as prep for the exam
+* come back with questions from quizzes
+* should be progressing with scavenger agents
+
+### Propositional Logic
+Definitions:
+
+_Making known statements and then inferring truths from known statements._
+
+_Derive knowledge that wasn't originally told._
+
+1. agent keeps a knowledge base of facts it knows are true
+  * _north of 0,0 is a plain_
+2. percepts are used to generate facts for our knowledge base
+3. decisions are made by asking questions of the facts
+  * _is it safe for me to move north?_
+4. background knowledge (or physics) are things that are true regardless of the
+problem.
+  * _fact: plain interfaces are ALWAYS safe._
+
+#### Evaluation:
+1. Physics knowledge (Background)
+2. Instance knowledge (Tell)
+3. Questions (Theorems, Ask)
+
+#### Grammar
+_see download notes for this slide_
+
+`=>` | implies | one fact implies another fact will be true
+`<=>` | bidirectional implication | if one is true the other will also be true
+`⋁` | or | this or that
+`⋀` | and | this and that
+`¬` | not | not this
+
+**See the truth table in the download notes**
+
+#### Entailment
+> if beta is true everywhere alpha is true then alpha entails beta
+
+Given everything we know about the world, is it safe for us to move north?
+
+## Wed Oct 08
+
+### Announcements
+* GET YOUR ASS IN GEAR
+* Curtis will be available to help Thur Oct 9 from 8-9am in Hazy 119
+* Chinese checkers assignment will be posted by Friday
+
+### Propositional Logic
+* Literals: single symbol or a negated symbol
+* Clause: disjunction of literals (only `or`s and `not`s)
+* Inference algorithm: process to check for entailment
+* Sound: never a false positive
+* Complete: never a false negative
+
+### Proof by contradiction
+alpha entails beta if `alpha AND NOT beta` is false everywhere.
+> Assume the opposite and prove that it can't happen.
+Basically solidifies the entailment.
+
+### DPLL
+Prunes the tree.
+* Early termination
+* Pure symbol heuristic
+* Unit clause heuristic
