@@ -882,3 +882,153 @@ Prunes the tree.
 * Early termination
 * Pure symbol heuristic
 * Unit clause heuristic
+
+# Midterm Review
+
+## Adversarial Search
+
+### Which move will be selected by Minimax? Assume left to right processing
+* You can shuffle the tree
+* sort the min row in desc order
+* sort the max row in asc order
+
+Just give the leaf nodes in the correct order:
+
+**[6, 2, 3], [9, 7, 4], [1000, 9, 1] which would be C**
+
+### Define the following agent terms
+Print out and use the book then study
+
+* Performance measure: measure overall activity of agent over its lifetime
+* Utility: measure happiness of a state
+* Deterministic: you can predict the result for any action
+* Stochastic: your agent might take an action without knowing the result
+* Static: unless an agent takes an action, nothing changes
+* Dynamic: the environment can change the world
+* Fully observable vs Partially ovservable: Does your agent know _everything_?
+* Known vs unknown: Does your agent know what will happen if?
+* Continuous: you end up with infinite branching factor
+
+### What assumptions did we make for minimax to work?
+* Episodic from a search standpoint because each turn we make one decision.
+
+I missed the rest. Consult the book.
+
+### What environments are searches in chapter 3 restricted to?
+* Fully observable for the searchable part
+* Single Agent
+* Deterministic
+* Sequential
+* Static
+* Discrete
+* Known
+
+### In vacuum example, how would you classify a world where the suck action pics up all the dirt 85% of the time?
+Stocastic
+
+What if the dust settles? Dynamic
+
+
+### Define again
+* State space: collection of all positions on the map. Might include charge if charge counts
+* Optimal solution: solution of the lowest cost
+* Explored set: closed list; nodes you've already seen and expanded and found their successors
+  * used primarily in graph search
+* Successor: one of the states branched from a previous state given an action
+* Expanding a node: finding all successors
+* completeness: if there is a solution it will find it
+* optimality: it will find the optimal solution
+* space complexity: the big O of memory consumption
+* time complexity: big O of time (how many must be examined before we run out of time)
+* repeated state: state we have been to before. detected by the _explored set_
+* branching factor: number of children
+
+### More Search Terms
+Separate slide from above
+
+### Game Search Tree
+Examine the minimax game search tree shown in the diagram.
+
+First row chooses the MAX
+
+a) B would be chosen
+
+b) max nodes update alpha, min nodes update beta.
+  * start with alpha = -inifinity, beta = infinity on every node
+
+## Propositional Logic
+
+### Terms
+* Knowledge base: all sentences that are currently known about that world
+* Entailment: the question is true because the knowledge base is true; something
+that can be inferred
+* Sound: no false positives
+* Complete: no false negatives
+* Valid: a valid sentence is always true
+* Satisfiable: one more values make it true
+* Unsatisfiable: fewer than one values make it true
+* Proof by contradiction: alpha and not beta is satisfiable `SAT(alpha && !beta)`
+* Truth table entailment: beta is true everywhere alpha is true
+* Conjunction: `and` of things
+* Disjunction: `or` of things
+
+### Truth tables
+`A <=> B`: where A is true, B must be true. Both A and B have to be the same.
+`A => B`: `false => B` is always `true`. But `true => false` is false.
+
+Entailment probably won't be on the test.
+
+Break the sentence up and solve.
+
+### Sample Search Strategy Exam Question
+
+### a)
+Search    Time    Space
+BFS       O(b^d)  O(b^d)
+          O(30^6) O(30^6)
+
+DFS       O(b^m)  O(b * m)
+          O(30^infinity)  O(30 * infinity)
+
+#### b)
+Use ID starting at 6 or DL(6) # depth limited with a limit of 6
+Go with depth limited using a tree search.
+
+### c)
+```
+`f=g+h` and `f` is what we sort by.
+`g` is cost
+Put `A` in the priority queue and pop it out and expand its children.
+B: 6
+C: 8
+```
+
+#### Which got expanded?
+A, B, D, E, I, J, K
+
+#### Is it admissable?
+Admissable means it does not overestimate. Work backwards from the goal and make
+sure the path cost is greater than the node's value. Leaf nodes get infinity and
+are never an overestimate.
+
+### Puzzle story
+Don't solve just translate into propositional logic ie physics, glossary, etc.
+
+## Singood
+
+### Dictionary
+```
+SinA: singood is A
+1stB: First mate is B
+... 9 symbols total
+```
+
+### Physics
+```
+SinA => !SinB && !SinC
+.
+.
+.
+SinA || SinB || SinC
+// singood must be one and only one of A, B, or C
+```
