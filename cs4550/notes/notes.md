@@ -1,3 +1,3 @@
 # Test Images
 
-![test image](images/test.png)
+![test image](images/test.JPG)
