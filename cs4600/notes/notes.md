@@ -16,7 +16,7 @@ Goal: complete a project worth **135 hours**.
 * There won't be many lectures, today will probably be the biggest lecture
 * Jill Ellis will come next week to talk about being professional
 * Watch email for TBA dates
-* Don't come to class for IT interviews
+* IT interview days are not required for CS students
 * He does plan on putting up a Canvas course
 
 ### Assignment 1 - Project Specification
@@ -31,3 +31,12 @@ Past senior projects are on YouTube. Search `cs4600 dixie`.
 
 * short concise presentations
 * don't just redo past assignments
+
+### Final Written Report
+
+* written report is in addition to YouTube video
+
+### Homework
+
+* come up with an idea
+* be back next Friday
