@@ -173,3 +173,117 @@ example | when to use
 `void Foo(Student const &x)` | when you don't want it changed and it's a big type
 `void Foo(int &x)` | you don't want to copy
 `void Foo(int x)` | you don't mind copying (keep cost in mind)
+
+## Wed Jan 21
+
+### Chapter 1
+
+Term | Definition
+---- | ---------
+alphabet | a set of characters
+string | arrangement of characters in an alphabet
+language | subset of all possible strings (because possible strings is infinite)
+formal vs natural language | whether legality is clear. natural languages are vague
+grammar | a tool that generates the legal strings of some language
+terminals | ending points
+nonterminals | variables
+start symbol | symbol we start with
+derivation | all the steps within a grammar (see grammar section below)
+machine | flip side of a grammar - given a string, test if it is legal
+undecidables | problems the Turing Machine can't solve
+
+#### Grammar
+
+A good grammar can generate exactly the right amount of legal strings.
+
+Examples:
+* `S -> P -> 5`
+* `S -> PN -> 7ND -> 7DD -> 704`
+
+machine | grammar category
+------- | -----------
+finite automata | restricted
+push-down automata | context free
+turing maching | unrestricted
+
+##### Grammar Categories
+
+###### Restricted
+Grammars can be written in a _restricted form_. **We don't have to do this for
+our homework.**
+
+* `X -> a | aY` or
+* `S -> ~`
+
+symbol | description
+------ | ----------
+X, Y | nonterminal
+a | terminal
+S | start nonterminal
+~ | nothing
+
+_Bart will use capital letters for nonterminals and lowercase for terminals._
+
+###### Context free
+* `X -> anything`
+
+###### Unrestricted
+
+* `anything -> anything`
+
+To solve `AnBnCn` we need multiple things on the left (ie `aXY -> bXyz`) google it.
+
+#### Machine
+
+A machine tests if strings are legal
+
+* finite automata
+* push-down automata
+* turing machine
+
+##### Even Numbers
+
+`S -> E | PE | PNE`
+
+* `S`: start symbol
+* `E`: single digit, must be even
+* `PE`: two digits, `P` can't be zero, `E` must be even
+* `PNE`: two or more digits. `N` means we allow zeros in the middle
+
+![finite automata](images/finite_automata.jpg)
+
+##### Finite Automata
+Used to test state. Finite automata machines are _finite_ in that they are limited
+to how many states they can support. `A^nB^n` is one such an example that a finite
+automata machine can not support.
+
+##### Push-down Automata
+Uses a stack to support more states than a finite automata could.
+
+* also limited in power (`A^nB^nC^n`)
+* need a Turing Machine to go further
+
+![push down automata](images/push_down_automata.jpg)
+
+##### Turing Machine
+
+1. starts with a Push-down automata
+2. replace infinite stack with an infinite tape
+3. write any character to the current cell on the tape
+4. decision process is based on reading and writing the tape
+
+**Proved that any computation a computer can do, so can the infinite tape.**
+
+Not only can it test `A^nB^nC^n` but it can compute _anything_.
+
+**Undecidables** are problems that the Turing Machine can't solve.
+
+![turing machine](images/turing_machine.jpg)
+
+#### Homework
+* we don't have to type solutions
+* 2 is just plugging in the tests to see if they pass. if they pass write a derivation for each letter
+* 3 grammars that are of the 2nd level of hardness
+* 4 _What is the level?_ if you can make a finite automata machine then it is level 1,
+otherwise it is context free or worse.
+* 4 should say _classify the language_
