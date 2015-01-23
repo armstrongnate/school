@@ -40,3 +40,61 @@ Past senior projects are on YouTube. Search `cs4600 dixie`.
 
 * come up with an idea
 * be back next Friday
+
+## Fri Jan 23
+
+Guest Speaker!
+
+* Summarize what you learned
+* We are meeting next week
+
+### Guest Speaker Notes
+
+What does she do? She encourages commercialization of technologies.
+
+Website: brcdixie.com
+
+Location: University Plaza Bldg C
+
+Typically you don't get bank loans for technology endeavors.
+
+#### Types of investors
+
+##### Family and Friends and Fools ($100,000)
+* invest based on trust
+
+##### Angel Investors ($500,000)
+* make their money when you have an _exit_
+* they like intellectual property
+* 1/3 of investments will win so they want a 5x return
+
+##### Venture capitalists (at least $1,000,000)
+* aka _Vulture Capitalists_
+* want to bring in their own management teams
+* not afraid to take out the old and bring in the new
+
+#### The Human Resource
+USTAR is about connecting people with other people that can help them.
+
+A successful tech idea needs 3 people:
+1. Hacker
+2. Hustler
+3. Operations
+
+IQ is not everything, you also need some _Emotional Intelligence (EQ)_.
+
+The most important things you will do in life are:
+* Present
+* Negotiate
+
+##### Presentations
+* never open with an apology
+* dress in comfortable clothing (but not casual clothing) out of respect for your
+audience
+* be approachable (smile, eye contact)
+* pause before you exit
+* think about what you're going to say before you say it
+* read _The Art of the Start_ for 10, 20, 30 rule
+  * 10 slides
+  * 20 minutes
+  * 30 point font
