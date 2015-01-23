@@ -48,7 +48,7 @@ Guest Speaker!
 * Summarize what you learned
 * We are meeting next week
 
-### Guest Speaker Notes
+### Guest Speaker Jill Ellis
 
 What does she do? She encourages commercialization of technologies.
 
