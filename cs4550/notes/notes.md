@@ -3,6 +3,7 @@
 * [Course Website](http://cit.dixie.edu/cs/4550/)
 * 2:00pm - 3:40pm MW in Hazy 119
 
+
 ## Mon Jan 12
 
 Notes for this day were lost due to my own stupidity. We reviewed c++ and how
@@ -174,6 +175,7 @@ example | when to use
 `void Foo(int &x)` | you don't want to copy
 `void Foo(int x)` | you don't mind copying (keep cost in mind)
 
+
 ## Wed Jan 21
 
 ### Chapter 1
@@ -287,3 +289,25 @@ Not only can it test `A^nB^nC^n` but it can compute _anything_.
 * 4 _What is the level?_ if you can make a finite automata machine then it is level 1,
 otherwise it is context free or worse.
 * 4 should say _classify the language_
+
+
+## Mon Jan 26
+
+### Announcements
+* New office hours, see course website
+
+### Homework Questions
+* allow or disallow empty string per problem but be consistent!
+* 1G is only lowercase letters
+* 3A:
+  * `S -> aSa | bSb | ... | zSz | a | b | c | ... | (nothing)
+* 1A:
+  * first draw path to success
+* G: don't bail when you're halfway there
+* **DUE WEDNESDAY**
+
+### Chapter 2 - The Scanner
+
+#### Problems
+
+* when you choke on a character put it back in the input stream
