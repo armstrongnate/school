@@ -311,3 +311,8 @@ otherwise it is context free or worse.
 #### Problems
 
 * when you choke on a character put it back in the input stream
+
+
+## Wed Jan 28
+
+Went over assignment 1 questions.
