@@ -42,7 +42,8 @@ email | string
 * Today Widget
 
 
-Example use:
+### Example Use
+
 1. Bob is a manager of a project and needs to schedule a meeting with his secretary,
 Sally, a designer, Daisy, and his client, Cliff.
 2. Bob launches the app and taps a button to create a new meeting.
