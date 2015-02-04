@@ -316,3 +316,29 @@ otherwise it is context free or worse.
 ## Wed Jan 28
 
 Went over assignment 1 questions.
+
+
+## Mon Feb 2
+
+Working on Assignment 2
+
+### A2 Question 3 - State Machine
+ * this will be a simulator for any finite automata
+
+ ```cpp
+ MachineState mLegalMoves[LAST_STATE][LAST_CHAR]
+ ```
+language | S | A | B
+-------------
+x | A | A | S
+y | S | A | B
+z | S | B | CANT_MOVE
+
+Start by setting them all to `CANT_MOVE` then go back and fill out the legal edges.
+
+This array ties token types and states:
+```cpp
+TokenType mCorrespondingTokenTypes[LAST_STATE]
+```
+Initialize it with `BAD_TOKEN` Token Types.
+Not all machine states have a corresponding token type.
