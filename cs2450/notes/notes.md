@@ -21,7 +21,7 @@ have you name and possibly describe 5 things from the following sections.
 4. No such thing as a man month
 5. In-house vs client work - client work is 3 times more expensive
 6. Tar pit - don't get in over your head, go after the sizable projects
-7. Second-system effect - second system will the worst one you ever design because
+7. Second-system effect - second system will be the worst one you ever design because
 you try to cram everything in
 8. Progress tracking is detrimental to a project's success
 9. Pilot system - a throwaway system for working out the kinks
