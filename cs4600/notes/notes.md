@@ -98,3 +98,10 @@ audience
   * 10 slides
   * 20 minutes
   * 30 point font
+
+
+## Fri Feb 6
+
+### Announcements
+
+Dan Purcell from Velocity will be guest speaking.
