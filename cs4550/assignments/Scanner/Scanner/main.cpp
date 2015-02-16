@@ -8,12 +8,15 @@
 
 #include <iostream>
 #include "Token.h"
+#include "Scanner.h"
 
 int main(int argc, const char * argv[]) {
-  // insert code here...
-  Token t(IDENTIFIER_TOKEN, "void");
-  t.CheckReserved();
-  std::cout << "TOKEN: " << t << std::endl;
-  std::cout << "Hello, World!\n";
+  Scanner scanner("/Users/nate/school/cs4550/assignments/Scanner/Scanner/main.txt");
+  Token token;
+  do {
+    token = scanner.GetNextToken();
+    cout << token << endl;
+  } while (token.GetTokenType() != EOF_TOKEN);
+
   return 0;
 }

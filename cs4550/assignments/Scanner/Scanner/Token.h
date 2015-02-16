@@ -41,7 +41,7 @@ const string gTokenTypeNames[] = {
   "EQUAL", "NOT_EQUAL", "OR", "AND", "NOT",
 
   // other characters
-  "LPARENT", "RPAREN", "LCURLY", "RCURLY", "SEMICOLON",
+  "LPAREN", "RPAREN", "LCURLY", "RCURLY", "SEMICOLON",
 
   // other token types
   "IDENTIFIER", "INTEGER", "BAD", "EOF"
