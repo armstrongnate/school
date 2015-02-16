@@ -91,3 +91,42 @@ Bill or Cliff.
 
 ### Wishlist (if I have time)
 * Mac app
+
+## The Plan
+
+As of Feb 9, 2015
+
+* 135 hours to go
+* 12 weeks left
+* 11.25 hours per week
+
+### Everything
+
+#### Meeting Screen
+* Agenda
+* Notes
+* Action Items
+  * add to reminders
+  * notifications when due/completed
+* Audio Record
+* Timer
+* Attachments
+* Attendees
+* Export
+  * pdf
+  * email
+  * google drive
+  * dropbox
+  * calendar
+* Settings
+  * date and time
+  * location
+  * recurring
+  * reminders
+  * category
+
+#### All assigned action items screen
+* table view with option to complete
+* add action items to reminders
+
+### Feb 8-14
