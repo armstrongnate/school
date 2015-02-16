@@ -25,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		43661DC71A8964E2006C71CC /* Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
 		43EC65001A81D37E00B82D70 /* Scanner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Scanner; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EC65031A81D37E00B82D70 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		43EC650A1A81D3C200B82D70 /* Token.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Token.cpp; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 				43EC650B1A81D3C200B82D70 /* Token.h */,
 				43EC650D1A81E22000B82D70 /* StateMachine.cpp */,
 				43EC650E1A81E22000B82D70 /* StateMachine.h */,
+				43661DC71A8964E2006C71CC /* Debug.h */,
 			);
 			path = Scanner;
 			sourceTree = "<group>";
