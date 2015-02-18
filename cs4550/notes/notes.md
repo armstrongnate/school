@@ -329,7 +329,7 @@ Working on Assignment 2
  MachineState mLegalMoves[LAST_STATE][LAST_CHAR]
  ```
 language | S | A | B
--------------
+------ | -- | --- | --
 x | A | A | S
 y | S | A | B
 z | S | B | CANT_MOVE
