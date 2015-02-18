@@ -342,3 +342,45 @@ TokenType mCorrespondingTokenTypes[LAST_STATE]
 ```
 Initialize it with `BAD_TOKEN` Token Types.
 Not all machine states have a corresponding token type.
+
+
+## Wed Feb 18
+
+### Agenda
+* Scanner questions
+* Symbol Table
+* Parse tree
+
+### Scanner Questions
+10: need to add NOT_EQUAL support
+
+### Symbol Table
+Job is to keep track of all the variables as a list. A variable will be a `struct`
+with two fields:
+* label: string
+* value: int
+
+Problems at the end of the chapter explain how to create the `Symbol` and `SymbolTable`
+classes.
+
+### Parse Tree
+* build tree by expanding nonterminals, terminals don't have children
+* terminals should be verified then forgotten
+* store lexeme inside of IdentifierNode and IntegerNode and point to the symbol table.
+* StatementGroup should have a vector of Statement pointers
+
+Class hierarchy- stick all the heads in `Node.h`.
+
+* Node
+  * StartNode
+  * ProgramNode
+  * StatementNode
+    * DeclarationStatement
+    * AssignmentStatement
+    * CoutStatement
+  * ExpressionNode
+    * IntegerNode
+    * BinaryOperatorNode
+      * Plus Node
+      * 9 others
+  * etc.
