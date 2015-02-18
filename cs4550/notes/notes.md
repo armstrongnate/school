@@ -328,6 +328,7 @@ Working on Assignment 2
  ```cpp
  MachineState mLegalMoves[LAST_STATE][LAST_CHAR]
  ```
+
 language | S | A | B
 ------ | -- | --- | --
 x | A | A | S
