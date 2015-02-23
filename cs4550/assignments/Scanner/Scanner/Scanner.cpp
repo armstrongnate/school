@@ -13,14 +13,15 @@ using namespace std;
 
 Scanner::Scanner(const char *filename) {
   mFin.open(filename);
-  mLineNumber = 0;
+  mLineNumber = 1;
 }
 
 Token Scanner::GetNextToken() {
   StateMachine stateMachine;
   TokenType correspondingTokenType;
-  MachineState currentState;
+  MachineState currentState = stateMachine.GetCurrentState();
   string lexeme;
+  bool comment = false;
 
   do {
     if (mFin.peek() == EOF) { exit(1); }
@@ -29,11 +30,25 @@ Token Scanner::GetNextToken() {
     if (c == '\n') {
       mLineNumber++;
     }
-    currentState = stateMachine.UpdateState(c, correspondingTokenType);
-    if (currentState == START_STATE || currentState == EOF_STATE) lexeme = "";
+    if (lexeme == "/" && mFin.peek() == '*') {
+      comment = true;
+    }
+    if (!comment) {
+      currentState = stateMachine.UpdateState(c, correspondingTokenType);
+    }
+    if (!comment && (currentState == START_STATE || currentState == EOF_STATE)) {
+      lexeme = "";
+    }
+    if (comment) {
+      if (lexeme.size() >= 2 && lexeme.substr(lexeme.size() - 2, 2) == "*/") {
+        comment = false;
+        lexeme = "";
+        currentState = START_STATE;
+      }
+    }
   } while (currentState != CANTMOVE_STATE);
 
-  if (correspondingTokenType == BAD_TOKEN) {
+  if (!comment && correspondingTokenType == BAD_TOKEN) {
     cerr << "Could not build token from lexeme: " << lexeme;
     exit(1);
   }
