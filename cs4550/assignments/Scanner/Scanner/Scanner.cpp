@@ -16,6 +16,10 @@ Scanner::Scanner(const char *filename) {
   mLineNumber = 1;
 }
 
+bool isBlockComment(string s) {
+  return s.size() >= 2 && s.substr(0, 2) == "/*";
+}
+
 Token Scanner::GetNextToken() {
   StateMachine stateMachine;
   TokenType correspondingTokenType;
@@ -30,7 +34,7 @@ Token Scanner::GetNextToken() {
     if (c == '\n') {
       mLineNumber++;
     }
-    if (lexeme == "/" && mFin.peek() == '*') {
+    if (lexeme == "/" && (mFin.peek() == '*' || mFin.peek() == '/')) {
       comment = true;
     }
     if (!comment) {
@@ -40,7 +44,8 @@ Token Scanner::GetNextToken() {
       lexeme = "";
     }
     if (comment) {
-      if (lexeme.size() >= 2 && lexeme.substr(lexeme.size() - 2, 2) == "*/") {
+      bool blockComment = isBlockComment(lexeme);
+      if ((blockComment && lexeme.substr(lexeme.size() - 2, 2) == "*/") || (!blockComment && lexeme.back() == '\n')) {
         comment = false;
         lexeme = "";
         currentState = START_STATE;
