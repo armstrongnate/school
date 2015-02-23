@@ -13,6 +13,7 @@ using namespace std;
 
 Scanner::Scanner(const char *filename) {
   mFin.open(filename);
+  mLineNumber = 0;
 }
 
 Token Scanner::GetNextToken() {
@@ -25,6 +26,9 @@ Token Scanner::GetNextToken() {
     if (mFin.peek() == EOF) { exit(1); }
     char c = mFin.get();
     lexeme += c;
+    if (c == '\n') {
+      mLineNumber++;
+    }
     currentState = stateMachine.UpdateState(c, correspondingTokenType);
     if (currentState == START_STATE || currentState == EOF_STATE) lexeme = "";
   } while (currentState != CANTMOVE_STATE);
@@ -34,9 +38,17 @@ Token Scanner::GetNextToken() {
     exit(1);
   }
 
+  if (lexeme.back() == '\n') {
+    mLineNumber--;
+  }
+
   mFin.unget();
   lexeme.pop_back();
   Token token(correspondingTokenType, lexeme);
 
   return token;
+}
+
+int Scanner::GetLineNumber() {
+  return mLineNumber;
 }
