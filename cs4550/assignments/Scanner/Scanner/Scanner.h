@@ -19,8 +19,10 @@ class Scanner {
 public:
   Scanner(const char *filename);
   Token GetNextToken();
+  int GetLineNumber();
 private:
   ifstream mFin;
+  int mLineNumber;
 };
 
 #endif /* defined(__Scanner__Scanner__) */

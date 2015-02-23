@@ -15,7 +15,7 @@ int main(int argc, const char * argv[]) {
   Token token;
   do {
     token = scanner.GetNextToken();
-    cout << token << endl;
+    cout << token << " " << scanner.GetLineNumber() << endl;
   } while (token.GetTokenType() != EOF_TOKEN);
 
   return 0;

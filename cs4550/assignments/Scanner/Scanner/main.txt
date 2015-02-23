@@ -1,6 +1,14 @@
+// single line comment
+/*
+  this is a comment
+  it spans many lines
+*/
 void main()
 {
   int sum;
-  sum = 35 + 400;
+  /*
+    also here
+  */
+  sum = 35 + 400; // and one here
   cout << sum;
 }

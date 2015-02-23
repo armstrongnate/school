@@ -28,10 +28,12 @@ StateMachine::StateMachine() {
   // whitespace
   mLegalMoves[START_STATE][WHITESPACE_CHAR] = START_STATE;
 
-  // ; + -
+  // ; + - / *
   mLegalMoves[START_STATE][SEMICOLON_CHAR] = SEMICOLON_STATE;
   mLegalMoves[START_STATE][PLUS_CHAR] = PLUS_STATE;
   mLegalMoves[START_STATE][MINUS_CHAR] = MINUS_STATE;
+  mLegalMoves[START_STATE][DIVIDE_CHAR] = DIVIDE_STATE;
+  mLegalMoves[START_STATE][TIMES_CHAR] = TIMES_STATE;
 
   // ()
   mLegalMoves[START_STATE][LPAREN_CHAR] = LPAREN_STATE;
@@ -73,6 +75,8 @@ StateMachine::StateMachine() {
   mCorrespondingTokenTypes[GREATER_EQUAL_STATE] = GREATER_EQUAL_TOKEN;
   mCorrespondingTokenTypes[PLUS_STATE] = PLUS_TOKEN;
   mCorrespondingTokenTypes[MINUS_STATE] = MINUS_TOKEN;
+  mCorrespondingTokenTypes[TIMES_STATE] = TIMES_TOKEN;
+  mCorrespondingTokenTypes[DIVIDE_STATE] = DIVIDE_TOKEN;
   mCorrespondingTokenTypes[EQUAL_STATE] = EQUAL_TOKEN;
   mCorrespondingTokenTypes[INSERTION_STATE] = INSERTION_TOKEN;
 }
@@ -120,6 +124,12 @@ MachineState StateMachine::UpdateState(char currentCharacter,
   else if (currentCharacter == '-') {
     charType = MINUS_CHAR;
   }
+  else if (currentCharacter == '/') {
+    charType = DIVIDE_CHAR;
+  }
+  else if (currentCharacter == '*') {
+    charType = TIMES_CHAR;
+  }
 
   if (charType == BAD_CHAR) {
     cerr << "Unknown character '" << currentCharacter << "'";
@@ -128,5 +138,9 @@ MachineState StateMachine::UpdateState(char currentCharacter,
 
   correspondingTokenType = mCorrespondingTokenTypes[mCurrentState];
   mCurrentState = mLegalMoves[mCurrentState][charType];
+  return mCurrentState;
+}
+
+MachineState StateMachine::GetCurrentState() {
   return mCurrentState;
 }
