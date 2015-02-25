@@ -407,6 +407,7 @@ We want grammar rules that enforce:
 * no _left recursion_
 
 #### How a parse tree is evaluated
+![expression parse tree](images/chpt-5-lecture-notes.jpg)
 The tree is evaluated from bottom to top.
 
 ##### operator priority
