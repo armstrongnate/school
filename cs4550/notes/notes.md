@@ -411,6 +411,7 @@ The tree is evaluated from bottom to top.
 
 ##### operator priority
 Split the operators into levels (lowest to highest):
+
 1. FACTOR = `> >= < <= == !=`
 2. PLUS_MINUS = `+ -`
 3. TIMES_DIVIDE = `* /`
