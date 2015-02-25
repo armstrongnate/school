@@ -385,3 +385,109 @@ Class hierarchy- stick all the heads in `Node.h`.
       * Plus Node
       * 9 others
   * etc.
+
+
+## Wed Jan 25
+
+### Agenda
+* Chapter 5 - Expressions
+* A little bit of Chapter 6
+
+Chapter 6 uses the grammar rules from chapter 5 but makes them not _left recursive_.
+He is considering just doing it all in chapter 5.
+
+### Expressions
+We discussed the Plus Node in chapter 4, now we need to add the rest of the
+`ExpressionNode`s.
+
+We want grammar rules that enforce:
+* operator priority
+* left to right on equal priority
+* parens - to force order
+* no _left recursion_
+
+#### How a parse tree is evaluated
+The tree is evaluated from bottom to top.
+
+##### operator priority
+Split the operators into levels (lowest to highest):
+1. FACTOR = `> >= < <= == !=`
+2. PLUS_MINUS = `+ -`
+3. TIMES_DIVIDE = `* /`
+
+##### left to right on equal priority
+This is what we had last time...
+```
+2 + 3 - 4 + 1
+<Expression> -> <Expression> PLUS <Expression> | <Expression MINUS <Expression>
+```
+
+But it doesn't actually work because we **must** expand the left `<Expression>`
+first so that we build the tree down the left side and not the right.
+
+#### "From the top!"
+```
+ITEM = integer, identifier, etc
+PLUS_MINUS = + - level
+TIMES_DIVIDE = * / level
+
+<Expression> -> <Relational>
+<Relational> -> <PLUS_MINUS><RelOperator><PLUS_MINUS> | <PLUS_MINUS>
+<RelOperator> -> EQUAL | NOTEQUAL | LESS | LESSEQUAL | GREATER | GREATEREQUAL
+<PLUS_MINUS> -> <PLUS_MINUS>PLUS<TIMES_DIVIDE> | <TIMES_DIVIDE>
+<PLUS_MINUS> -> <PLUS_MINUS>MINUS<TIMES_DIVIDE> | <TIMES_DIVIDE>
+<TIMES_DIVIDE> -> <TIMES_DIVIDE>TIMES<ITEM> | <ITEM>
+<TIMES_DIVIDE> -> <TIMES_DIVIDE>DIVIDE<ITEM> | <ITEM>
+<ITEM> -> <Identifier> | <Integer> | (<Expression>)
+<Identifier> -> IDENTIFIER
+<Integer> -> INTEGER
+
+✓ operator priority
+✓ left to right on equal priority
+✓ parens
+```
+
+* Each grammar rule will be a method on `Parser`.
+* At each level I can go to the level below it, directly or I can do left tree
+expansion.
+* the parens around the `<Expression>` at the end there is all we need to support
+parens.
+* this gets us 3 out of the 4 requirements for expressions.
+
+##### Discussion
+
+Expressions only have 1 relational operator so we want to support multiple times
+and divides but only zero or one relational operators so we changed it:
+
+**Before:**
+```
+<Relational> -> <Relational><RelOperator><PLUS_MINUS> | <PLUS_MINUS>
+```
+
+**After:**
+```
+<Relational> -> <PLUS_MINUS><RelOperator><PLUS_MINUS> | <PLUS_MINUS>
+```
+
+#### Fixing left recursion
+
+Sample expressions:
+```
+3 * 4 / 7
+6
+```
+
+This is a problem:
+```
+<TIMES_DIVIDE> -> <TIMES_DIVIDE>TIMES<ITEM> | <ITEM>
+<TIMES_DIVIDE> -> <TIMES_DIVIDE>DIVIDE<ITEM> | <ITEM>
+```
+because we will get an infinite loop so it becomes more like:
+```
+<Term> -> <Factor><FactorTail>
+<FactorTail> -> {empty}
+<FactorTail> -> TIMES<Factor><FactorTail>
+<FactorTail> -> DIVIDE<Factor><FactorTail>
+```
+This is achieved by peeking to see if we have more times and divides to take. If
+there aren't any then you can return to the level above.
