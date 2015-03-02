@@ -415,7 +415,7 @@ Split the operators into levels (lowest to highest):
 
 1. FACTOR = `> >= < <= == !=`
 2. PLUS_MINUS = `+ -`
-3. TIMES_DIVIDE = `* /`
+3. TIMES_DIVIDE = `\* /`
 
 ##### left to right on equal priority
 This is what we had last time...
@@ -493,3 +493,8 @@ because we will get an infinite loop so it becomes more like:
 ```
 This is achieved by peeking to see if we have more times and divides to take. If
 there aren't any then you can return to the level above.
+
+
+## Mon Mar 2
+
+* Work day
