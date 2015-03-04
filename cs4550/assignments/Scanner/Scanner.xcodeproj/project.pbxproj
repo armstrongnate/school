@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		433881DC1A9BCEBF00AF335B /* SymbolTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 433881DA1A9BCEBF00AF335B /* SymbolTable.cpp */; };
 		43661DC61A895DD1006C71CC /* Scanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43661DC41A895DD1006C71CC /* Scanner.cpp */; };
+		43EA49461AA50A5800645B83 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43EA49441AA50A5800645B83 /* Node.cpp */; };
 		43EC65041A81D37E00B82D70 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43EC65031A81D37E00B82D70 /* main.cpp */; };
 		43EC650C1A81D3C200B82D70 /* Token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43EC650A1A81D3C200B82D70 /* Token.cpp */; };
 		43EC650F1A81E22000B82D70 /* StateMachine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43EC650D1A81E22000B82D70 /* StateMachine.cpp */; };
@@ -33,6 +34,8 @@
 		43661DC41A895DD1006C71CC /* Scanner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scanner.cpp; sourceTree = "<group>"; };
 		43661DC51A895DD1006C71CC /* Scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scanner.h; sourceTree = "<group>"; };
 		43661DC71A8964E2006C71CC /* Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
+		43EA49441AA50A5800645B83 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
+		43EA49451AA50A5800645B83 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 		43EC65001A81D37E00B82D70 /* Scanner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Scanner; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EC65031A81D37E00B82D70 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		43EC650A1A81D3C200B82D70 /* Token.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Token.cpp; sourceTree = "<group>"; };
@@ -82,6 +85,8 @@
 				4304FB7B1A91992A009F44E2 /* main.txt */,
 				433881DA1A9BCEBF00AF335B /* SymbolTable.cpp */,
 				433881DB1A9BCEBF00AF335B /* SymbolTable.h */,
+				43EA49441AA50A5800645B83 /* Node.cpp */,
+				43EA49451AA50A5800645B83 /* Node.h */,
 			);
 			path = Scanner;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 				43EC65041A81D37E00B82D70 /* main.cpp in Sources */,
 				43EC650C1A81D3C200B82D70 /* Token.cpp in Sources */,
 				43661DC61A895DD1006C71CC /* Scanner.cpp in Sources */,
+				43EA49461AA50A5800645B83 /* Node.cpp in Sources */,
 				43EC650F1A81E22000B82D70 /* StateMachine.cpp in Sources */,
 				433881DC1A9BCEBF00AF335B /* SymbolTable.cpp in Sources */,
 			);
