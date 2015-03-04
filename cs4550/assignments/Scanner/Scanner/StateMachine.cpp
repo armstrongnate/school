@@ -16,6 +16,21 @@ StateMachine::StateMachine() {
     }
   }
 
+  for (int c=0; c<LAST_CHAR; c++) {
+    mLegalMoves[LINE_COMMENT_STATE][c] = LINE_COMMENT_STATE;
+    mLegalMoves[BLOCK_COMMENT1_STATE][c] = BLOCK_COMMENT1_STATE;
+    mLegalMoves[BLOCK_COMMENT2_STATE][c] = BLOCK_COMMENT1_STATE;
+  }
+
+  mLegalMoves[LINE_COMMENT_STATE][NEW_LINE_CHAR] = START_STATE;
+  mLegalMoves[BLOCK_COMMENT1_STATE][TIMES_CHAR] = BLOCK_COMMENT2_STATE;
+  mLegalMoves[BLOCK_COMMENT2_STATE][TIMES_CHAR] = BLOCK_COMMENT2_STATE;
+  mLegalMoves[BLOCK_COMMENT2_STATE][DIVIDE_CHAR] = START_STATE;
+
+  // eof
+  mLegalMoves[LINE_COMMENT_STATE][EOF_CHAR] = EOF_STATE;
+  mLegalMoves[START_STATE][EOF_CHAR] = EOF_STATE;
+
   // integer
   mLegalMoves[START_STATE][DIGIT_CHAR] = INTEGER_STATE;
   mLegalMoves[INTEGER_STATE][DIGIT_CHAR] = INTEGER_STATE;
@@ -27,12 +42,15 @@ StateMachine::StateMachine() {
 
   // whitespace
   mLegalMoves[START_STATE][WHITESPACE_CHAR] = START_STATE;
+  mLegalMoves[START_STATE][NEW_LINE_CHAR] = START_STATE;
 
   // ; + - / *
   mLegalMoves[START_STATE][SEMICOLON_CHAR] = SEMICOLON_STATE;
   mLegalMoves[START_STATE][PLUS_CHAR] = PLUS_STATE;
   mLegalMoves[START_STATE][MINUS_CHAR] = MINUS_STATE;
   mLegalMoves[START_STATE][DIVIDE_CHAR] = DIVIDE_STATE;
+  mLegalMoves[DIVIDE_STATE][DIVIDE_CHAR] = LINE_COMMENT_STATE;
+  mLegalMoves[DIVIDE_STATE][TIMES_CHAR] = BLOCK_COMMENT1_STATE;
   mLegalMoves[START_STATE][TIMES_CHAR] = TIMES_STATE;
 
   // ()
@@ -79,6 +97,7 @@ StateMachine::StateMachine() {
   mCorrespondingTokenTypes[DIVIDE_STATE] = DIVIDE_TOKEN;
   mCorrespondingTokenTypes[EQUAL_STATE] = EQUAL_TOKEN;
   mCorrespondingTokenTypes[INSERTION_STATE] = INSERTION_TOKEN;
+  mCorrespondingTokenTypes[EOF_STATE] = EOF_TOKEN;
 }
 
 MachineState StateMachine::UpdateState(char currentCharacter,
@@ -90,6 +109,12 @@ MachineState StateMachine::UpdateState(char currentCharacter,
   }
   else if (isalpha(currentCharacter)) {
     charType = LETTER_CHAR;
+  }
+  else if (currentCharacter == EOF) {
+    charType = EOF_CHAR;
+  }
+  else if (currentCharacter == '\n') {
+    charType = NEW_LINE_CHAR;
   }
   else if (isspace(currentCharacter)) {
     charType = WHITESPACE_CHAR;
