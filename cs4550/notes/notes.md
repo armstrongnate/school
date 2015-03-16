@@ -498,3 +498,8 @@ there aren't any then you can return to the level above.
 ## Mon Mar 2
 
 * Work day
+
+
+## Mon Mar 16
+
+* Get Parser (chapter 6) done by Wed
