@@ -9,7 +9,7 @@
 #ifndef Scanner_Debug_h
 #define Scanner_Debug_h
 
-#define ShowMessages 0 // 0 or 1
+#define ShowMessages 1 // 0 or 1
 
 #include <iostream>
 

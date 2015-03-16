@@ -48,6 +48,23 @@ Token Scanner::GetNextToken() {
   return token;
 }
 
+/* Program 6
+
+Token Scanner::PeekNextToken() {
+ long pos = mFin.Tellg();
+ long lineNum = mLineNumber;
+ Token tc = GetNextToken();
+ if (mFin.eof()) {
+  mFin.clear();
+ }
+ mFin.seekg(pos);
+ mLineNumber = linNum;
+ 
+ return tc;
+}
+
+*/
+
 int Scanner::GetLineNumber() {
   return mLineNumber;
 }

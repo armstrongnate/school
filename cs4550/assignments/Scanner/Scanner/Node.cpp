@@ -7,3 +7,7 @@
 //
 
 #include "Node.h"
+
+Node::~Node() {
+  MSG("Node destructor");
+}

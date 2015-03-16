@@ -15,6 +15,7 @@
 #include <string>
 
 #include "SymbolTable.h"
+#include "Debug.h"
 
 using namespace std;
 
@@ -34,6 +35,7 @@ class BinaryOperatorNode;
 class PlusNode;
 
 class Node {
+public:
   virtual ~Node();
 };
 
@@ -58,7 +60,7 @@ public:
   BlockNode(StatementGroupNode *statementGroupNode);
   ~BlockNode();
 private:
-  StatementGroupNode *statementGroupNode;
+  StatementGroupNode *mStatementGroupNode;
 };
 
 class StatementGroupNode: public Node {
@@ -105,14 +107,13 @@ private:
 class ExpressionNode {
 public:
   virtual ~ExpressionNode();
-  virtual int Evaluate();
+  virtual int Evaluate() = 0;
 private:
 };
 
 class IntegerNode: public ExpressionNode {
 public:
   IntegerNode(int value);
-  ~IntegerNode();
   int Evaluate();
 private:
   int mValue;
@@ -120,7 +121,7 @@ private:
 
 class IdentifierNode: public ExpressionNode {
 public:
-  IdentifierNode();
+  IdentifierNode(string label, SymbolTable *symbolTable);
   ~IdentifierNode();
   int Evaluate();
   void DeclareVariable();
@@ -133,7 +134,7 @@ private:
 
 class BinaryOperatorNode: public ExpressionNode {
 public:
-  BinaryOperatorNode();
+  BinaryOperatorNode(ExpressionNode *right, ExpressionNode *left);
   ~BinaryOperatorNode();
   int Evaluate();
 private:
@@ -145,7 +146,6 @@ protected:
 class PlusNode: public BinaryOperatorNode {
 public:
   PlusNode(ExpressionNode *left, ExpressionNode *right);
-  ~PlusNode();
   int Evaluate();
 private:
 };
