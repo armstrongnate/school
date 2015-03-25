@@ -525,6 +525,11 @@ be able to call `delete` on and every node will get deleted).
 Make sure all nodes can print a message on construction and destruction.
 
 
+## Mon Mar 16
+
+* Get Parser (chapter 6) done by Wed
+
+
 ## Wed Mar 18
 
 ### Announcements
