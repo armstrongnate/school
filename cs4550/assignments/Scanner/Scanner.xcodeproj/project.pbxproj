@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		433881DC1A9BCEBF00AF335B /* SymbolTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 433881DA1A9BCEBF00AF335B /* SymbolTable.cpp */; };
 		43661DC61A895DD1006C71CC /* Scanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43661DC41A895DD1006C71CC /* Scanner.cpp */; };
+		43CD64B61AC235FF00BBD68F /* MinusNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43CD64B51AC235FF00BBD68F /* MinusNode.cpp */; };
+		43CD64B81AC2361100BBD68F /* TimesNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43CD64B71AC2361100BBD68F /* TimesNode.cpp */; };
+		43CD64BA1AC2362400BBD68F /* DivideNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43CD64B91AC2362400BBD68F /* DivideNode.cpp */; };
 		43EA49461AA50A5800645B83 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43EA49441AA50A5800645B83 /* Node.cpp */; };
 		43EC65041A81D37E00B82D70 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43EC65031A81D37E00B82D70 /* main.cpp */; };
 		43EC650C1A81D3C200B82D70 /* Token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43EC650A1A81D3C200B82D70 /* Token.cpp */; };
@@ -47,6 +50,9 @@
 		43661DC41A895DD1006C71CC /* Scanner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scanner.cpp; sourceTree = "<group>"; };
 		43661DC51A895DD1006C71CC /* Scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scanner.h; sourceTree = "<group>"; };
 		43661DC71A8964E2006C71CC /* Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
+		43CD64B51AC235FF00BBD68F /* MinusNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MinusNode.cpp; path = Nodes/MinusNode.cpp; sourceTree = "<group>"; };
+		43CD64B71AC2361100BBD68F /* TimesNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimesNode.cpp; path = Nodes/TimesNode.cpp; sourceTree = "<group>"; };
+		43CD64B91AC2362400BBD68F /* DivideNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DivideNode.cpp; path = Nodes/DivideNode.cpp; sourceTree = "<group>"; };
 		43EA49441AA50A5800645B83 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
 		43EA49451AA50A5800645B83 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 		43EC65001A81D37E00B82D70 /* Scanner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Scanner; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +140,9 @@
 				43F7D4931AB779A50036BD1E /* IdentifierNode.cpp */,
 				43F7D4951AB77B4C0036BD1E /* BinaryOperatorNode.cpp */,
 				43F7D4971AB77C0F0036BD1E /* PlusNode.cpp */,
+				43CD64B51AC235FF00BBD68F /* MinusNode.cpp */,
+				43CD64B71AC2361100BBD68F /* TimesNode.cpp */,
+				43CD64B91AC2362400BBD68F /* DivideNode.cpp */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -198,10 +207,12 @@
 				43EC650C1A81D3C200B82D70 /* Token.cpp in Sources */,
 				43F7D48C1AB777510036BD1E /* AssignmentStatementNode.cpp in Sources */,
 				43F7D4801AB773940036BD1E /* StartNode.cpp in Sources */,
+				43CD64BA1AC2362400BBD68F /* DivideNode.cpp in Sources */,
 				43F7D4921AB779280036BD1E /* IntegerNode.cpp in Sources */,
 				43661DC61A895DD1006C71CC /* Scanner.cpp in Sources */,
 				43EA49461AA50A5800645B83 /* Node.cpp in Sources */,
 				43EC650F1A81E22000B82D70 /* StateMachine.cpp in Sources */,
+				43CD64B61AC235FF00BBD68F /* MinusNode.cpp in Sources */,
 				43F7D48A1AB776A20036BD1E /* DeclarationStatementNode.cpp in Sources */,
 				43F7D48E1AB777F40036BD1E /* CoutStatementNode.cpp in Sources */,
 				433881DC1A9BCEBF00AF335B /* SymbolTable.cpp in Sources */,
@@ -211,6 +222,7 @@
 				43F7D4841AB774A40036BD1E /* ProgramNode.cpp in Sources */,
 				43F7D4821AB7747A0036BD1E /* BlockNode.cpp in Sources */,
 				43F7D4861AB775760036BD1E /* StatementGroupNode.cpp in Sources */,
+				43CD64B81AC2361100BBD68F /* TimesNode.cpp in Sources */,
 				43F7D4961AB77B4C0036BD1E /* BinaryOperatorNode.cpp in Sources */,
 				43F7D4901AB778EB0036BD1E /* ExpressionNode.cpp in Sources */,
 			);

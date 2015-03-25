@@ -19,6 +19,68 @@ BinaryOperatorNode::~BinaryOperatorNode() {
   delete mLeft;
 }
 
-int BinaryOperatorNode::Evaluate() {
-  return 0;
+// MARK: - LessNode
+
+LessNode::LessNode(ExpressionNode *r, ExpressionNode *l)
+  : BinaryOperatorNode(r, l) {
+    MSG("LessNode initializer");
+}
+
+int LessNode::Evaluate() {
+  return mLeft < mRight;
+}
+
+// MARK: - LessEqualNode
+
+LessEqualNode::LessEqualNode(ExpressionNode *r, ExpressionNode *l)
+  : BinaryOperatorNode(r, l) {
+    MSG("LessEqualNode initializer");
+}
+
+int LessEqualNode::Evaluate() {
+  return mLeft <= mRight;
+}
+
+// MARK: - GreaterNode
+
+GreaterNode::GreaterNode(ExpressionNode *r, ExpressionNode *l)
+  : BinaryOperatorNode(r, l) {
+    MSG("GreaterNode initializer");
+}
+
+int GreaterNode::Evaluate() {
+  return mLeft > mRight;
+}
+
+// MARK: - GreaterEqualNode
+
+GreaterEqualNode::GreaterEqualNode(ExpressionNode *r, ExpressionNode *l)
+  : BinaryOperatorNode(r, l) {
+    MSG("GreaterEqualNode initializer");
+}
+
+int GreaterEqualNode::Evaluate() {
+  return mLeft >= mRight;
+}
+
+// MARK: - EqualNode
+
+EqualNode::EqualNode(ExpressionNode *r, ExpressionNode *l)
+  : BinaryOperatorNode(r, l) {
+    MSG("EqualNode initializer");
+}
+
+int EqualNode::Evaluate() {
+  return mLeft == mRight;
+}
+
+// MARK: - NotEqualNode
+
+NotEqualNode::NotEqualNode(ExpressionNode *r, ExpressionNode *l)
+  : BinaryOperatorNode(r, l) {
+    MSG("NotEqualNode initializer");
+}
+
+int NotEqualNode::Evaluate() {
+  return mLeft != mRight;
 }

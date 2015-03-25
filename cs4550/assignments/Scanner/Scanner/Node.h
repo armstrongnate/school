@@ -33,6 +33,15 @@ class ExpressionNode;
 class IntegerNode;
 class BinaryOperatorNode;
 class PlusNode;
+class MinusNode;
+class TimesNode;
+class DivideNode;
+class LessNode;
+class LessEqualNode;
+class GreaterNode;
+class GreaterEqualNode;
+class EqualNode;
+class NodeEqualNode;
 
 class Node {
 public:
@@ -136,7 +145,6 @@ class BinaryOperatorNode: public ExpressionNode {
 public:
   BinaryOperatorNode(ExpressionNode *right, ExpressionNode *left);
   ~BinaryOperatorNode();
-  int Evaluate();
 private:
 protected:
   ExpressionNode *mRight;
@@ -146,6 +154,69 @@ protected:
 class PlusNode: public BinaryOperatorNode {
 public:
   PlusNode(ExpressionNode *left, ExpressionNode *right);
+  int Evaluate();
+private:
+};
+
+class MinusNode: public BinaryOperatorNode {
+public:
+  MinusNode(ExpressionNode *left, ExpressionNode *right);
+  int Evaluate();
+private:
+};
+
+class TimesNode: public BinaryOperatorNode {
+public:
+  TimesNode(ExpressionNode *left, ExpressionNode *right);
+  int Evaluate();
+private:
+};
+
+class DivideNode: public BinaryOperatorNode {
+public:
+  DivideNode(ExpressionNode *left, ExpressionNode *right);
+  int Evaluate();
+private:
+};
+
+class LessNode: public BinaryOperatorNode {
+public:
+  LessNode(ExpressionNode *left, ExpressionNode *right);
+  int Evaluate();
+private:
+};
+
+class LessEqualNode: public BinaryOperatorNode {
+public:
+  LessEqualNode(ExpressionNode *left, ExpressionNode *right);
+  int Evaluate();
+private:
+};
+
+class GreaterNode: public BinaryOperatorNode {
+public:
+  GreaterNode(ExpressionNode *left, ExpressionNode *right);
+  int Evaluate();
+private:
+};
+
+class GreaterEqualNode: public BinaryOperatorNode {
+public:
+  GreaterEqualNode(ExpressionNode *left, ExpressionNode *right);
+  int Evaluate();
+private:
+};
+
+class EqualNode: public BinaryOperatorNode {
+public:
+  EqualNode(ExpressionNode *left, ExpressionNode *right);
+  int Evaluate();
+private:
+};
+
+class NotEqualNode: public BinaryOperatorNode {
+public:
+  NotEqualNode(ExpressionNode *left, ExpressionNode *right);
   int Evaluate();
 private:
 };
