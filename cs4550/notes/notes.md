@@ -523,3 +523,14 @@ The end of the parse code should return a pointer to the root node (which you sh
 be able to call `delete` on and every node will get deleted).
 
 Make sure all nodes can print a message on construction and destruction.
+
+
+## Wed Mar 18
+
+### Announcements
+
+* Parser (Chapter 6) should be done.
+
+### The Interpreter
+
+The chapter is pretty descriptive. We are having each node interpret themselves.
