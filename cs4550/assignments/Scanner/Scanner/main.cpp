@@ -22,6 +22,16 @@ void scan() {
   } while (token.GetTokenType() != EOF_TOKEN);
 }
 
+void testNodes() {
+  
+}
+
+void thisWillBeMain() {
+  SymbolTable symbolTable;
+  Scanner scanner("path");
+  // Parser(&scanner, &symbolTable);
+}
+
 void testSymbolTable() {
   SymbolTable table;
 

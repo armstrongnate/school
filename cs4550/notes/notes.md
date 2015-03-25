@@ -500,6 +500,42 @@ there aren't any then you can return to the level above.
 * Work day
 
 
+## Wed Mar 4
+
+### Agenda
+* Questions
+* Chapter 6
+
+### Chapter 6 - writing your own parser
+
+This is divided in to 2 main sections, with no output and with output.
+
+#### No Output
+
+* terminals are functions, nonterminals use `Match`
+
+StatementGroups are tricky because there can be any number of statements. Peek ahead
+and use `seekq()` to set it back to where it was.
+
+Call `GetNextToken()` from `PeekNextToken()`.
+
+The end of the parse code should return a pointer to the root node (which you should
+be able to call `delete` on and every node will get deleted).
+
+Make sure all nodes can print a message on construction and destruction.
+
+
 ## Mon Mar 16
 
 * Get Parser (chapter 6) done by Wed
+
+
+## Wed Mar 18
+
+### Announcements
+
+* Parser (Chapter 6) should be done.
+
+### The Interpreter
+
+The chapter is pretty descriptive. We are having each node interpret themselves.
