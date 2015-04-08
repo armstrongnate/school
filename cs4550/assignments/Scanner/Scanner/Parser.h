@@ -23,6 +23,8 @@ class StatementNode;
 class DeclarationStatementNode;
 class AssignmentStatementNode;
 class CoutStatementNode;
+class IfStatementNode;
+class WhileStatementNode;
 class IdentifierNode;
 class ExpressionNode;
 class BlockNode;
@@ -32,11 +34,11 @@ class IntegerNode;
 class Parser {
 public:
   Parser(Scanner *scanner, SymbolTable *st);
-  void Start();
+  StartNode * Start();
 private:
-  Scanner *mScanner;
-  SymbolTable *mSymbolTable;
-  void Program();
+  Scanner * mScanner;
+  SymbolTable * mSymbolTable;
+  ProgramNode * Program();
   Token Match(TokenType expectedType);
   BlockNode * Block();
   StatementGroupNode * StatementGroup();
@@ -44,12 +46,16 @@ private:
   DeclarationStatementNode * DeclarationStatement();
   AssignmentStatementNode * AssignmentStatement();
   CoutStatementNode * CoutStatement();
+  IfStatementNode * IfStatement();
+  WhileStatementNode * WhileStatement();
   IdentifierNode * Identifier();
   ExpressionNode * Expression();
   ExpressionNode * Relational();
   ExpressionNode * Side();
   ExpressionNode * Term();
   ExpressionNode * Factor();
+  ExpressionNode * Or();
+  ExpressionNode * And();
   IntegerNode * Integer();
   NotNode * Not();
 };

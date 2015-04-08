@@ -17,3 +17,7 @@ ProgramNode::~ProgramNode() {
   MSG("ProgramNode deconstructor");
   delete mBlockNode;
 }
+
+void ProgramNode::Interpret() {
+  mBlockNode->Interpret();
+}

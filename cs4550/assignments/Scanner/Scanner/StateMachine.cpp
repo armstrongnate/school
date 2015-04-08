@@ -67,7 +67,7 @@ StateMachine::StateMachine() {
 
   // =
   mLegalMoves[START_STATE][EQUAL_CHAR] = ASSIGNMENT_STATE;
-  mLegalMoves[EQUAL_CHAR][EQUAL_CHAR] = EQUAL_STATE;
+  mLegalMoves[ASSIGNMENT_STATE][EQUAL_CHAR] = EQUAL_STATE;
 
   // <=
   mLegalMoves[LESS_STATE][EQUAL_CHAR] = LESS_EQUAL_STATE;
@@ -77,6 +77,14 @@ StateMachine::StateMachine() {
 
   // >=
   mLegalMoves[GREATER_STATE][EQUAL_CHAR] = GREATER_EQUAL_STATE;
+
+  // ||
+  mLegalMoves[START_STATE][PIPE_CHAR] = PIPE1_STATE;
+  mLegalMoves[PIPE1_STATE][PIPE_CHAR] = OR_STATE;
+
+  // &&
+  mLegalMoves[START_STATE][AMPERSAND_CHAR] = AMPERSAND1_STATE;
+  mLegalMoves[AMPERSAND1_STATE][AMPERSAND_CHAR] = AND_STATE;
 
   for (int i=0; i<LAST_STATE; i++) {
     mCorrespondingTokenTypes[i] = BAD_TOKEN;
@@ -93,6 +101,8 @@ StateMachine::StateMachine() {
   mCorrespondingTokenTypes[GREATER_STATE] = GREATER_TOKEN;
   mCorrespondingTokenTypes[LESS_EQUAL_STATE] = LESS_EQUAL_TOKEN;
   mCorrespondingTokenTypes[GREATER_EQUAL_STATE] = GREATER_EQUAL_TOKEN;
+  mCorrespondingTokenTypes[OR_STATE] = OR_TOKEN;
+  mCorrespondingTokenTypes[AND_STATE] = AND_TOKEN;
   mCorrespondingTokenTypes[PLUS_STATE] = PLUS_TOKEN;
   mCorrespondingTokenTypes[MINUS_STATE] = MINUS_TOKEN;
   mCorrespondingTokenTypes[TIMES_STATE] = TIMES_TOKEN;
@@ -156,6 +166,12 @@ MachineState StateMachine::UpdateState(char currentCharacter,
   }
   else if (currentCharacter == '*') {
     charType = TIMES_CHAR;
+  }
+  else if (currentCharacter == '|') {
+    charType = PIPE_CHAR;
+  }
+  else if (currentCharacter == '&') {
+    charType = AMPERSAND_CHAR;
   }
 
   if (charType == BAD_CHAR) {

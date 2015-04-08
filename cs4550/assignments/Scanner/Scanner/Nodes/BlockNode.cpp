@@ -17,3 +17,7 @@ BlockNode::~BlockNode() {
   MSG("BlockNode deconstructor");
   delete mStatementGroupNode;
 }
+
+void BlockNode::Interpret() {
+  mStatementGroupNode->Interpret();
+}

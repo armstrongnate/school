@@ -28,6 +28,8 @@ class StatementNode;
 class DeclarationStatementNode;
 class AssignmentStatementNode;
 class CoutStatementNode;
+class IfStatementNode;
+class WhileStatementNode;
 class IdentifierNode;
 class ExpressionNode;
 class IntegerNode;
@@ -42,16 +44,20 @@ class GreaterNode;
 class GreaterEqualNode;
 class EqualNode;
 class NodeEqualNode;
+class OrNode;
+class AndNode;
 
 class Node {
 public:
   virtual ~Node();
+  virtual void Interpret() = 0;
 };
 
 class StartNode: public Node {
 public:
   StartNode(ProgramNode *programNode);
   ~StartNode();
+  void Interpret();
 private:
   ProgramNode *mProgramNode;
 };
@@ -60,6 +66,7 @@ class ProgramNode: public Node {
 public:
   ProgramNode(BlockNode *blockNode);
   ~ProgramNode();
+  void Interpret();
 private:
   BlockNode *mBlockNode;
 };
@@ -69,6 +76,7 @@ public:
   StatementGroupNode();
   ~StatementGroupNode();
   void AddStatement(StatementNode *statementNode);
+  void Interpret();
 private:
   vector<StatementNode*> mStatementNodes;
 };
@@ -84,6 +92,7 @@ class BlockNode: public StatementNode {
 public:
   BlockNode(StatementGroupNode *statementGroupNode);
   ~BlockNode();
+  void Interpret();
 private:
   StatementGroupNode *mStatementGroupNode;
 };
@@ -92,6 +101,7 @@ class DeclarationStatementNode: public StatementNode {
 public:
   DeclarationStatementNode(IdentifierNode *identifierNode);
   ~DeclarationStatementNode();
+  void Interpret();
 private:
   IdentifierNode *mIdentifierNode;
 };
@@ -100,6 +110,7 @@ class AssignmentStatementNode: public StatementNode {
 public:
   AssignmentStatementNode(IdentifierNode *identifierNode, ExpressionNode *expressionNode);
   ~AssignmentStatementNode();
+  void Interpret();
 private:
   IdentifierNode *mIdentifierNode;
   ExpressionNode *mExpressionNode;
@@ -109,8 +120,30 @@ class CoutStatementNode: public StatementNode {
 public:
   CoutStatementNode(ExpressionNode *expressionNode);
   ~CoutStatementNode();
+  void Interpret();
 private:
   ExpressionNode *mExpressionNode;
+};
+
+class IfStatementNode: public StatementNode {
+public:
+  IfStatementNode(ExpressionNode *en, StatementNode *sn, StatementNode *elseStatement);
+  ~IfStatementNode();
+  void Interpret();
+private:
+  ExpressionNode *mExpressionNode;
+  StatementNode *mStatementNode;
+  StatementNode *mElseStatementNode;
+};
+
+class WhileStatementNode: public StatementNode {
+public:
+  WhileStatementNode(ExpressionNode *en, StatementNode *sn);
+  ~WhileStatementNode();
+  void Interpret();
+private:
+  ExpressionNode *mExpressionNode;
+  StatementNode *mStatementNode;
 };
 
 class ExpressionNode {
@@ -226,6 +259,20 @@ private:
 class NotEqualNode: public BinaryOperatorNode {
 public:
   NotEqualNode(ExpressionNode *left, ExpressionNode *right);
+  int Evaluate();
+private:
+};
+
+class OrNode: public BinaryOperatorNode {
+public:
+  OrNode(ExpressionNode *left, ExpressionNode *right);
+  int Evaluate();
+private:
+};
+
+class AndNode: public BinaryOperatorNode {
+public:
+  AndNode(ExpressionNode *left, ExpressionNode *right);
   int Evaluate();
 private:
 };

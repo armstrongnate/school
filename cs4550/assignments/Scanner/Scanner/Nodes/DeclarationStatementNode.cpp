@@ -17,3 +17,7 @@ DeclarationStatementNode::~DeclarationStatementNode() {
   MSG("DeclarationStatementNode deconstructor");
   delete mIdentifierNode;
 }
+
+void DeclarationStatementNode::Interpret() {
+  mIdentifierNode->DeclareVariable();
+}

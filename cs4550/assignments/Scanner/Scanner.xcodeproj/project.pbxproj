@@ -18,6 +18,8 @@
 		43EC650C1A81D3C200B82D70 /* Token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43EC650A1A81D3C200B82D70 /* Token.cpp */; };
 		43EC650F1A81E22000B82D70 /* StateMachine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43EC650D1A81E22000B82D70 /* StateMachine.cpp */; };
 		43F2390F1AD4A1CC0056C3D2 /* NotNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43F2390E1AD4A1CC0056C3D2 /* NotNode.cpp */; };
+		43F239111AD4E6A00056C3D2 /* IfStatementNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43F239101AD4E6A00056C3D2 /* IfStatementNode.cpp */; };
+		43F239131AD4E6AF0056C3D2 /* WhileStatementNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43F239121AD4E6AF0056C3D2 /* WhileStatementNode.cpp */; };
 		43F7D4801AB773940036BD1E /* StartNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43F7D47F1AB773940036BD1E /* StartNode.cpp */; };
 		43F7D4821AB7747A0036BD1E /* BlockNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43F7D4811AB7747A0036BD1E /* BlockNode.cpp */; };
 		43F7D4841AB774A40036BD1E /* ProgramNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43F7D4831AB774A40036BD1E /* ProgramNode.cpp */; };
@@ -66,6 +68,8 @@
 		43EC650D1A81E22000B82D70 /* StateMachine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StateMachine.cpp; sourceTree = "<group>"; };
 		43EC650E1A81E22000B82D70 /* StateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateMachine.h; sourceTree = "<group>"; };
 		43F2390E1AD4A1CC0056C3D2 /* NotNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NotNode.cpp; path = Nodes/NotNode.cpp; sourceTree = "<group>"; };
+		43F239101AD4E6A00056C3D2 /* IfStatementNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IfStatementNode.cpp; path = Nodes/IfStatementNode.cpp; sourceTree = "<group>"; };
+		43F239121AD4E6AF0056C3D2 /* WhileStatementNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WhileStatementNode.cpp; path = Nodes/WhileStatementNode.cpp; sourceTree = "<group>"; };
 		43F7D47F1AB773940036BD1E /* StartNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartNode.cpp; path = Nodes/StartNode.cpp; sourceTree = "<group>"; };
 		43F7D4811AB7747A0036BD1E /* BlockNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlockNode.cpp; path = Nodes/BlockNode.cpp; sourceTree = "<group>"; };
 		43F7D4831AB774A40036BD1E /* ProgramNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ProgramNode.cpp; path = Nodes/ProgramNode.cpp; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 				43CD64B71AC2361100BBD68F /* TimesNode.cpp */,
 				43CD64B91AC2362400BBD68F /* DivideNode.cpp */,
 				43F2390E1AD4A1CC0056C3D2 /* NotNode.cpp */,
+				43F239101AD4E6A00056C3D2 /* IfStatementNode.cpp */,
+				43F239121AD4E6AF0056C3D2 /* WhileStatementNode.cpp */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -230,7 +236,9 @@
 				43F7D4881AB7765D0036BD1E /* StatementNode.cpp in Sources */,
 				43F7D4941AB779A50036BD1E /* IdentifierNode.cpp in Sources */,
 				43F7D4841AB774A40036BD1E /* ProgramNode.cpp in Sources */,
+				43F239131AD4E6AF0056C3D2 /* WhileStatementNode.cpp in Sources */,
 				43F7D4821AB7747A0036BD1E /* BlockNode.cpp in Sources */,
+				43F239111AD4E6A00056C3D2 /* IfStatementNode.cpp in Sources */,
 				43F7D4861AB775760036BD1E /* StatementGroupNode.cpp in Sources */,
 				43CD64B81AC2361100BBD68F /* TimesNode.cpp in Sources */,
 				43F7D4961AB77B4C0036BD1E /* BinaryOperatorNode.cpp in Sources */,

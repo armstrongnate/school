@@ -36,6 +36,9 @@ void Token::CheckReserved() {
   else if (strcmp(lexeme, "if") == 0) {
     mType = IF_TOKEN;
   }
+  else if (strcmp(lexeme, "else") == 0) {
+    mType = ELSE_TOKEN;
+  }
   else if (strcmp(lexeme, "while") == 0) {
     mType = WHILE_TOKEN;
   }

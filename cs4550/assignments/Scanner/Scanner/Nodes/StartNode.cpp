@@ -17,3 +17,7 @@ StartNode::~StartNode() {
   MSG("StartNode deconstructor");
   delete mProgramNode;
 }
+
+void StartNode::Interpret() {
+  mProgramNode->Interpret();
+}
