@@ -46,12 +46,14 @@ class NodeEqualNode;
 class Node {
 public:
   virtual ~Node();
+  virtual void Interpret() = 0;
 };
 
 class StartNode: public Node {
 public:
   StartNode(ProgramNode *programNode);
   ~StartNode();
+  void Interpret();
 private:
   ProgramNode *mProgramNode;
 };
@@ -60,6 +62,7 @@ class ProgramNode: public Node {
 public:
   ProgramNode(BlockNode *blockNode);
   ~ProgramNode();
+  void Interpret();
 private:
   BlockNode *mBlockNode;
 };
@@ -69,6 +72,7 @@ public:
   StatementGroupNode();
   ~StatementGroupNode();
   void AddStatement(StatementNode *statementNode);
+  void Interpret();
 private:
   vector<StatementNode*> mStatementNodes;
 };
@@ -84,6 +88,7 @@ class BlockNode: public StatementNode {
 public:
   BlockNode(StatementGroupNode *statementGroupNode);
   ~BlockNode();
+  void Interpret();
 private:
   StatementGroupNode *mStatementGroupNode;
 };
@@ -92,6 +97,7 @@ class DeclarationStatementNode: public StatementNode {
 public:
   DeclarationStatementNode(IdentifierNode *identifierNode);
   ~DeclarationStatementNode();
+  void Interpret();
 private:
   IdentifierNode *mIdentifierNode;
 };
@@ -100,6 +106,7 @@ class AssignmentStatementNode: public StatementNode {
 public:
   AssignmentStatementNode(IdentifierNode *identifierNode, ExpressionNode *expressionNode);
   ~AssignmentStatementNode();
+  void Interpret();
 private:
   IdentifierNode *mIdentifierNode;
   ExpressionNode *mExpressionNode;
@@ -109,6 +116,7 @@ class CoutStatementNode: public StatementNode {
 public:
   CoutStatementNode(ExpressionNode *expressionNode);
   ~CoutStatementNode();
+  void Interpret();
 private:
   ExpressionNode *mExpressionNode;
 };

@@ -19,3 +19,7 @@ AssignmentStatementNode::~AssignmentStatementNode() {
   delete mIdentifierNode;
   delete mExpressionNode;
 }
+
+void AssignmentStatementNode::Interpret() {
+  mIdentifierNode->SetValue(mExpressionNode->Evaluate());
+}

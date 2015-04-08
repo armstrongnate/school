@@ -22,3 +22,9 @@ StatementGroupNode::~StatementGroupNode() {
 void StatementGroupNode::AddStatement(StatementNode *statementNode) {
   mStatementNodes.push_back(statementNode);
 }
+
+void StatementGroupNode::Interpret() {
+  for (int i=0; i<mStatementNodes.size(); i++) {
+    mStatementNodes[i]->Interpret();
+  }
+}

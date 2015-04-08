@@ -17,3 +17,7 @@ CoutStatementNode::~CoutStatementNode() {
   MSG("CoutStatementNode deconstructor");
   delete mExpressionNode;
 }
+
+void CoutStatementNode::Interpret() {
+  cout << mExpressionNode->Evaluate() << endl;
+}
