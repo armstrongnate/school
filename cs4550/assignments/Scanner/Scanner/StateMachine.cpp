@@ -66,7 +66,8 @@ StateMachine::StateMachine() {
   mLegalMoves[START_STATE][GREATER_CHAR] = GREATER_STATE;
 
   // =
-  mLegalMoves[START_STATE][EQUAL_CHAR] = EQUAL_STATE;
+  mLegalMoves[START_STATE][EQUAL_CHAR] = ASSIGNMENT_STATE;
+  mLegalMoves[EQUAL_CHAR][EQUAL_CHAR] = EQUAL_STATE;
 
   // <=
   mLegalMoves[LESS_STATE][EQUAL_CHAR] = LESS_EQUAL_STATE;
@@ -81,6 +82,7 @@ StateMachine::StateMachine() {
     mCorrespondingTokenTypes[i] = BAD_TOKEN;
   }
   mCorrespondingTokenTypes[IDENTIFIER_STATE] = IDENTIFIER_TOKEN;
+  mCorrespondingTokenTypes[ASSIGNMENT_STATE] = ASSIGNMENT_TOKEN;
   mCorrespondingTokenTypes[INTEGER_STATE] = INTEGER_TOKEN;
   mCorrespondingTokenTypes[LPAREN_STATE] = LPAREN_TOKEN;
   mCorrespondingTokenTypes[RPAREN_STATE] = RPAREN_TOKEN;
