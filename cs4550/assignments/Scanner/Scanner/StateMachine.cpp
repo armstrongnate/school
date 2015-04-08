@@ -67,7 +67,7 @@ StateMachine::StateMachine() {
 
   // =
   mLegalMoves[START_STATE][EQUAL_CHAR] = ASSIGNMENT_STATE;
-  mLegalMoves[EQUAL_CHAR][EQUAL_CHAR] = EQUAL_STATE;
+  mLegalMoves[ASSIGNMENT_STATE][EQUAL_CHAR] = EQUAL_STATE;
 
   // <=
   mLegalMoves[LESS_STATE][EQUAL_CHAR] = LESS_EQUAL_STATE;
