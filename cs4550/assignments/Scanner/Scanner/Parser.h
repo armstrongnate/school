@@ -32,11 +32,11 @@ class IntegerNode;
 class Parser {
 public:
   Parser(Scanner *scanner, SymbolTable *st);
-  void Start();
+  StartNode * Start();
 private:
-  Scanner *mScanner;
-  SymbolTable *mSymbolTable;
-  void Program();
+  Scanner * mScanner;
+  SymbolTable * mSymbolTable;
+  ProgramNode * Program();
   Token Match(TokenType expectedType);
   BlockNode * Block();
   StatementGroupNode * StatementGroup();

@@ -18,8 +18,11 @@ Parser::Parser(Scanner *scanner, SymbolTable *st)
     MSG("Parser initializer");
 }
 
-void Parser::Start() {
-  Program();
+StartNode * Parser::Start() {
+  ProgramNode *pn = Program();
+  Match(EOF_TOKEN);
+  StartNode *sn = new StartNode(pn);
+  return sn;
 }
 
 Token Parser::Match(TokenType expectedType) {
@@ -34,13 +37,14 @@ Token Parser::Match(TokenType expectedType) {
   return currentToken;
 }
 
-void Parser::Program() {
+ProgramNode * Parser::Program() {
   Match(VOID_TOKEN);
   Match(MAIN_TOKEN);
   Match(LPAREN_TOKEN);
   Match(RPAREN_TOKEN);
-  Block();
-  Match(EOF_TOKEN);
+  BlockNode *bn = Block();
+  ProgramNode *pn = new ProgramNode(bn);
+  return pn;
 }
 
 BlockNode * Parser::Block() {
