@@ -52,7 +52,7 @@ Token Scanner::PeekNextToken() {
   long pos = mFin.tellg();
   int lineNum = mLineNumber;
   Token tc = GetNextToken();
-  if (mFin.eof()) {
+  if (!mFin) {
     mFin.clear();
   }
   mFin.seekg(pos);

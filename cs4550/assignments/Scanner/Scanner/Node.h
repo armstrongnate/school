@@ -64,14 +64,6 @@ private:
   BlockNode *mBlockNode;
 };
 
-class BlockNode: public Node {
-public:
-  BlockNode(StatementGroupNode *statementGroupNode);
-  ~BlockNode();
-private:
-  StatementGroupNode *mStatementGroupNode;
-};
-
 class StatementGroupNode: public Node {
 public:
   StatementGroupNode();
@@ -86,6 +78,14 @@ public:
   StatementNode();
   ~StatementNode();
 private:
+};
+
+class BlockNode: public StatementNode {
+public:
+  BlockNode(StatementGroupNode *statementGroupNode);
+  ~BlockNode();
+private:
+  StatementGroupNode *mStatementGroupNode;
 };
 
 class DeclarationStatementNode: public StatementNode {
@@ -126,6 +126,15 @@ public:
   int Evaluate();
 private:
   int mValue;
+};
+
+class NotNode: public ExpressionNode {
+public:
+  NotNode(ExpressionNode *e);
+  ~NotNode();
+  int Evaluate();
+private:
+  ExpressionNode *mExpressionNode;
 };
 
 class IdentifierNode: public ExpressionNode {

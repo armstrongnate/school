@@ -12,6 +12,7 @@
 #include "Token.h"
 #include "Scanner.h"
 #include "SymbolTable.h"
+#include "Parser.h"
 
 void scan() {
   Scanner scanner("/Users/nate/school/cs4550/assignments/Scanner/Scanner/main.txt");
@@ -22,14 +23,11 @@ void scan() {
   } while (token.GetTokenType() != EOF_TOKEN);
 }
 
-void testNodes() {
-  
-}
-
-void thisWillBeMain() {
+void testParser() {
   SymbolTable symbolTable;
-  Scanner scanner("path");
-  // Parser(&scanner, &symbolTable);
+  Scanner scanner("/Users/nate/school/cs4550/assignments/Scanner/Scanner/main.txt");
+  Parser parser(&scanner, &symbolTable);
+  parser.Start();
 }
 
 void testSymbolTable() {
@@ -59,6 +57,6 @@ void testSymbolTable() {
 }
 
 int main(int argc, const char * argv[]) {
-  scan();
+  testParser();
   return 0;
 }

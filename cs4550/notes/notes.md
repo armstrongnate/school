@@ -539,3 +539,43 @@ Make sure all nodes can print a message on construction and destruction.
 ### The Interpreter
 
 The chapter is pretty descriptive. We are having each node interpret themselves.
+
+
+## Mon Mar 30
+
+### Announcements
+
+* Test is on April 8, review is in a week! Must have the interpreter done by next
+week.
+* Workdays for the next few days. Ask lots of questions to get caught up.
+
+
+## Mon Apr 6
+
+### Announcements
+
+* Test on wed, have Interpreter done lest it be _really_ hard.
+
+### Test Review
+
+#### Last year's test:
+
+> Write a grammar that produces all sequences of positive integers that are multiples
+of 3. There should not be leading zeros. Remember that a number is divisible by 3
+if the sum of its digits is divisible by 3. HINT: You don't actually have to sum
+the digits - just keep track of `sum % 3`.
+
+
+> Draw a finite automata that recognizes the legal strings of the previous question.
+
+> Support Pascal style blocks of code
+
+Just update `CheckReserved` to check for `begin` string and make it an `LCURLY` token
+and check for `end` string and make it an `RCURLY` token. That way we don't have to
+change the parser to check for new tokens.
+
+#### 2 years ago
+
+> Write a grammar that produces all sequences of positive integers that are multiples
+of 25, such as 75, 125, 3000, 2301050, etc. There should not be leading zeros.
+
