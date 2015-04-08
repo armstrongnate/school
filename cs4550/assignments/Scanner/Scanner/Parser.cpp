@@ -183,13 +183,13 @@ ExpressionNode * Parser::Relational() {
 
 ExpressionNode * Parser::Side() {
 	ExpressionNode *current = Term();
-	while(true) {
+	while (true) {
 		TokenType tt = mScanner->PeekNextToken().GetTokenType();
-		if(tt == PLUS_TOKEN) {
+		if (tt == PLUS_TOKEN) {
 			Match(tt);
 			current = new PlusNode(current, Term());
 		}
-		else if(tt == MINUS_TOKEN) {
+		else if (tt == MINUS_TOKEN) {
 			Match(tt);
 			current = new MinusNode(current, Term());
 		}

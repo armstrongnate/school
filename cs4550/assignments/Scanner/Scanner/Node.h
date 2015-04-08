@@ -185,12 +185,12 @@ private:
 
 class BinaryOperatorNode: public ExpressionNode {
 public:
-  BinaryOperatorNode(ExpressionNode *right, ExpressionNode *left);
+  BinaryOperatorNode(ExpressionNode *left, ExpressionNode *right);
   ~BinaryOperatorNode();
 private:
 protected:
-  ExpressionNode *mRight;
   ExpressionNode *mLeft;
+  ExpressionNode *mRight;
 };
 
 class PlusNode: public BinaryOperatorNode {

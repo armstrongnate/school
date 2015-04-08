@@ -1,8 +1,6 @@
 void main()
 {
-  int sum;
-  sum = 35 + 400;
-  if ((sum < 0 || sum > 1000) && sum - 10 > 100 * 1) {
-    cout << sum;
-  }
+  int count;
+  count = 8 - 2 * 3;
+  cout << count;
 }

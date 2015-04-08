@@ -19,7 +19,7 @@ WhileStatementNode::~WhileStatementNode() {
 }
 
 void WhileStatementNode::Interpret() {
-  if (mExpressionNode->Evaluate()) {
+  while (mExpressionNode->Evaluate()) {
     mStatementNode->Interpret();
   }
 }

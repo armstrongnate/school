@@ -8,8 +8,8 @@
 
 #include "Node.h"
 
-BinaryOperatorNode::BinaryOperatorNode(ExpressionNode *r, ExpressionNode *l)
-  : mRight(l), mLeft(l) {
+BinaryOperatorNode::BinaryOperatorNode(ExpressionNode *l, ExpressionNode *r)
+  : mLeft(l), mRight(r) {
     MSG("BinaryOperatorNode initializer");
 }
 
@@ -21,8 +21,8 @@ BinaryOperatorNode::~BinaryOperatorNode() {
 
 // MARK: - LessNode
 
-LessNode::LessNode(ExpressionNode *r, ExpressionNode *l)
-  : BinaryOperatorNode(r, l) {
+LessNode::LessNode(ExpressionNode *l, ExpressionNode *r)
+  : BinaryOperatorNode(l, r) {
     MSG("LessNode initializer");
 }
 
@@ -32,8 +32,8 @@ int LessNode::Evaluate() {
 
 // MARK: - LessEqualNode
 
-LessEqualNode::LessEqualNode(ExpressionNode *r, ExpressionNode *l)
-  : BinaryOperatorNode(r, l) {
+LessEqualNode::LessEqualNode(ExpressionNode *l, ExpressionNode *r)
+  : BinaryOperatorNode(l, r) {
     MSG("LessEqualNode initializer");
 }
 
@@ -43,8 +43,8 @@ int LessEqualNode::Evaluate() {
 
 // MARK: - GreaterNode
 
-GreaterNode::GreaterNode(ExpressionNode *r, ExpressionNode *l)
-  : BinaryOperatorNode(r, l) {
+GreaterNode::GreaterNode(ExpressionNode *l, ExpressionNode *r)
+  : BinaryOperatorNode(l, r) {
     MSG("GreaterNode initializer");
 }
 
@@ -54,8 +54,8 @@ int GreaterNode::Evaluate() {
 
 // MARK: - GreaterEqualNode
 
-GreaterEqualNode::GreaterEqualNode(ExpressionNode *r, ExpressionNode *l)
-  : BinaryOperatorNode(r, l) {
+GreaterEqualNode::GreaterEqualNode(ExpressionNode *l, ExpressionNode *r)
+  : BinaryOperatorNode(l, r) {
     MSG("GreaterEqualNode initializer");
 }
 
@@ -65,8 +65,8 @@ int GreaterEqualNode::Evaluate() {
 
 // MARK: - EqualNode
 
-EqualNode::EqualNode(ExpressionNode *r, ExpressionNode *l)
-  : BinaryOperatorNode(r, l) {
+EqualNode::EqualNode(ExpressionNode *l, ExpressionNode *r)
+  : BinaryOperatorNode(l, r) {
     MSG("EqualNode initializer");
 }
 
@@ -76,8 +76,8 @@ int EqualNode::Evaluate() {
 
 // MARK: - NotEqualNode
 
-NotEqualNode::NotEqualNode(ExpressionNode *r, ExpressionNode *l)
-  : BinaryOperatorNode(r, l) {
+NotEqualNode::NotEqualNode(ExpressionNode *l, ExpressionNode *r)
+  : BinaryOperatorNode(l, r) {
     MSG("NotEqualNode initializer");
 }
 
@@ -87,8 +87,8 @@ int NotEqualNode::Evaluate() {
 
 // MARK: - OrNode
 
-OrNode::OrNode(ExpressionNode *r, ExpressionNode *l)
-  : BinaryOperatorNode(r, l) {
+OrNode::OrNode(ExpressionNode *l, ExpressionNode *r)
+  : BinaryOperatorNode(l, r) {
     MSG("OrNode initializer");
 }
 
@@ -98,8 +98,8 @@ int OrNode::Evaluate() {
 
 // MARK: - AndNode
 
-AndNode::AndNode(ExpressionNode *r, ExpressionNode *l)
-  : BinaryOperatorNode(r, l) {
+AndNode::AndNode(ExpressionNode *l, ExpressionNode *r)
+  : BinaryOperatorNode(l, r) {
     MSG("AndNode initializer");
 }
 
