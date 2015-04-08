@@ -69,18 +69,24 @@ StatementGroupNode* Parser::StatementGroup() {
 
 StatementNode * Parser::Statement() {
   Token nextToken = mScanner->PeekNextToken();
-  TokenType type = nextToken.GetTokenType();
-  if (type == INT_TOKEN) {
+  TokenType tt = nextToken.GetTokenType();
+  if (tt == INT_TOKEN) {
     return DeclarationStatement();
   }
-  else if (type == IDENTIFIER_TOKEN) {
+  else if (tt == IDENTIFIER_TOKEN) {
     return AssignmentStatement();
   }
-  else if (type == COUT_TOKEN) {
+  else if (tt == COUT_TOKEN) {
     return CoutStatement();
   }
-  else if (type == LCURLY_TOKEN) {
+  else if (tt == LCURLY_TOKEN) {
     return Block();
+  }
+  else if (tt == IF_TOKEN) {
+    return IfStatement();
+  }
+  else if (tt == WHILE_TOKEN) {
+    return WhileStatement();
   }
   return NULL;
 }
@@ -215,4 +221,33 @@ IntegerNode * Parser::Integer() {
   const char *c = s.c_str();
   IntegerNode *i = new IntegerNode(atoi(c));
   return i;
+}
+
+IfStatementNode* Parser::IfStatement() {
+  Match(IF_TOKEN);
+  Match(LPAREN_TOKEN);
+  ExpressionNode* e = Expression();
+  Match(RPAREN_TOKEN);
+  StatementNode *statement = Statement();
+  StatementNode *elseStatement;
+  Token token = mScanner->PeekNextToken();
+  if (token.GetTokenType() == ELSE_TOKEN) {
+    Match(ELSE_TOKEN);
+    elseStatement = Statement();
+  }
+  else {
+    elseStatement = 0;
+  }
+  IfStatementNode *is = new IfStatementNode(e, statement, elseStatement);
+  return is;
+}
+
+WhileStatementNode* Parser::WhileStatement() {
+  Match(WHILE_TOKEN);
+  Match(LPAREN_TOKEN);
+  ExpressionNode *e = Expression();
+  Match(RPAREN_TOKEN);
+  StatementNode *statement = Statement();
+  WhileStatementNode *ws = new WhileStatementNode(e, statement);
+  return ws;
 }

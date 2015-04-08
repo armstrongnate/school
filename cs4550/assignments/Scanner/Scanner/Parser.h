@@ -23,6 +23,8 @@ class StatementNode;
 class DeclarationStatementNode;
 class AssignmentStatementNode;
 class CoutStatementNode;
+class IfStatementNode;
+class WhileStatementNode;
 class IdentifierNode;
 class ExpressionNode;
 class BlockNode;
@@ -44,6 +46,8 @@ private:
   DeclarationStatementNode * DeclarationStatement();
   AssignmentStatementNode * AssignmentStatement();
   CoutStatementNode * CoutStatement();
+  IfStatementNode * IfStatement();
+  WhileStatementNode * WhileStatement();
   IdentifierNode * Identifier();
   ExpressionNode * Expression();
   ExpressionNode * Relational();

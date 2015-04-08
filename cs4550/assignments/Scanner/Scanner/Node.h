@@ -28,6 +28,8 @@ class StatementNode;
 class DeclarationStatementNode;
 class AssignmentStatementNode;
 class CoutStatementNode;
+class IfStatementNode;
+class WhileStatementNode;
 class IdentifierNode;
 class ExpressionNode;
 class IntegerNode;
@@ -119,6 +121,27 @@ public:
   void Interpret();
 private:
   ExpressionNode *mExpressionNode;
+};
+
+class IfStatementNode: public StatementNode {
+public:
+  IfStatementNode(ExpressionNode *en, StatementNode *sn, StatementNode *elseStatement);
+  ~IfStatementNode();
+  void Interpret();
+private:
+  ExpressionNode *mExpressionNode;
+  StatementNode *mStatementNode;
+  StatementNode *mElseStatementNode;
+};
+
+class WhileStatementNode: public StatementNode {
+public:
+  WhileStatementNode(ExpressionNode *en, StatementNode *sn);
+  ~WhileStatementNode();
+  void Interpret();
+private:
+  ExpressionNode *mExpressionNode;
+  StatementNode *mStatementNode;
 };
 
 class ExpressionNode {
