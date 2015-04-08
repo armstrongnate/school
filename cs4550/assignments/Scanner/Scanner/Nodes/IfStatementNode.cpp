@@ -24,6 +24,8 @@ void IfStatementNode::Interpret() {
     mStatementNode->Interpret();
   }
   else {
-    mElseStatementNode->Interpret();
+    if (mElseStatementNode) {
+      mElseStatementNode->Interpret();
+    }
   }
 }
