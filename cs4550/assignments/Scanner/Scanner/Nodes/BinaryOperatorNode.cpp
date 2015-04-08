@@ -84,3 +84,25 @@ NotEqualNode::NotEqualNode(ExpressionNode *r, ExpressionNode *l)
 int NotEqualNode::Evaluate() {
   return mLeft != mRight;
 }
+
+// MARK: - OrNode
+
+OrNode::OrNode(ExpressionNode *r, ExpressionNode *l)
+  : BinaryOperatorNode(r, l) {
+    MSG("OrNode initializer");
+}
+
+int OrNode::Evaluate() {
+  return mLeft || mRight;
+}
+
+// MARK: - AndNode
+
+AndNode::AndNode(ExpressionNode *r, ExpressionNode *l)
+  : BinaryOperatorNode(r, l) {
+    MSG("AndNode initializer");
+}
+
+int AndNode::Evaluate() {
+  return mLeft && mRight;
+}

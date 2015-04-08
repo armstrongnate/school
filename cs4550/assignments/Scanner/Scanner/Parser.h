@@ -54,6 +54,8 @@ private:
   ExpressionNode * Side();
   ExpressionNode * Term();
   ExpressionNode * Factor();
+  ExpressionNode * Or();
+  ExpressionNode * And();
   IntegerNode * Integer();
   NotNode * Not();
 };

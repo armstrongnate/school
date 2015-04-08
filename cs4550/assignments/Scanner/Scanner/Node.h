@@ -44,6 +44,8 @@ class GreaterNode;
 class GreaterEqualNode;
 class EqualNode;
 class NodeEqualNode;
+class OrNode;
+class AndNode;
 
 class Node {
 public:
@@ -257,6 +259,20 @@ private:
 class NotEqualNode: public BinaryOperatorNode {
 public:
   NotEqualNode(ExpressionNode *left, ExpressionNode *right);
+  int Evaluate();
+private:
+};
+
+class OrNode: public BinaryOperatorNode {
+public:
+  OrNode(ExpressionNode *left, ExpressionNode *right);
+  int Evaluate();
+private:
+};
+
+class AndNode: public BinaryOperatorNode {
+public:
+  AndNode(ExpressionNode *left, ExpressionNode *right);
   int Evaluate();
 private:
 };

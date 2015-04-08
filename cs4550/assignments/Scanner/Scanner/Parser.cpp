@@ -124,8 +124,38 @@ IdentifierNode * Parser::Identifier() {
 }
 
 ExpressionNode * Parser::Expression() {
-  ExpressionNode *en = Relational();
+  ExpressionNode *en = Or();
   return en;
+}
+
+ExpressionNode* Parser::Or() {
+  ExpressionNode *current = And();
+  while (true) {
+    TokenType tt = mScanner->PeekNextToken().GetTokenType();
+    if (tt == OR_TOKEN) {
+      Match(tt);
+      current = new OrNode(current, And());
+    }
+    else {
+      break;
+    }
+  }
+  return current;
+}
+
+ExpressionNode* Parser::And() {
+  ExpressionNode *current = Relational();
+  while (true) {
+    TokenType tt = mScanner->PeekNextToken().GetTokenType();
+    if (tt == AND_TOKEN) {
+      Match(tt);
+      current = new AndNode(current, Relational());
+    }
+    else {
+      break;
+    }
+  }
+  return current;
 }
 
 ExpressionNode * Parser::Relational() {
