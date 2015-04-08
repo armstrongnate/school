@@ -27,7 +27,7 @@ LessNode::LessNode(ExpressionNode *l, ExpressionNode *r)
 }
 
 int LessNode::Evaluate() {
-  return mLeft < mRight;
+  return mLeft->Evaluate() < mRight->Evaluate();
 }
 
 // MARK: - LessEqualNode
@@ -38,7 +38,7 @@ LessEqualNode::LessEqualNode(ExpressionNode *l, ExpressionNode *r)
 }
 
 int LessEqualNode::Evaluate() {
-  return mLeft <= mRight;
+  return mLeft->Evaluate() <= mRight->Evaluate();
 }
 
 // MARK: - GreaterNode
@@ -49,7 +49,7 @@ GreaterNode::GreaterNode(ExpressionNode *l, ExpressionNode *r)
 }
 
 int GreaterNode::Evaluate() {
-  return mLeft > mRight;
+  return mLeft->Evaluate() > mRight->Evaluate();
 }
 
 // MARK: - GreaterEqualNode
@@ -60,7 +60,7 @@ GreaterEqualNode::GreaterEqualNode(ExpressionNode *l, ExpressionNode *r)
 }
 
 int GreaterEqualNode::Evaluate() {
-  return mLeft >= mRight;
+  return mLeft->Evaluate() >= mRight->Evaluate();
 }
 
 // MARK: - EqualNode
@@ -71,7 +71,7 @@ EqualNode::EqualNode(ExpressionNode *l, ExpressionNode *r)
 }
 
 int EqualNode::Evaluate() {
-  return mLeft == mRight;
+  return mLeft->Evaluate() == mRight->Evaluate();
 }
 
 // MARK: - NotEqualNode
@@ -82,7 +82,7 @@ NotEqualNode::NotEqualNode(ExpressionNode *l, ExpressionNode *r)
 }
 
 int NotEqualNode::Evaluate() {
-  return mLeft != mRight;
+  return mLeft->Evaluate() != mRight->Evaluate();
 }
 
 // MARK: - OrNode
@@ -93,7 +93,7 @@ OrNode::OrNode(ExpressionNode *l, ExpressionNode *r)
 }
 
 int OrNode::Evaluate() {
-  return mLeft || mRight;
+  return mLeft->Evaluate() || mRight->Evaluate();
 }
 
 // MARK: - AndNode
@@ -104,5 +104,5 @@ AndNode::AndNode(ExpressionNode *l, ExpressionNode *r)
 }
 
 int AndNode::Evaluate() {
-  return mLeft && mRight;
+  return mLeft->Evaluate() && mRight->Evaluate();
 }

@@ -1,6 +1,8 @@
 void main()
 {
   int count;
-  count = 8 - 2 * 3;
-  cout << count;
+  count = 8 / 2;
+  if (count > 3) {
+    cout << count; // should cout 4
+  }
 }
