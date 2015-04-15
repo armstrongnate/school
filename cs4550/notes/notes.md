@@ -579,3 +579,96 @@ change the parser to check for new tokens.
 > Write a grammar that produces all sequences of positive integers that are multiples
 of 25, such as 75, 125, 3000, 2301050, etc. There should not be leading zeros.
 
+
+## Mon Apr 13
+
+### Machine Language
+
+We will compile and run our code in one swoop because making executables and
+executing them is not easy?
+
+We will need to do some voodoo to make it work.
+
+```c++
+void * ptr = mCode; // necessary?
+void (*f)(void);
+f = (void (*)(void)) ptr;
+f();
+```
+
+See `disabling_code_protection` from http://cit.dixie.edu/cs/4550/notes.php.
+
+I ran `sudo sysctl -w kern.nx=0` to make the voodoo work. **REMEMBER TO TURN THIS BACK ON!**
+
+#### Instructions
+
+"Instructions" is the name of the new project to create aside from the current compiler
+project.
+
+Use the [header](http://cit.dixie.edu/cs/4550/permanent/instructions.h) and the
+[implentation](http://cit.dixie.edu/cs/4550/permanent/instructions_starter.cpp) files
+to get started.
+
+##### PushValue and friends
+
+Write some machine code to load the value on to the stack. We will have help on
+how to do these methods (it's given in #7).
+
+Once we get all of this finished it will be easy to integrate it into the Simple
+Compiler. :)
+
+
+## Tue Apr 15
+
+### Supporting chained cout statements
+
+* Change the `CoutStatementNode` to have a vector of `ExpressionNode`s instead of
+a single `ExpressionNode`.
+* Need a new token type for `endl`. It can't be evaluated so stick it in the list
+as `null`
+
+Example:
+
+```c++
+cout << 25 << i + 7 << 2 - (22 * 3 / 8) << endl << x << endl;
+```
+
+will create an array like:
+
+```c++
+[
+  IntegerNode,
+  PlusNode,
+  MinusNode,
+  null,
+  IdentifierNode,
+  null
+]
+```
+
+The `Interpret` method will then become:
+
+```c++
+void CoutStatementNode::Interpret() {
+  for (int i=0; i<mExpressionNodes.size(); i++) {
+    if (mExpressionNodes[i]) {
+      cout << mExpressionNodes[i]->Evaluate() << " ";
+    } else {
+      cout << endl;
+    }
+  }
+}
+```
+
+Coding the CoutNode.
+
+```c++
+// the old way (one expression node per cout node)
+void CoutStatementNode::Code(Instruction &instruction) {
+  mExpressionNode->CodeEvaluate(instruction);
+  c.PopAndWrite(); // use WriteEndl in new way when writing cout
+}
+```
+
+When we interpret we return the result of `Evaluate` but when we are coding we
+push the return value on the stack.
