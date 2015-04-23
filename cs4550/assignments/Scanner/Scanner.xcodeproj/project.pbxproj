@@ -33,6 +33,7 @@
 		43F7D4941AB779A50036BD1E /* IdentifierNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43F7D4931AB779A50036BD1E /* IdentifierNode.cpp */; };
 		43F7D4961AB77B4C0036BD1E /* BinaryOperatorNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43F7D4951AB77B4C0036BD1E /* BinaryOperatorNode.cpp */; };
 		43F7D4981AB77C0F0036BD1E /* PlusNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43F7D4971AB77C0F0036BD1E /* PlusNode.cpp */; };
+		43F9DA081ADF089D005ED457 /* Instructions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43F9DA061ADF089D005ED457 /* Instructions.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,6 +84,8 @@
 		43F7D4931AB779A50036BD1E /* IdentifierNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IdentifierNode.cpp; path = Nodes/IdentifierNode.cpp; sourceTree = "<group>"; };
 		43F7D4951AB77B4C0036BD1E /* BinaryOperatorNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryOperatorNode.cpp; path = Nodes/BinaryOperatorNode.cpp; sourceTree = "<group>"; };
 		43F7D4971AB77C0F0036BD1E /* PlusNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlusNode.cpp; path = Nodes/PlusNode.cpp; sourceTree = "<group>"; };
+		43F9DA061ADF089D005ED457 /* Instructions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Instructions.cpp; sourceTree = "<group>"; };
+		43F9DA071ADF089D005ED457 /* Instructions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instructions.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				433881DB1A9BCEBF00AF335B /* SymbolTable.h */,
 				43CD64BB1AC2458C00BBD68F /* Parser.cpp */,
 				43CD64BC1AC2458C00BBD68F /* Parser.h */,
+				43F9DA061ADF089D005ED457 /* Instructions.cpp */,
+				43F9DA071ADF089D005ED457 /* Instructions.h */,
 				43F7D47E1AB772BB0036BD1E /* Nodes */,
 			);
 			path = Scanner;
@@ -235,6 +240,7 @@
 				43CD64BD1AC2458C00BBD68F /* Parser.cpp in Sources */,
 				43F7D4881AB7765D0036BD1E /* StatementNode.cpp in Sources */,
 				43F7D4941AB779A50036BD1E /* IdentifierNode.cpp in Sources */,
+				43F9DA081ADF089D005ED457 /* Instructions.cpp in Sources */,
 				43F7D4841AB774A40036BD1E /* ProgramNode.cpp in Sources */,
 				43F239131AD4E6AF0056C3D2 /* WhileStatementNode.cpp in Sources */,
 				43F7D4821AB7747A0036BD1E /* BlockNode.cpp in Sources */,

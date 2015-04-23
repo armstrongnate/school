@@ -14,6 +14,7 @@
 #include "SymbolTable.h"
 #include "Parser.h"
 #include "Node.h"
+#include "Instructions.h"
 
 void scan() {
   Scanner scanner("/Users/nate/school/cs4550/assignments/Scanner/Scanner/main.txt");

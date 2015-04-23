@@ -672,3 +672,50 @@ void CoutStatementNode::Code(Instruction &instruction) {
 
 When we interpret we return the result of `Evaluate` but when we are coding we
 push the return value on the stack.
+
+
+## Mon Apr 20
+
+### Coding an if node
+
+```
+void main() {
+  if (3)
+    cout << 100;
+  cout << 200;
+}
+```
+
+Use `PushValue()` which will include a call to `IMMEDIATE_TO_EAX` and `PUSH_EAX`
+with pushing 3 in the middle there somewhere.
+
+Use `SkipIfZeroStack()` to evaluate `if`.
+
+Call `SetOffset(addressToFillInLater, A2 - A1)`.
+
+```
+void IfStatementNode::Code(InstructionsClass &machineCode) {
+  mExpression->CodeEvaluate(machineCode);
+  unsigned char *InsertAddress = machineCode.SkipIfZeroStack();
+  unsigned char *address1 = machineCode.GetAddresss();
+  mStatement->Code(machineCode);
+  unsigned char *address2 = machineCode.GetAddress();
+  machineCode.SetOffset(InsertAddress, (int)(address2-address1));
+}
+
+void IntegerNode::CodeEvaluate(InstructionsClass &machineCode) {
+  machineCode.PushValue(this->value);
+}
+
+void PlusNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopAddPush();
+}
+
+void MinusNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopSubPush();
+}
+```
