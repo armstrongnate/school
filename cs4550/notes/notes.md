@@ -719,3 +719,45 @@ void MinusNode::CodeEvaluate(InstructionsClass &machineCode) {
   machineCode.PopPopSubPush();
 }
 ```
+
+
+## Mon Apr 27
+
+### Announcements
+* we will go over the final next time
+
+### More coding
+
+#### while node
+
+```
+void WhileStatementNode::Code(InstructionsClass &machineCode) {
+  mExpression->CodeEvaluate(machineCode);
+  unsigned char *address0 = machineCode.GetAddresss();
+  unsigned char *offset1 = machineCode.SkipIfZeroStack();
+  unsigned char *address1 = machineCode.GetAddresss();
+  mStatement->Code(machineCode);
+  unsigned char *offset2 = machineCode.Jump();
+  unsigned char *address2 = machineCode.GetAddresss();
+  machineCode.SetOffset(offset1, (int)(address2-address1));
+  machineCode.SetOffset(offset2, (int)(address0-address2));
+}
+```
+
+#### declaration statement node
+
+Just copy the Interpret method because we're going to use the symbol table for
+storing variables because we can.
+
+#### assignment statement node
+
+```
+void AssignmentStatementNode::Code(InstructionsClass &machineCode) {
+  mExpression->CodeEvaluate(machineCode);
+  machineCode.PopAndStore(mIdentifierNode->GetIndex());
+}
+```
+
+#### += and -=
+
+Have these nodes derive from `StatementNode`.
