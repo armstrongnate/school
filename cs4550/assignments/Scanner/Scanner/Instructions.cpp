@@ -61,14 +61,42 @@ void HelperPrintInteger(void);
 
 void InstructionsClass::Encode(unsigned char c)
 {
+  if(mCurrent < MAX_INSTRUCTIONS)
+    mCode[mCurrent++] = c;
+  else
+  {
+    cerr << "Error.  Used up all " << MAX_INSTRUCTIONS
+    << " instructions." << endl;
+    exit(1);
+  }
 }
 
 void InstructionsClass::Encode(int x)
 {
+  if(mCurrent < MAX_INSTRUCTIONS) {
+    *((int*)(&( mCode [mCurrent]))) = x;
+    mCurrent += 4;
+  }
+  else
+  {
+    cerr << "Error.  Used up all " << MAX_INSTRUCTIONS
+    << " instructions." << endl;
+    exit(1);
+  }
 }
 
 void InstructionsClass::Encode(long long x)
 {
+  if(mCurrent < MAX_INSTRUCTIONS) {
+    *((long long*)(&( mCode [mCurrent]))) = x;
+    mCurrent += 8;
+  }
+  else
+  {
+    cerr << "Error.  Used up all " << MAX_INSTRUCTIONS
+    << " instructions." << endl;
+    exit(1);
+  }
 }
 
 void InstructionsClass::Encode(void * p)
@@ -136,8 +164,9 @@ void InstructionsClass::PrintAllMachineCodes()
 
 void InstructionsClass::PushValue(int value)
 {
-  // IMMEDIATE_TO_EAX
-  // PUSH_EAX
+  Encode(IMMEDIATE_TO_EAX);
+  Encode(value);
+  Encode(PUSH_EAX);
 }
 
 void InstructionsClass::Call(void * function_address)
@@ -222,10 +251,20 @@ void InstructionsClass::PopPopAddPush()
 
 void InstructionsClass::PopPopSubPush()
 {
+  Encode(POP_EBX);
+  Encode(POP_EAX);
+  Encode(SUB_EAX_EBX1);
+  Encode(SUB_EAX_EBX2);
+  Encode(PUSH_EAX);
 }
 
 void InstructionsClass::PopPopMulPush()
 {
+  Encode(POP_EBX);
+  Encode(POP_EAX);
+  Encode(MUL_EAX_EBX1);
+  Encode(MUL_EAX_EBX2);
+  Encode(PUSH_EAX);
 }
 
 void InstructionsClass::PopPopDivPush()
@@ -265,18 +304,22 @@ void InstructionsClass::PopPopLessEqualPush()
 
 void InstructionsClass::PopPopGreaterPush()
 {
+  PopPopComparePush(JG);
 }
 
 void InstructionsClass::PopPopGreaterEqualPush()
 {
+  PopPopComparePush(JGE);
 }
 
 void InstructionsClass::PopPopEqualPush()
 {
+  PopPopComparePush(JE);
 }
 
 void InstructionsClass::PopPopNotEqualPush()
 {
+  PopPopComparePush(JNE);
 }
 
 void InstructionsClass::PopPopAndPush()
