@@ -47,6 +47,7 @@ class EqualNode;
 class NodeEqualNode;
 class OrNode;
 class AndNode;
+class EndlNode;
 
 class Node {
 public:
@@ -126,12 +127,30 @@ private:
 
 class CoutStatementNode: public StatementNode {
 public:
-  CoutStatementNode(ExpressionNode *expressionNode);
+  CoutStatementNode();
   ~CoutStatementNode();
   void Interpret();
   void Code(InstructionsClass &machineCode);
+  void AddExpressionNode(ExpressionNode *en);
 private:
-  ExpressionNode *mExpressionNode;
+  vector<ExpressionNode*> mExpressionNodes;
+  EndlNode *mEndlNode;
+};
+
+class ExpressionNode {
+public:
+  virtual ~ExpressionNode();
+  virtual int Evaluate() = 0;
+  virtual void CodeEvaluate(InstructionsClass &machineCode) = 0;
+private:
+};
+
+class EndlNode: public ExpressionNode {
+public:
+  EndlNode();
+  ~EndlNode();
+  int Evaluate();
+  void CodeEvaluate(InstructionsClass &machineCode);
 };
 
 class IfStatementNode: public StatementNode {
@@ -155,14 +174,6 @@ public:
 private:
   ExpressionNode *mExpressionNode;
   StatementNode *mStatementNode;
-};
-
-class ExpressionNode {
-public:
-  virtual ~ExpressionNode();
-  virtual int Evaluate() = 0;
-  virtual void CodeEvaluate(InstructionsClass &machineCode) = 0;
-private:
 };
 
 class IntegerNode: public ExpressionNode {

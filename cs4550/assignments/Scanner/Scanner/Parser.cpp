@@ -111,9 +111,32 @@ AssignmentStatementNode * Parser::AssignmentStatement() {
 CoutStatementNode * Parser::CoutStatement() {
   Match(COUT_TOKEN);
   Match(INSERTION_TOKEN);
+  CoutStatementNode *csn = new CoutStatementNode();
   ExpressionNode *expression = Expression();
-  Match(SEMICOLON_TOKEN);
-  CoutStatementNode *csn = new CoutStatementNode(expression);
+  csn->AddExpressionNode(expression);
+  while (true) {
+    TokenType tt = mScanner->PeekNextToken().GetTokenType();
+    if (tt == INSERTION_TOKEN) {
+      Match(INSERTION_TOKEN);
+      Token next = mScanner->PeekNextToken();
+      if (next.GetTokenType() == ENDL_TOKEN) {
+        Match(ENDL_TOKEN);
+        csn->AddExpressionNode(NULL);
+      }
+      else {
+        ExpressionNode *nextExpression = Expression();
+        csn->AddExpressionNode(nextExpression);
+      }
+    }
+    else {
+      if (tt == ENDL_TOKEN) {
+        Match(ENDL_TOKEN);
+        csn->AddExpressionNode(NULL);
+      }
+      Match(SEMICOLON_TOKEN);
+      break;
+    }
+  }
   return csn;
 }
 

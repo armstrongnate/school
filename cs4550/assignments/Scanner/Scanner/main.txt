@@ -2,7 +2,9 @@ void main()
 {
   int count;
   count = 8 / 2;
+  int a;
+  a = 6;
   if (count > 3) {
-    cout << count; // should cout 4
+    cout << count << 100 << a * a << endl; // should cout 4 100 36
   }
 }
