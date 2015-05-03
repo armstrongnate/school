@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		430E19371AF5D26E00B74E86 /* PlusEqualNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 430E19361AF5D26E00B74E86 /* PlusEqualNode.cpp */; };
+		430E19391AF5D29E00B74E86 /* MinusEqualNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 430E19381AF5D29E00B74E86 /* MinusEqualNode.cpp */; };
 		433881DC1A9BCEBF00AF335B /* SymbolTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 433881DA1A9BCEBF00AF335B /* SymbolTable.cpp */; };
 		43661DC61A895DD1006C71CC /* Scanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43661DC41A895DD1006C71CC /* Scanner.cpp */; };
 		43CD64B61AC235FF00BBD68F /* MinusNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43CD64B51AC235FF00BBD68F /* MinusNode.cpp */; };
@@ -50,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		4304FB7B1A91992A009F44E2 /* main.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.txt; sourceTree = "<group>"; };
+		430E19361AF5D26E00B74E86 /* PlusEqualNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlusEqualNode.cpp; path = Nodes/PlusEqualNode.cpp; sourceTree = "<group>"; };
+		430E19381AF5D29E00B74E86 /* MinusEqualNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MinusEqualNode.cpp; path = Nodes/MinusEqualNode.cpp; sourceTree = "<group>"; };
 		433881DA1A9BCEBF00AF335B /* SymbolTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SymbolTable.cpp; sourceTree = "<group>"; };
 		433881DB1A9BCEBF00AF335B /* SymbolTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SymbolTable.h; sourceTree = "<group>"; };
 		43661DC41A895DD1006C71CC /* Scanner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scanner.cpp; sourceTree = "<group>"; };
@@ -162,6 +166,8 @@
 				43F2390E1AD4A1CC0056C3D2 /* NotNode.cpp */,
 				43F239101AD4E6A00056C3D2 /* IfStatementNode.cpp */,
 				43F239121AD4E6AF0056C3D2 /* WhileStatementNode.cpp */,
+				430E19361AF5D26E00B74E86 /* PlusEqualNode.cpp */,
+				430E19381AF5D29E00B74E86 /* MinusEqualNode.cpp */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -237,11 +243,13 @@
 				43F7D48E1AB777F40036BD1E /* CoutStatementNode.cpp in Sources */,
 				433881DC1A9BCEBF00AF335B /* SymbolTable.cpp in Sources */,
 				43F7D4981AB77C0F0036BD1E /* PlusNode.cpp in Sources */,
+				430E19391AF5D29E00B74E86 /* MinusEqualNode.cpp in Sources */,
 				43CD64BD1AC2458C00BBD68F /* Parser.cpp in Sources */,
 				43F7D4881AB7765D0036BD1E /* StatementNode.cpp in Sources */,
 				43F7D4941AB779A50036BD1E /* IdentifierNode.cpp in Sources */,
 				43F9DA081ADF089D005ED457 /* Instructions.cpp in Sources */,
 				43F7D4841AB774A40036BD1E /* ProgramNode.cpp in Sources */,
+				430E19371AF5D26E00B74E86 /* PlusEqualNode.cpp in Sources */,
 				43F239131AD4E6AF0056C3D2 /* WhileStatementNode.cpp in Sources */,
 				43F7D4821AB7747A0036BD1E /* BlockNode.cpp in Sources */,
 				43F239111AD4E6A00056C3D2 /* IfStatementNode.cpp in Sources */,

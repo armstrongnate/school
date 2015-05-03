@@ -86,6 +86,10 @@ StateMachine::StateMachine() {
   mLegalMoves[START_STATE][AMPERSAND_CHAR] = AMPERSAND1_STATE;
   mLegalMoves[AMPERSAND1_STATE][AMPERSAND_CHAR] = AND_STATE;
 
+  // += -=
+  mLegalMoves[PLUS_STATE][EQUAL_CHAR] = PLUS_EQUAL_STATE;
+  mLegalMoves[MINUS_STATE][EQUAL_CHAR] = MINUS_EQUAL_STATE;
+
   for (int i=0; i<LAST_STATE; i++) {
     mCorrespondingTokenTypes[i] = BAD_TOKEN;
   }
@@ -110,6 +114,8 @@ StateMachine::StateMachine() {
   mCorrespondingTokenTypes[EQUAL_STATE] = EQUAL_TOKEN;
   mCorrespondingTokenTypes[INSERTION_STATE] = INSERTION_TOKEN;
   mCorrespondingTokenTypes[EOF_STATE] = EOF_TOKEN;
+  mCorrespondingTokenTypes[PLUS_EQUAL_STATE] = PLUS_EQUAL_TOKEN;
+  mCorrespondingTokenTypes[MINUS_EQUAL_STATE] = MINUS_EQUAL_TOKEN;
 }
 
 MachineState StateMachine::UpdateState(char currentCharacter,

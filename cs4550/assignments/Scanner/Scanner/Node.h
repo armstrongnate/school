@@ -120,7 +120,7 @@ public:
   ~AssignmentStatementNode();
   void Interpret();
   void Code(InstructionsClass &machineCode);
-private:
+protected:
   IdentifierNode *mIdentifierNode;
   ExpressionNode *mExpressionNode;
 };
@@ -312,6 +312,24 @@ public:
   AndNode(ExpressionNode *left, ExpressionNode *right);
   int Evaluate();
   void CodeEvaluate(InstructionsClass &machineCode);
+private:
+};
+
+class PlusEqualNode: public AssignmentStatementNode {
+public:
+  PlusEqualNode(IdentifierNode *identifierNode, ExpressionNode *expressionNode);
+  ~PlusEqualNode();
+  void Interpret();
+  void Code(InstructionsClass &machineCode);
+private:
+};
+
+class MinusEqualNode: public AssignmentStatementNode {
+public:
+  MinusEqualNode(IdentifierNode *identifierNode, ExpressionNode *expressionNode);
+  ~MinusEqualNode();
+  void Interpret();
+  void Code(InstructionsClass &machineCode);
 private:
 };
 

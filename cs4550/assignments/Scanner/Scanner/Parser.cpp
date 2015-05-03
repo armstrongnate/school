@@ -101,10 +101,24 @@ DeclarationStatementNode * Parser::DeclarationStatement() {
 
 AssignmentStatementNode * Parser::AssignmentStatement() {
   IdentifierNode *identifier = Identifier();
-  Match(ASSIGNMENT_TOKEN);
-  ExpressionNode *expression = Expression();
+  TokenType tt = mScanner->PeekNextToken().GetTokenType();
+  AssignmentStatementNode *asn = NULL;
+  if (tt == ASSIGNMENT_TOKEN) {
+    Match(ASSIGNMENT_TOKEN);
+    ExpressionNode *expression = Expression();
+    asn = new AssignmentStatementNode(identifier, expression);
+  }
+  else if (tt == PLUS_EQUAL_TOKEN) {
+    Match(PLUS_EQUAL_TOKEN);
+    ExpressionNode *expression = Expression();
+    asn = new PlusEqualNode(identifier, expression);
+  }
+  else if (tt == MINUS_EQUAL_TOKEN) {
+    Match(MINUS_EQUAL_TOKEN);
+    ExpressionNode *expression = Expression();
+    asn = new MinusEqualNode(identifier, expression);
+  }
   Match(SEMICOLON_TOKEN);
-  AssignmentStatementNode *asn = new AssignmentStatementNode(identifier, expression);
   return asn;
 }
 

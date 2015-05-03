@@ -4,7 +4,8 @@ void main()
   count = 8 / 2;
   int a;
   a = 6;
-  if (count > 3) {
-    cout << count << 100 << a * a << endl; // should cout 4 100 36
+  count -= 1;
+  if (count >= 3) {
+    cout << count << 100 << a * a << endl; // should cout 3 100 36
   }
 }
