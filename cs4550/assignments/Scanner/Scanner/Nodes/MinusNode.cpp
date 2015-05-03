@@ -16,3 +16,9 @@ MinusNode::MinusNode(ExpressionNode *l, ExpressionNode *r)
 int MinusNode::Evaluate() {
   return mLeft->Evaluate() - mRight->Evaluate();
 }
+
+void MinusNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopSubPush();
+}

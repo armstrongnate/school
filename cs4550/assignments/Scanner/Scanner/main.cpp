@@ -14,6 +14,7 @@
 #include "SymbolTable.h"
 #include "Parser.h"
 #include "Node.h"
+#include "Instructions.h"
 
 void scan() {
   Scanner scanner("/Users/nate/school/cs4550/assignments/Scanner/Scanner/main.txt");
@@ -30,6 +31,17 @@ void testParser() {
   Parser parser(&scanner, &symbolTable);
   StartNode *root = parser.Start();
   root->Interpret();
+}
+
+void code() {
+  SymbolTable symbolTable;
+  Scanner scanner("/Users/nate/school/cs4550/assignments/Scanner/Scanner/main.txt");
+  Parser parser(&scanner, &symbolTable);
+  StartNode *root = parser.Start();
+  InstructionsClass machineCode;
+  root->Code(machineCode);
+  machineCode.Finish();
+  machineCode.Execute();
 }
 
 void testSymbolTable() {
@@ -59,6 +71,6 @@ void testSymbolTable() {
 }
 
 int main(int argc, const char * argv[]) {
-  testParser();
+  code();
   return 0;
 }

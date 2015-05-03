@@ -29,3 +29,12 @@ void IfStatementNode::Interpret() {
     }
   }
 }
+
+void IfStatementNode::Code(InstructionsClass &machineCode) {
+  mExpressionNode->CodeEvaluate(machineCode);
+  unsigned char *InsertAddress = machineCode.SkipIfZeroStack();
+  unsigned char *address1 = machineCode.GetAddress();
+  mStatementNode->Code(machineCode);
+  unsigned char *address2 = machineCode.GetAddress();
+  machineCode.SetOffset(InsertAddress, (int)(address2-address1));
+}

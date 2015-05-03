@@ -45,6 +45,9 @@ void Token::CheckReserved() {
   else if (strcmp(lexeme, "do") == 0) {
     mType = DO_TOKEN;
   }
+  else if (strcmp(lexeme, "endl") == 0) {
+    mType = ENDL_TOKEN;
+  }
 }
 
 ostream & operator<<(ostream &out, const Token &token) {

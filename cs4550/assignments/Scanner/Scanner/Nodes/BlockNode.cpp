@@ -21,3 +21,7 @@ BlockNode::~BlockNode() {
 void BlockNode::Interpret() {
   mStatementGroupNode->Interpret();
 }
+
+void BlockNode::Code(InstructionsClass &machineCode) {
+  mStatementGroupNode->Code(machineCode);
+}

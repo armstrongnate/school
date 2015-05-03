@@ -23,3 +23,8 @@ AssignmentStatementNode::~AssignmentStatementNode() {
 void AssignmentStatementNode::Interpret() {
   mIdentifierNode->SetValue(mExpressionNode->Evaluate());
 }
+
+void AssignmentStatementNode::Code(InstructionsClass &machineCode) {
+  mExpressionNode->CodeEvaluate(machineCode);
+  machineCode.PopAndStore(mIdentifierNode->GetIndex());
+}

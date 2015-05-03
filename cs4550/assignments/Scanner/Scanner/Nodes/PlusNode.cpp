@@ -16,3 +16,9 @@ PlusNode::PlusNode(ExpressionNode *l, ExpressionNode *r)
 int PlusNode::Evaluate() {
   return mLeft->Evaluate() + mRight->Evaluate();
 }
+
+void PlusNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopAddPush();
+}
