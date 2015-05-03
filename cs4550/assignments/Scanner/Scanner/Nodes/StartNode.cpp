@@ -21,3 +21,7 @@ StartNode::~StartNode() {
 void StartNode::Interpret() {
   mProgramNode->Interpret();
 }
+
+void StartNode::Code(InstructionsClass &machineCode) {
+  mProgramNode->Code(machineCode);
+}

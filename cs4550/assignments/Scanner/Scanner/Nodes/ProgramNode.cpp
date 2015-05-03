@@ -21,3 +21,7 @@ ProgramNode::~ProgramNode() {
 void ProgramNode::Interpret() {
   mBlockNode->Interpret();
 }
+
+void ProgramNode::Code(InstructionsClass &machineCode) {
+  mBlockNode->Code(machineCode);
+}

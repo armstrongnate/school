@@ -20,3 +20,7 @@ NotNode::~NotNode() {
 int NotNode::Evaluate() {
   return !mExpressionNode->Evaluate();
 }
+
+void NotNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mExpressionNode->CodeEvaluate(machineCode);
+}

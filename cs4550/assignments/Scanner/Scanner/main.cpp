@@ -33,6 +33,17 @@ void testParser() {
   root->Interpret();
 }
 
+void code() {
+  SymbolTable symbolTable;
+  Scanner scanner("/Users/nate/school/cs4550/assignments/Scanner/Scanner/main.txt");
+  Parser parser(&scanner, &symbolTable);
+  StartNode *root = parser.Start();
+  InstructionsClass machineCode;
+  root->Code(machineCode);
+  machineCode.Finish();
+  machineCode.Execute();
+}
+
 void testSymbolTable() {
   SymbolTable table;
 
@@ -60,8 +71,6 @@ void testSymbolTable() {
 }
 
 int main(int argc, const char * argv[]) {
-  InstructionsClass instructions;
-  instructions.Finish();
-  instructions.Execute();
+  code();
   return 0;
 }

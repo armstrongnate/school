@@ -30,6 +30,12 @@ int LessNode::Evaluate() {
   return mLeft->Evaluate() < mRight->Evaluate();
 }
 
+void LessNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopLessPush();
+}
+
 // MARK: - LessEqualNode
 
 LessEqualNode::LessEqualNode(ExpressionNode *l, ExpressionNode *r)
@@ -39,6 +45,12 @@ LessEqualNode::LessEqualNode(ExpressionNode *l, ExpressionNode *r)
 
 int LessEqualNode::Evaluate() {
   return mLeft->Evaluate() <= mRight->Evaluate();
+}
+
+void LessEqualNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopLessEqualPush();
 }
 
 // MARK: - GreaterNode
@@ -52,6 +64,12 @@ int GreaterNode::Evaluate() {
   return mLeft->Evaluate() > mRight->Evaluate();
 }
 
+void GreaterNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopGreaterPush();
+}
+
 // MARK: - GreaterEqualNode
 
 GreaterEqualNode::GreaterEqualNode(ExpressionNode *l, ExpressionNode *r)
@@ -61,6 +79,12 @@ GreaterEqualNode::GreaterEqualNode(ExpressionNode *l, ExpressionNode *r)
 
 int GreaterEqualNode::Evaluate() {
   return mLeft->Evaluate() >= mRight->Evaluate();
+}
+
+void GreaterEqualNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopGreaterEqualPush();
 }
 
 // MARK: - EqualNode
@@ -74,6 +98,12 @@ int EqualNode::Evaluate() {
   return mLeft->Evaluate() == mRight->Evaluate();
 }
 
+void EqualNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopEqualPush();
+}
+
 // MARK: - NotEqualNode
 
 NotEqualNode::NotEqualNode(ExpressionNode *l, ExpressionNode *r)
@@ -83,6 +113,12 @@ NotEqualNode::NotEqualNode(ExpressionNode *l, ExpressionNode *r)
 
 int NotEqualNode::Evaluate() {
   return mLeft->Evaluate() != mRight->Evaluate();
+}
+
+void NotEqualNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopNotEqualPush();
 }
 
 // MARK: - OrNode
@@ -96,6 +132,12 @@ int OrNode::Evaluate() {
   return mLeft->Evaluate() || mRight->Evaluate();
 }
 
+void OrNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopOrPush();
+}
+
 // MARK: - AndNode
 
 AndNode::AndNode(ExpressionNode *l, ExpressionNode *r)
@@ -105,4 +147,10 @@ AndNode::AndNode(ExpressionNode *l, ExpressionNode *r)
 
 int AndNode::Evaluate() {
   return mLeft->Evaluate() && mRight->Evaluate();
+}
+
+void AndNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopAndPush();
 }

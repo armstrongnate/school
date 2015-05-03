@@ -21,3 +21,8 @@ CoutStatementNode::~CoutStatementNode() {
 void CoutStatementNode::Interpret() {
   cout << mExpressionNode->Evaluate() << endl;
 }
+
+void CoutStatementNode::Code(InstructionsClass &machineCode) {
+  mExpressionNode->CodeEvaluate(machineCode);
+  machineCode.PopAndWrite();
+}

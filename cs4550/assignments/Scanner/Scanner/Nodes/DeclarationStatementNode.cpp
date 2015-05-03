@@ -21,3 +21,7 @@ DeclarationStatementNode::~DeclarationStatementNode() {
 void DeclarationStatementNode::Interpret() {
   mIdentifierNode->DeclareVariable();
 }
+
+void DeclarationStatementNode::Code(InstructionsClass &machineCode) {
+  mIdentifierNode->DeclareVariable();
+}

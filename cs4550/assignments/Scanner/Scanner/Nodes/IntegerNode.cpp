@@ -16,3 +16,7 @@ IntegerNode::IntegerNode(int val)
 int IntegerNode::Evaluate() {
   return mValue;
 }
+
+void IntegerNode::CodeEvaluate(InstructionsClass &machineCode) {
+  machineCode.PushValue(this->mValue);
+}

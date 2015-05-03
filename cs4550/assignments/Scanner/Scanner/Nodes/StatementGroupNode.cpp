@@ -28,3 +28,9 @@ void StatementGroupNode::Interpret() {
     mStatementNodes[i]->Interpret();
   }
 }
+
+void StatementGroupNode::Code(InstructionsClass &machineCode) {
+  for (int i=0; i<mStatementNodes.size(); i++) {
+    mStatementNodes[i]->Code(machineCode);
+  }
+}

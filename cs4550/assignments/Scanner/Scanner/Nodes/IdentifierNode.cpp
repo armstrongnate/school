@@ -21,6 +21,10 @@ int IdentifierNode::Evaluate() {
   return mSymbolTable->GetValue(mLabel);
 }
 
+void IdentifierNode::CodeEvaluate(InstructionsClass &machineCode) {
+  machineCode.PushVariable(GetIndex());
+}
+
 void IdentifierNode::DeclareVariable() {
   mSymbolTable->AddEntry(mLabel);
 }

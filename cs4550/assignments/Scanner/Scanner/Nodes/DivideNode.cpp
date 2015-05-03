@@ -16,3 +16,9 @@ DivideNode::DivideNode(ExpressionNode *l, ExpressionNode *r)
 int DivideNode::Evaluate() {
   return mLeft->Evaluate() / mRight->Evaluate();
 }
+
+void DivideNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopDivPush();
+}

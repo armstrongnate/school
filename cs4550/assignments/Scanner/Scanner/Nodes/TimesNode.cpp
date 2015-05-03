@@ -16,3 +16,9 @@ TimesNode::TimesNode(ExpressionNode *l, ExpressionNode *r)
 int TimesNode::Evaluate() {
   return mLeft->Evaluate() * mRight->Evaluate();
 }
+
+void TimesNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopMulPush();
+}
