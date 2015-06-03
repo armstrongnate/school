@@ -31,10 +31,24 @@ void IfStatementNode::Interpret() {
 }
 
 void IfStatementNode::Code(InstructionsClass &machineCode) {
-  mExpressionNode->CodeEvaluate(machineCode);
-  unsigned char *InsertAddress = machineCode.SkipIfZeroStack();
-  unsigned char *address1 = machineCode.GetAddress();
-  mStatementNode->Code(machineCode);
-  unsigned char *address2 = machineCode.GetAddress();
-  machineCode.SetOffset(InsertAddress, (int)(address2-address1));
+  if (mElseStatementNode) {
+    mExpressionNode->CodeEvaluate(machineCode);
+    unsigned char *offset1 = machineCode.SkipIfZeroStack();
+    unsigned char *address1 = machineCode.GetAddress();
+    mStatementNode->Code(machineCode);
+    unsigned char *offset2 = machineCode.Jump();
+    unsigned char *address2 = machineCode.GetAddress();
+    mElseStatementNode->Code(machineCode);
+    unsigned char *address3 = machineCode.GetAddress();
+    machineCode.SetOffset(offset1, (int)(address2-address1));
+    machineCode.SetOffset(offset2, (int)(address3-address2));
+
+  } else {
+    mExpressionNode->CodeEvaluate(machineCode);
+    unsigned char *offset1 = machineCode.SkipIfZeroStack();
+    unsigned char *address1 = machineCode.GetAddress();
+    mStatementNode->Code(machineCode);
+    unsigned char *address2 = machineCode.GetAddress();
+    machineCode.SetOffset(offset1, (int)(address2-address1));
+  }
 }

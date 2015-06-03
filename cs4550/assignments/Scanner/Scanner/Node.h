@@ -31,6 +31,7 @@ class AssignmentStatementNode;
 class CoutStatementNode;
 class IfStatementNode;
 class WhileStatementNode;
+class DoWhileStatementNode;
 class IdentifierNode;
 class ExpressionNode;
 class IntegerNode;
@@ -48,6 +49,7 @@ class NodeEqualNode;
 class OrNode;
 class AndNode;
 class EndlNode;
+class ExponentNode;
 
 class Node {
 public:
@@ -169,6 +171,17 @@ class WhileStatementNode: public StatementNode {
 public:
   WhileStatementNode(ExpressionNode *en, StatementNode *sn);
   ~WhileStatementNode();
+  void Interpret();
+  void Code(InstructionsClass &machineCode);
+private:
+  ExpressionNode *mExpressionNode;
+  StatementNode *mStatementNode;
+};
+
+class DoWhileStatementNode: public StatementNode {
+public:
+  DoWhileStatementNode(ExpressionNode *en, StatementNode *sn);
+  ~DoWhileStatementNode();
   void Interpret();
   void Code(InstructionsClass &machineCode);
 private:
@@ -310,6 +323,14 @@ private:
 class AndNode: public BinaryOperatorNode {
 public:
   AndNode(ExpressionNode *left, ExpressionNode *right);
+  int Evaluate();
+  void CodeEvaluate(InstructionsClass &machineCode);
+private:
+};
+
+class ExponentNode: public BinaryOperatorNode {
+public:
+  ExponentNode(ExpressionNode *left, ExpressionNode *right);
   int Evaluate();
   void CodeEvaluate(InstructionsClass &machineCode);
 private:

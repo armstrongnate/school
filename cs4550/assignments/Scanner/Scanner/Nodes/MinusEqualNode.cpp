@@ -21,8 +21,8 @@ MinusEqualNode::~MinusEqualNode() {
 }
 
 void MinusEqualNode::Interpret() {
-  int exp_value = mExpressionNode->Evaluate();
-  exp_value -= mIdentifierNode->Evaluate();
+  int exp_value = mIdentifierNode->Evaluate();
+  exp_value -= mExpressionNode->Evaluate();
   mIdentifierNode->SetValue(exp_value);
 }
 

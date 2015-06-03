@@ -88,6 +88,9 @@ StatementNode * Parser::Statement() {
   else if (tt == WHILE_TOKEN) {
     return WhileStatement();
   }
+  else if (tt == DO_TOKEN) {
+    return DoWhileStatement();
+  }
   return NULL;
 }
 
@@ -237,16 +240,16 @@ ExpressionNode * Parser::Side() {
 }
 
 ExpressionNode* Parser::Term() {
-  ExpressionNode *current = Factor();
+  ExpressionNode *current = Exponent();
   while (true) {
     TokenType tt = mScanner->PeekNextToken().GetTokenType();
     if (tt == TIMES_TOKEN) {
       Match(tt);
-      current = new TimesNode(current, Factor());
+      current = new TimesNode(current, Exponent());
     }
     else if(tt == DIVIDE_TOKEN) {
       Match(tt);
-      current = new DivideNode(current, Factor());
+      current = new DivideNode(current, Exponent());
     }
     else {
       return current;
@@ -254,6 +257,19 @@ ExpressionNode* Parser::Term() {
   }
 }
 
+ExpressionNode* Parser::Exponent() {
+  ExpressionNode *current = Factor();
+  while (true) {
+    TokenType tt = mScanner->PeekNextToken().GetTokenType();
+    if (tt == EXPONENT_TOKEN) {
+      Match(tt);
+      current = new ExponentNode(current, Factor());
+    }
+    else {
+      return current;
+    }
+  }
+}
 
 ExpressionNode* Parser::Factor() {
   ExpressionNode *current = NULL;
@@ -317,4 +333,16 @@ WhileStatementNode* Parser::WhileStatement() {
   StatementNode *statement = Statement();
   WhileStatementNode *ws = new WhileStatementNode(e, statement);
   return ws;
+}
+
+DoWhileStatementNode* Parser::DoWhileStatement() {
+  Match(DO_TOKEN);
+  StatementNode *statement = Statement();
+  Match(WHILE_TOKEN);
+  Match(LPAREN_TOKEN);
+  ExpressionNode *e = Expression();
+  Match(RPAREN_TOKEN);
+  Match(SEMICOLON_TOKEN);
+  DoWhileStatementNode *dws = new DoWhileStatementNode(e, statement);
+  return dws;
 }

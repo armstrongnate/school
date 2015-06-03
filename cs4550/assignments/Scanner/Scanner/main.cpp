@@ -16,6 +16,8 @@
 #include "Node.h"
 #include "Instructions.h"
 
+bool parse = true;
+
 void scan() {
   Scanner scanner("/Users/nate/school/cs4550/assignments/Scanner/Scanner/main.txt");
   Token token;
@@ -71,6 +73,10 @@ void testSymbolTable() {
 }
 
 int main(int argc, const char * argv[]) {
-  code();
+  if (parse) {
+    testParser();
+  } else {
+    code();
+  }
   return 0;
 }

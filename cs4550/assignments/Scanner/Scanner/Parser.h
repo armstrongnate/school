@@ -30,6 +30,7 @@ class ExpressionNode;
 class BlockNode;
 class NotNode;
 class IntegerNode;
+class DoWhileStatementNode;
 
 class Parser {
 public:
@@ -53,11 +54,13 @@ private:
   ExpressionNode * Relational();
   ExpressionNode * Side();
   ExpressionNode * Term();
+  ExpressionNode * Exponent();
   ExpressionNode * Factor();
   ExpressionNode * Or();
   ExpressionNode * And();
   IntegerNode * Integer();
   NotNode * Not();
+  DoWhileStatementNode * DoWhileStatement();
 };
 
 #endif /* defined(__Scanner__Parser__) */
