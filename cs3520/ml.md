@@ -15,6 +15,11 @@ _Value bindings_ are not variables because they can't change (but they can be re
 
 **TODO** have a usable ML installation by next time.
 
+## Running
+```
+rlwrap mosml
+```
+
 ## Functions
 
 ```
@@ -97,3 +102,32 @@ because of the way it resolves _free variables_.
 * constants `false` `true`
 * p `andalso` q // same as `&&`
 * p `orelse` q // same as `||`
+
+## Basis Library
+
+Moscow ML doesn't load the Basis Library automatically. Include it like this:
+
+```
+# load math functions
+load "Math";
+
+# load your own
+use "myfunctions.ml";
+```
+
+## Tuples
+
+```
+fun max (a, b) = if a > b then a else b;
+```
+
+## Lists
+
+### _name as_ pattern
+
+```
+fun insertinorder n (lst as x::xs) =
+    if n <= x then n :: lst
+    else x :: (insertinorder n xs)
+  | insertinorder n _ = [n];
+```
