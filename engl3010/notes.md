@@ -72,7 +72,13 @@ Meetings are either really good or really bad.
 
 ### Complaint Letter
 
+Due Friday Sept 25.
+
 - [ ] find something that caused you to have a bad experience, most likely with customer service
 - [ ] describe the incident that happened that was not pleasant (someone was rude).
 
 We will look at some examples next time.
+
+* identify
+* describe
+* suggest action
