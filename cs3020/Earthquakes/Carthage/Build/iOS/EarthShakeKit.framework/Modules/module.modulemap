@@ -1,0 +1,6 @@
+framework module EarthShakeKit {
+  umbrella header "EarthShakeKit.h"
+
+  export *
+  module * { export * }
+}
