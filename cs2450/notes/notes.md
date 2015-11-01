@@ -46,3 +46,80 @@ TODO: look it up and make sure you can explain what it is
 
 #### GANT Chart
 Given a table, make a chart. Look at prerequisites and line up the blocks.
+
+
+## Tue Apr 7
+
+### Test Review
+
+Test is on Thursday.
+
+#### IDEs and Text Editors
+
+IDEs:
+
+* Xcode
+* Android Studio
+* Eclipse
+
+Text editors:
+
+* Atom
+* Sublime Text
+* Vim
+* Emacs
+
+#### Coding
+
+* comments (1 for every 10 lines)
+* variable names (underscores are hard)
+* DRY (this is a ruby thing)
+* avoid pointers
+* avoid arrays
+
+#### Testing
+
+##### 1. White box
+You can see the code and can perform fence post conditions.
+
+##### 2. Black box
+This is the `double` function. You can't see the code.
+
+##### 3. Gray box
+You have a pretty good idea of what the code looks like.
+
+##### 4. Oracle
+Everyday at 4:00 everyone submits their code and it gets tested over night.
+
+##### 5. Mothra
+Godzilla had a baby that spit out deviants of itself. Morphing your code and every
+morph should break your code.
+
+##### 6. Code review
+Make sure your buddy's code is correct. Hurt the code not the programmer. Break
+review sessions up into 30 minute increments.
+
+##### 7. Acceptance
+Client testing.
+
+##### 8. Destructive
+Run it until it breaks.
+
+##### 9. UX Testing
+Bob's niece is a ux tester. Pay someone to tell you if your ux sucks in a 30-40
+page report.
+
+##### 10. Alpha/Beta/GOLD testing
+Alpha: programmer testing
+
+Beta: user testing
+
+GOLD: send it to the publisher
+
+##### 11. Stress
+Try it with more data, users, etc.
+
+##### 12. Smoke
+Focus testing on areas that are the most complex or mostly being used in order
+to save testing time.
+

@@ -328,8 +328,9 @@ Working on Assignment 2
  ```cpp
  MachineState mLegalMoves[LAST_STATE][LAST_CHAR]
  ```
+
 language | S | A | B
--------------
+------ | -- | --- | --
 x | A | A | S
 y | S | A | B
 z | S | B | CANT_MOVE
@@ -342,3 +343,421 @@ TokenType mCorrespondingTokenTypes[LAST_STATE]
 ```
 Initialize it with `BAD_TOKEN` Token Types.
 Not all machine states have a corresponding token type.
+
+
+## Wed Feb 18
+
+### Agenda
+* Scanner questions
+* Symbol Table
+* Parse tree
+
+### Scanner Questions
+10: need to add NOT_EQUAL support
+
+### Symbol Table
+Job is to keep track of all the variables as a list. A variable will be a `struct`
+with two fields:
+* label: string
+* value: int
+
+Problems at the end of the chapter explain how to create the `Symbol` and `SymbolTable`
+classes.
+
+### Parse Tree
+* build tree by expanding nonterminals, terminals don't have children
+* terminals should be verified then forgotten
+* store lexeme inside of IdentifierNode and IntegerNode and point to the symbol table.
+* StatementGroup should have a vector of Statement pointers
+
+Class hierarchy- stick all the heads in `Node.h`.
+
+* Node
+  * StartNode
+  * ProgramNode
+  * StatementNode
+    * DeclarationStatement
+    * AssignmentStatement
+    * CoutStatement
+  * ExpressionNode
+    * IntegerNode
+    * BinaryOperatorNode
+      * Plus Node
+      * 9 others
+  * etc.
+
+
+## Wed Jan 25
+
+### Agenda
+* Chapter 5 - Expressions
+* A little bit of Chapter 6
+
+Chapter 6 uses the grammar rules from chapter 5 but makes them not _left recursive_.
+He is considering just doing it all in chapter 5.
+
+### Expressions
+We discussed the Plus Node in chapter 4, now we need to add the rest of the
+`ExpressionNode`s.
+
+We want grammar rules that enforce:
+* operator priority
+* left to right on equal priority
+* parens - to force order
+* no _left recursion_
+
+#### How a parse tree is evaluated
+![expression parse tree](images/chpt-5-lecture-notes.jpg)
+The tree is evaluated from bottom to top.
+
+##### operator priority
+Split the operators into levels (lowest to highest):
+
+1. FACTOR = `> >= < <= == !=`
+2. PLUS_MINUS = `+ -`
+3. TIMES_DIVIDE = `\* /`
+
+##### left to right on equal priority
+This is what we had last time...
+```
+2 + 3 - 4 + 1
+<Expression> -> <Expression> PLUS <Expression> | <Expression MINUS <Expression>
+```
+
+But it doesn't actually work because we **must** expand the left `<Expression>`
+first so that we build the tree down the left side and not the right.
+
+#### "From the top!"
+```
+ITEM = integer, identifier, etc
+PLUS_MINUS = + - level
+TIMES_DIVIDE = * / level
+
+<Expression> -> <Relational>
+<Relational> -> <PLUS_MINUS><RelOperator><PLUS_MINUS> | <PLUS_MINUS>
+<RelOperator> -> EQUAL | NOTEQUAL | LESS | LESSEQUAL | GREATER | GREATEREQUAL
+<PLUS_MINUS> -> <PLUS_MINUS>PLUS<TIMES_DIVIDE> | <TIMES_DIVIDE>
+<PLUS_MINUS> -> <PLUS_MINUS>MINUS<TIMES_DIVIDE> | <TIMES_DIVIDE>
+<TIMES_DIVIDE> -> <TIMES_DIVIDE>TIMES<ITEM> | <ITEM>
+<TIMES_DIVIDE> -> <TIMES_DIVIDE>DIVIDE<ITEM> | <ITEM>
+<ITEM> -> <Identifier> | <Integer> | (<Expression>)
+<Identifier> -> IDENTIFIER
+<Integer> -> INTEGER
+
+✓ operator priority
+✓ left to right on equal priority
+✓ parens
+```
+
+* Each grammar rule will be a method on `Parser`.
+* At each level I can go to the level below it, directly or I can do left tree
+expansion.
+* the parens around the `<Expression>` at the end there is all we need to support
+parens.
+* this gets us 3 out of the 4 requirements for expressions.
+
+##### Discussion
+
+Expressions only have 1 relational operator so we want to support multiple times
+and divides but only zero or one relational operators so we changed it:
+
+**Before:**
+```
+<Relational> -> <Relational><RelOperator><PLUS_MINUS> | <PLUS_MINUS>
+```
+
+**After:**
+```
+<Relational> -> <PLUS_MINUS><RelOperator><PLUS_MINUS> | <PLUS_MINUS>
+```
+
+#### Fixing left recursion
+
+Sample expressions:
+```
+3 * 4 / 7
+6
+```
+
+This is a problem:
+```
+<TIMES_DIVIDE> -> <TIMES_DIVIDE>TIMES<ITEM> | <ITEM>
+<TIMES_DIVIDE> -> <TIMES_DIVIDE>DIVIDE<ITEM> | <ITEM>
+```
+because we will get an infinite loop so it becomes more like:
+```
+<Term> -> <Factor><FactorTail>
+<FactorTail> -> {empty}
+<FactorTail> -> TIMES<Factor><FactorTail>
+<FactorTail> -> DIVIDE<Factor><FactorTail>
+```
+This is achieved by peeking to see if we have more times and divides to take. If
+there aren't any then you can return to the level above.
+
+
+## Mon Mar 2
+
+* Work day
+
+
+## Wed Mar 4
+
+### Agenda
+* Questions
+* Chapter 6
+
+### Chapter 6 - writing your own parser
+
+This is divided in to 2 main sections, with no output and with output.
+
+#### No Output
+
+* terminals are functions, nonterminals use `Match`
+
+StatementGroups are tricky because there can be any number of statements. Peek ahead
+and use `seekq()` to set it back to where it was.
+
+Call `GetNextToken()` from `PeekNextToken()`.
+
+The end of the parse code should return a pointer to the root node (which you should
+be able to call `delete` on and every node will get deleted).
+
+Make sure all nodes can print a message on construction and destruction.
+
+
+## Mon Mar 16
+
+* Get Parser (chapter 6) done by Wed
+
+
+## Wed Mar 18
+
+### Announcements
+
+* Parser (Chapter 6) should be done.
+
+### The Interpreter
+
+The chapter is pretty descriptive. We are having each node interpret themselves.
+
+
+## Mon Mar 30
+
+### Announcements
+
+* Test is on April 8, review is in a week! Must have the interpreter done by next
+week.
+* Workdays for the next few days. Ask lots of questions to get caught up.
+
+
+## Mon Apr 6
+
+### Announcements
+
+* Test on wed, have Interpreter done lest it be _really_ hard.
+
+### Test Review
+
+#### Last year's test:
+
+> Write a grammar that produces all sequences of positive integers that are multiples
+of 3. There should not be leading zeros. Remember that a number is divisible by 3
+if the sum of its digits is divisible by 3. HINT: You don't actually have to sum
+the digits - just keep track of `sum % 3`.
+
+
+> Draw a finite automata that recognizes the legal strings of the previous question.
+
+> Support Pascal style blocks of code
+
+Just update `CheckReserved` to check for `begin` string and make it an `LCURLY` token
+and check for `end` string and make it an `RCURLY` token. That way we don't have to
+change the parser to check for new tokens.
+
+#### 2 years ago
+
+> Write a grammar that produces all sequences of positive integers that are multiples
+of 25, such as 75, 125, 3000, 2301050, etc. There should not be leading zeros.
+
+
+## Mon Apr 13
+
+### Machine Language
+
+We will compile and run our code in one swoop because making executables and
+executing them is not easy?
+
+We will need to do some voodoo to make it work.
+
+```c++
+void * ptr = mCode; // necessary?
+void (*f)(void);
+f = (void (*)(void)) ptr;
+f();
+```
+
+See `disabling_code_protection` from http://cit.dixie.edu/cs/4550/notes.php.
+
+I ran `sudo sysctl -w kern.nx=0` to make the voodoo work. **REMEMBER TO TURN THIS BACK ON!**
+
+#### Instructions
+
+"Instructions" is the name of the new project to create aside from the current compiler
+project.
+
+Use the [header](http://cit.dixie.edu/cs/4550/permanent/instructions.h) and the
+[implentation](http://cit.dixie.edu/cs/4550/permanent/instructions_starter.cpp) files
+to get started.
+
+##### PushValue and friends
+
+Write some machine code to load the value on to the stack. We will have help on
+how to do these methods (it's given in #7).
+
+Once we get all of this finished it will be easy to integrate it into the Simple
+Compiler. :)
+
+
+## Tue Apr 15
+
+### Supporting chained cout statements
+
+* Change the `CoutStatementNode` to have a vector of `ExpressionNode`s instead of
+a single `ExpressionNode`.
+* Need a new token type for `endl`. It can't be evaluated so stick it in the list
+as `null`
+
+Example:
+
+```c++
+cout << 25 << i + 7 << 2 - (22 * 3 / 8) << endl << x << endl;
+```
+
+will create an array like:
+
+```c++
+[
+  IntegerNode,
+  PlusNode,
+  MinusNode,
+  null,
+  IdentifierNode,
+  null
+]
+```
+
+The `Interpret` method will then become:
+
+```c++
+void CoutStatementNode::Interpret() {
+  for (int i=0; i<mExpressionNodes.size(); i++) {
+    if (mExpressionNodes[i]) {
+      cout << mExpressionNodes[i]->Evaluate() << " ";
+    } else {
+      cout << endl;
+    }
+  }
+}
+```
+
+Coding the CoutNode.
+
+```c++
+// the old way (one expression node per cout node)
+void CoutStatementNode::Code(Instruction &instruction) {
+  mExpressionNode->CodeEvaluate(instruction);
+  c.PopAndWrite(); // use WriteEndl in new way when writing cout
+}
+```
+
+When we interpret we return the result of `Evaluate` but when we are coding we
+push the return value on the stack.
+
+
+## Mon Apr 20
+
+### Coding an if node
+
+```
+void main() {
+  if (3)
+    cout << 100;
+  cout << 200;
+}
+```
+
+Use `PushValue()` which will include a call to `IMMEDIATE_TO_EAX` and `PUSH_EAX`
+with pushing 3 in the middle there somewhere.
+
+Use `SkipIfZeroStack()` to evaluate `if`.
+
+Call `SetOffset(addressToFillInLater, A2 - A1)`.
+
+```
+void IfStatementNode::Code(InstructionsClass &machineCode) {
+  mExpression->CodeEvaluate(machineCode);
+  unsigned char *InsertAddress = machineCode.SkipIfZeroStack();
+  unsigned char *address1 = machineCode.GetAddresss();
+  mStatement->Code(machineCode);
+  unsigned char *address2 = machineCode.GetAddress();
+  machineCode.SetOffset(InsertAddress, (int)(address2-address1));
+}
+
+void IntegerNode::CodeEvaluate(InstructionsClass &machineCode) {
+  machineCode.PushValue(this->value);
+}
+
+void PlusNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopAddPush();
+}
+
+void MinusNode::CodeEvaluate(InstructionsClass &machineCode) {
+  mLeft->CodeEvaluate(machineCode);
+  mRight->CodeEvaluate(machineCode);
+  machineCode.PopPopSubPush();
+}
+```
+
+
+## Mon Apr 27
+
+### Announcements
+* we will go over the final next time
+
+### More coding
+
+#### while node
+
+```
+void WhileStatementNode::Code(InstructionsClass &machineCode) {
+  mExpression->CodeEvaluate(machineCode);
+  unsigned char *address0 = machineCode.GetAddresss();
+  unsigned char *offset1 = machineCode.SkipIfZeroStack();
+  unsigned char *address1 = machineCode.GetAddresss();
+  mStatement->Code(machineCode);
+  unsigned char *offset2 = machineCode.Jump();
+  unsigned char *address2 = machineCode.GetAddresss();
+  machineCode.SetOffset(offset1, (int)(address2-address1));
+  machineCode.SetOffset(offset2, (int)(address0-address2));
+}
+```
+
+#### declaration statement node
+
+Just copy the Interpret method because we're going to use the symbol table for
+storing variables because we can.
+
+#### assignment statement node
+
+```
+void AssignmentStatementNode::Code(InstructionsClass &machineCode) {
+  mExpression->CodeEvaluate(machineCode);
+  machineCode.PopAndStore(mIdentifierNode->GetIndex());
+}
+```
+
+#### += and -=
+
+Have these nodes derive from `StatementNode`.
