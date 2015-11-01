@@ -82,3 +82,17 @@ We will look at some examples next time.
 * identify
 * describe
 * suggest action
+
+### Proposal
+
+Ideas:
+
+* Communication
+  * Make an app that works
+    * hour changes
+    * game notifications
+    * 5k runs
+    * favorite sports
+    * class specific notifications
+    * target laptop users as well
+
