@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <title>CS/VT 4010 Assignment 1: Javascript quiz</title>
+    <link rel="stylesheet" href="http://d35lae85h6tg07.cloudfront.net/reset.css" type="text/css">
+    <style type="text/css">
+      #container { width: 800px; margin: 0 auto; }
+      #header, #footer { width: 800px; margin: 1em 0; padding: 1em; float: left;
+                    background-color: #9999ff; }
+      #leftcolumn { width: 140px; margin-right: 10px; padding-left: 10px; float: left;
+                    background-color: #ffffff; }
+      #maincolumn { width: 628px; padding-left: 10px; margin-right: 0; float: left;
+                    border-left: 2px solid #cc9966; line-height: 120%; }
+      #date { float: right; font-style: italic; }
+      #maincolumn h1 { margin: 1em 0; }
+      #leftcolumn h1 { margin-bottom: .5em; }
+      #maincolumn li { margin: .5em 0; }
+      ul { padding: 0 1em; }
+      li { list-style-type: circle; }
+      input { width: 3em; }
+      p { margin: .5em 0; }
+      .clickable { color: #fff; background-color: #f00; cursor: pointer; }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="header">
+        <h1>CS/VT 4010 Assignment 1: Javascript quiz</h1>
+      </div>
+      <div id="leftcolumn">
+        <h1>List of items</h1>
+        <ul id="itemlist">
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul>
+      </div>
+      <div id="maincolumn">
+        <h1>Javascript quiz page for <span id="name">(put your name here)</span></h1>
+        <p>Create an external Javascript file called <code>quiz.js</code> that
+           makes each of these work. You may not change the HTML source in any
+           way.</p>
+        <ul>
+          <li>Your name should appear above instead of the placeholder (1&nbsp;point).</li>
+          <li>Clicking <span id="triggeralert" class="clickable">here</span>
+              should pop up an alert box. (3&nbsp;points)</li>
+          <li>Clicking <span id="triggerrandom" class="clickable">here</span> should change
+            <input type="text" id="randomnumber" name="randomnumber" value="this"></input>
+            into a random integer from 1 to 10. (2&nbsp;points)</li>
+          <li>Clicking <span id="triggerlist" class="clickable">here</span>
+              should change the number of items listed at left to the number in
+              this box: <input type="text" id="listsize" name="listsize"
+              value="3"></input> If the box does not contain a valid number,
+              you can do nothing or default to zero. Hint: form the HTML as a
+              string and use the <code>innerHTML</code> property of the list to
+              set it. It is okay to re-create the list from scratch each time.
+              (4&nbsp;points)</li>
+        </ul>
+        <p>When you are finished, submit your <code>quiz.js</code> file
+          using Canvas.</p>
+      </div>
+      <div id="footer">
+        <span id="date">Friday, September 13, 2013</span>
+      </div>
+    </div>
+    <script src="quiz.js"></script>
+  </body>
+</html>
