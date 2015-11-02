@@ -12,34 +12,22 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <ctype.h>
+#include <string.h>
 
 #include "lua.h"
 #include "lualib.h"
 #include "lauxlib.h"
 
-void callLuaFunction(lua_State *L) {
-    // access the function (pushes function on the stack)
-    lua_getglobal(L, "square");
+void start(lua_State *L, const char *file, int words, int n) {
+    lua_getglobal(L, "start");
 
     // push parameter on to the stack
-    lua_pushnumber(L, 3);
+    lua_pushstring(L, file);
+    lua_pushnumber(L, words);
+    lua_pushnumber(L, n);
 
-    // call the function (places result on top of stack)
-    // 1 is the number of arguments and 1 is the number of return values
-    lua_pcall(L, 1, 1, 0);
-
-    // get result
-    int result = lua_tonumber(L, -1);
-
-    printf("result = %d\n", result); // should be 9 (3 squared)
-}
-
-// functions called by lua must return the number of values returned/pushed
-int square(lua_State *L) {
-    int x = lua_tonumber(L, 1);
-    lua_pushinteger(L, x*x);
-
-    return 1;
+    lua_pcall(L, 3, 0, 0);
 }
 
 char * readfile(const char *filename)
@@ -103,6 +91,47 @@ char * readfile(const char *filename)
     return buffer;
 }
 
+int l_loadFile(lua_State *L) {
+    const char *file = lua_tostring(L, 1);
+    char *contents = readfile(file);
+    lua_pushstring(L, contents);
+    return 1;
+}
+
+int l_getToken(lua_State *L) {
+    const char *contents = lua_tostring(L, 1);
+    int offset = lua_tonumber(L, 2);
+
+    int first = offset;
+
+    for (int i=first; contents[i] != '\0' && isspace(contents[i]); i++) {
+        first = first + 1;
+    }
+
+    int end = first;
+
+    for (int i=end; contents[i] != '\0' && !isspace(contents[i]); i++) {
+        end = end + 1;
+    }
+
+    int len = end - first;
+    char *raw;
+    strncpy(raw, contents+first, len);
+
+    char token[len+1];
+    token[len] = '\0';
+    for (int i=0; raw[i] != '\0'; i++) {
+        if (isalnum(raw[i])) {
+            token[i] = tolower(raw[i]);
+        }
+    }
+
+    lua_pushstring(L, token);
+    lua_pushnumber(L, end);
+
+    return 2;
+}
+
 int main(int argc, const char * argv[]) {
     // input file
     if (argc < 3) {
@@ -113,9 +142,9 @@ int main(int argc, const char * argv[]) {
     printf("contents = %s", contents);
 
     // number of words
-    int numWords;
-    numWords = atoi(argv[2]);
-    printf("number of words: %i\n", numWords);
+    int words;
+    words = atoi(argv[2]);
+    printf("number of words: %i\n", words);
 
     // n-grams
     int n = 3;
@@ -128,14 +157,14 @@ int main(int argc, const char * argv[]) {
     lua_State *L = luaL_newstate();
     luaL_openlibs(L);
 
-    // register c function
-    lua_register(L, "csquare", square);
+    // register c functions
+    lua_register(L, "load_file", l_loadFile);
+    lua_register(L, "get_token", l_getToken);
 
     // load lua file
     luaL_dofile(L, "/Users/nate/school/cs3520/assignments/lua/LuaMarkovBabbler/LuaMarkovBabbler/test.lua");
 
-    // call a lua function
-    callLuaFunction(L);
+    start(L, argv[1], words, n);
 
     // shut down
     lua_close(L);
