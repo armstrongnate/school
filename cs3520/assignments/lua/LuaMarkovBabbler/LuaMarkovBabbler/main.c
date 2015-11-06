@@ -115,7 +115,7 @@ int l_getToken(lua_State *L) {
     }
 
     int len = end - first;
-    char *raw;
+    char raw[len];
     strncpy(raw, contents+first, len);
 
     char token[len+1];
