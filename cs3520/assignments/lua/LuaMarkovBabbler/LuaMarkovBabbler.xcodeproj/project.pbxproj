@@ -117,7 +117,7 @@
 		43365F941BE6C14A00B14B71 /* lvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lvm.h; path = src/lvm.h; sourceTree = "<group>"; };
 		43365F951BE6C14A00B14B71 /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lzio.c; path = src/lzio.c; sourceTree = "<group>"; };
 		43365F961BE6C14A00B14B71 /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lzio.h; path = src/lzio.h; sourceTree = "<group>"; };
-		43F44EAC1BE6C6170096E259 /* test.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.lua; sourceTree = "<group>"; };
+		43F44EAC1BE6C6170096E259 /* babbler.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = babbler.lua; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,7 +152,7 @@
 			children = (
 				43365F591BE6C0D000B14B71 /* src */,
 				43365F521BE6C02400B14B71 /* main.c */,
-				43F44EAC1BE6C6170096E259 /* test.lua */,
+				43F44EAC1BE6C6170096E259 /* babbler.lua */,
 			);
 			path = LuaMarkovBabbler;
 			sourceTree = "<group>";
