@@ -96,3 +96,10 @@ Ideas:
     * class specific notifications
     * target laptop users as well
 
+Paper:
+
+* Purpose/Introduction (.5 pages)
+* Problem (1 page)
+* Solution (1 page)
+* Timeline / Information Measures (1 page)
+* Conclusion (.5 pages)
