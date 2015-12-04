@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43365F4E1BE6C02400B14B71"
-               BuildableName = "LuaMarkovBabbler"
-               BlueprintName = "LuaMarkovBabbler"
-               ReferencedContainer = "container:LuaMarkovBabbler.xcodeproj">
+               BlueprintIdentifier = "433995CA1BEC056600F57BF9"
+               BuildableName = "Flo.app"
+               BlueprintName = "Flo"
+               ReferencedContainer = "container:Flo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43365F4E1BE6C02400B14B71"
-            BuildableName = "LuaMarkovBabbler"
-            BlueprintName = "LuaMarkovBabbler"
-            ReferencedContainer = "container:LuaMarkovBabbler.xcodeproj">
+            BlueprintIdentifier = "433995CA1BEC056600F57BF9"
+            BuildableName = "Flo.app"
+            BlueprintName = "Flo"
+            ReferencedContainer = "container:Flo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -46,8 +46,7 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "$(PROJECT_DIR)/LuaMarkovBabbler"
+      useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -56,26 +55,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43365F4E1BE6C02400B14B71"
-            BuildableName = "LuaMarkovBabbler"
-            BlueprintName = "LuaMarkovBabbler"
-            ReferencedContainer = "container:LuaMarkovBabbler.xcodeproj">
+            BlueprintIdentifier = "433995CA1BEC056600F57BF9"
+            BuildableName = "Flo.app"
+            BlueprintName = "Flo"
+            ReferencedContainer = "container:Flo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "/Users/nate/school/cs3520/assignments/lua/LuaMarkovBabbler/LuaMarkovBabbler/mice.txt"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "100"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "3"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -89,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43365F4E1BE6C02400B14B71"
-            BuildableName = "LuaMarkovBabbler"
-            BlueprintName = "LuaMarkovBabbler"
-            ReferencedContainer = "container:LuaMarkovBabbler.xcodeproj">
+            BlueprintIdentifier = "433995CA1BEC056600F57BF9"
+            BuildableName = "Flo.app"
+            BlueprintName = "Flo"
+            ReferencedContainer = "container:Flo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

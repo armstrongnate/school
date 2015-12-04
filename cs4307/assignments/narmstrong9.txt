@@ -1,0 +1,65 @@
+mysql> source narmstrong9.sql
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
++------+
+| jid  |
++------+
+| J1   |
+| J4   |
+| J3   |
+| J7   |
++------+
+4 rows in set (0.01 sec)
+
++------+
+| jid  |
++------+
+| J1   |
+| J4   |
+| J3   |
+| J7   |
++------+
+4 rows in set (0.00 sec)
+
++------+
+| jid  |
++------+
+| J1   |
+| J4   |
+| J2   |
+| J3   |
+| J7   |
++------+
+5 rows in set (0.00 sec)
+
++------+
+| jid  |
++------+
+| J1   |
+| J4   |
+| J2   |
+| J3   |
+| J7   |
++------+
+5 rows in set (0.00 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'parts.
+SELECT
+ jid,
+ pid,
+ sid,
+ qty
+FROM
+ spj
+WHERE
+ spj.qty > (SELECT  avg(qty' at line 1
++------+
+| sid  |
++------+
+| S5   |
++------+
+1 row in set (0.00 sec)
+
+mysql> exit

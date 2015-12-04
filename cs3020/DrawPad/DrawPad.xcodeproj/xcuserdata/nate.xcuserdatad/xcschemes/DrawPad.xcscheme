@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43365F4E1BE6C02400B14B71"
-               BuildableName = "LuaMarkovBabbler"
-               BlueprintName = "LuaMarkovBabbler"
-               ReferencedContainer = "container:LuaMarkovBabbler.xcodeproj">
+               BlueprintIdentifier = "4395DC0C1BF29AF6004A265E"
+               BuildableName = "DrawPad.app"
+               BlueprintName = "DrawPad"
+               ReferencedContainer = "container:DrawPad.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,14 +28,34 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4395DC201BF29AF6004A265E"
+               BuildableName = "DrawPadTests.xctest"
+               BlueprintName = "DrawPadTests"
+               ReferencedContainer = "container:DrawPad.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4395DC2B1BF29AF6004A265E"
+               BuildableName = "DrawPadUITests.xctest"
+               BlueprintName = "DrawPadUITests"
+               ReferencedContainer = "container:DrawPad.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43365F4E1BE6C02400B14B71"
-            BuildableName = "LuaMarkovBabbler"
-            BlueprintName = "LuaMarkovBabbler"
-            ReferencedContainer = "container:LuaMarkovBabbler.xcodeproj">
+            BlueprintIdentifier = "4395DC0C1BF29AF6004A265E"
+            BuildableName = "DrawPad.app"
+            BlueprintName = "DrawPad"
+            ReferencedContainer = "container:DrawPad.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -46,8 +66,7 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "$(PROJECT_DIR)/LuaMarkovBabbler"
+      useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -56,26 +75,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43365F4E1BE6C02400B14B71"
-            BuildableName = "LuaMarkovBabbler"
-            BlueprintName = "LuaMarkovBabbler"
-            ReferencedContainer = "container:LuaMarkovBabbler.xcodeproj">
+            BlueprintIdentifier = "4395DC0C1BF29AF6004A265E"
+            BuildableName = "DrawPad.app"
+            BlueprintName = "DrawPad"
+            ReferencedContainer = "container:DrawPad.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "/Users/nate/school/cs3520/assignments/lua/LuaMarkovBabbler/LuaMarkovBabbler/mice.txt"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "100"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "3"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -89,10 +94,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43365F4E1BE6C02400B14B71"
-            BuildableName = "LuaMarkovBabbler"
-            BlueprintName = "LuaMarkovBabbler"
-            ReferencedContainer = "container:LuaMarkovBabbler.xcodeproj">
+            BlueprintIdentifier = "4395DC0C1BF29AF6004A265E"
+            BuildableName = "DrawPad.app"
+            BlueprintName = "DrawPad"
+            ReferencedContainer = "container:DrawPad.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
