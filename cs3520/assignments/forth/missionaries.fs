@@ -9,7 +9,6 @@ create crumb 100 cells allot 0 crumb !
 
 variable multiplier 1 multiplier !
 
-
 : 3dup ( x y z -- x y z x y z x y z )
     dup     ( x y z z )
     2over   ( x y z z x y )
