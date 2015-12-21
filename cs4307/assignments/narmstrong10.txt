@@ -50,3 +50,4 @@ Database changed
 +--------+
 2 rows in set (0.00 sec)
 
+mysql> exit
